@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		841FB896193CC3ED004CD043 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB895193CC3ED004CD043 /* Profile.m */; };
+		841FB899193CC42D004CD043 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB898193CC42D004CD043 /* Home.m */; };
+		841FB89C193CC849004CD043 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB89B193CC849004CD043 /* Settings.m */; };
+		841FB89F193CCA80004CD043 /* MatchesGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB89E193CCA80004CD043 /* MatchesGraphics.m */; };
+		841FB8A2193CD3D1004CD043 /* TeamGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB8A1193CD3D1004CD043 /* TeamGraphics.m */; };
 		84317E211937CA8100EF952F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84317E201937CA8100EF952F /* Foundation.framework */; };
 		84317E231937CA8100EF952F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84317E221937CA8100EF952F /* CoreGraphics.framework */; };
 		84317E251937CA8100EF952F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84317E241937CA8100EF952F /* UIKit.framework */; };
@@ -28,6 +33,7 @@
 		84317E6A1937CF1600EF952F /* AMSlideMenuRightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E621937CF0400EF952F /* AMSlideMenuRightTableViewController.m */; };
 		84317E6B1937CF1600EF952F /* UIViewController+AMSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E641937CF0400EF952F /* UIViewController+AMSlideMenu.m */; };
 		84317E6E1937D3DE00EF952F /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E6D1937D3DE00EF952F /* MainMenu.m */; };
+		84CA39A8193CD90E00636B4E /* SwitchSports.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CA39A7193CD90E00636B4E /* SwitchSports.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +47,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		841FB894193CC3ED004CD043 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		841FB895193CC3ED004CD043 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		841FB897193CC42D004CD043 /* Home.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Home.h; sourceTree = "<group>"; };
+		841FB898193CC42D004CD043 /* Home.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Home.m; sourceTree = "<group>"; };
+		841FB89A193CC849004CD043 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		841FB89B193CC849004CD043 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		841FB89D193CCA80004CD043 /* MatchesGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchesGraphics.h; sourceTree = "<group>"; };
+		841FB89E193CCA80004CD043 /* MatchesGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchesGraphics.m; sourceTree = "<group>"; };
+		841FB8A0193CD3D1004CD043 /* TeamGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamGraphics.h; sourceTree = "<group>"; };
+		841FB8A1193CD3D1004CD043 /* TeamGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamGraphics.m; sourceTree = "<group>"; };
 		84317E1D1937CA8100EF952F /* WeGotNext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeGotNext.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84317E201937CA8100EF952F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		84317E221937CA8100EF952F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -75,6 +91,8 @@
 		84317E641937CF0400EF952F /* UIViewController+AMSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AMSlideMenu.m"; sourceTree = "<group>"; };
 		84317E6C1937D3DE00EF952F /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		84317E6D1937D3DE00EF952F /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
+		84CA39A6193CD90E00636B4E /* SwitchSports.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchSports.h; sourceTree = "<group>"; };
+		84CA39A7193CD90E00636B4E /* SwitchSports.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchSports.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +155,20 @@
 				84317E551937CF0400EF952F /* AMSlideMenu */,
 				84317E2F1937CA8400EF952F /* AppDelegate.h */,
 				84317E301937CA8400EF952F /* AppDelegate.m */,
+				841FB897193CC42D004CD043 /* Home.h */,
+				841FB898193CC42D004CD043 /* Home.m */,
 				84317E6C1937D3DE00EF952F /* MainMenu.h */,
 				84317E6D1937D3DE00EF952F /* MainMenu.m */,
+				841FB89D193CCA80004CD043 /* MatchesGraphics.h */,
+				841FB89E193CCA80004CD043 /* MatchesGraphics.m */,
+				841FB894193CC3ED004CD043 /* Profile.h */,
+				841FB895193CC3ED004CD043 /* Profile.m */,
+				841FB89A193CC849004CD043 /* Settings.h */,
+				841FB89B193CC849004CD043 /* Settings.m */,
+				84CA39A6193CD90E00636B4E /* SwitchSports.h */,
+				84CA39A7193CD90E00636B4E /* SwitchSports.m */,
+				841FB8A0193CD3D1004CD043 /* TeamGraphics.h */,
+				841FB8A1193CD3D1004CD043 /* TeamGraphics.m */,
 				84317E381937CA8700EF952F /* Images.xcassets */,
 				84317E271937CA8200EF952F /* Supporting Files */,
 			);
@@ -295,14 +325,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841FB896193CC3ED004CD043 /* Profile.m in Sources */,
+				841FB89F193CCA80004CD043 /* MatchesGraphics.m in Sources */,
 				84317E661937CF1600EF952F /* AMSlideMenuLeftMenuSegue.m in Sources */,
+				841FB89C193CC849004CD043 /* Settings.m in Sources */,
+				841FB899193CC42D004CD043 /* Home.m in Sources */,
 				84317E6A1937CF1600EF952F /* AMSlideMenuRightTableViewController.m in Sources */,
+				84CA39A8193CD90E00636B4E /* SwitchSports.m in Sources */,
 				84317E651937CF0400EF952F /* AMSlideMenuContentSegue.m in Sources */,
 				84317E6B1937CF1600EF952F /* UIViewController+AMSlideMenu.m in Sources */,
 				84317E671937CF1600EF952F /* AMSlideMenuLeftTableViewController.m in Sources */,
 				84317E6E1937D3DE00EF952F /* MainMenu.m in Sources */,
 				84317E311937CA8400EF952F /* AppDelegate.m in Sources */,
 				84317E681937CF1600EF952F /* AMSlideMenuMainViewController.m in Sources */,
+				841FB8A2193CD3D1004CD043 /* TeamGraphics.m in Sources */,
 				84317E691937CF1600EF952F /* AMSlideMenuRightMenuSegue.m in Sources */,
 				84317E2D1937CA8300EF952F /* main.m in Sources */,
 			);
@@ -509,6 +545,7 @@
 				84317E511937CA8900EF952F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		84317E521937CA8900EF952F /* Build configuration list for PBXNativeTarget "WeGotNextTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +554,7 @@
 				84317E541937CA8900EF952F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

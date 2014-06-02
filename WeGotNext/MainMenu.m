@@ -14,6 +14,12 @@
     [super viewDidLoad];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 -(NSString *)segueIdentifierForIndexPathInLeftMenu:(NSIndexPath *)indexPath{
     NSString *identifier;
     
@@ -24,7 +30,20 @@
         case 1:
             identifier = @"btnProfile";
             break;
+        case 2:
+            identifier = @"btnMatches";
+            break;
+        case 3:
+            identifier = @"btnTeam";
+            break;
+        case 4:
+            identifier = @"btnSettings";
+            break;
+        case 5:
+            identifier = @"btnSwitchSports";
+            break;
         default:
+            identifier = @"btnHome";
             break;
     }
     
