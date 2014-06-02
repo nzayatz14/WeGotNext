@@ -12,6 +12,8 @@
 
 - (void) viewDidLoad{
     [super viewDidLoad];
+    
+//[segueWithIdentifier: @"btnHome"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,5 +50,11 @@
     }
     
     return identifier;
+}
+
+-(NSString *)segueIdentifierForIndexPathInRightMenu:(NSIndexPath *)indexPath{
+    //int personNumber = indexPath.row;
+    
+    return @"btnChat";
 }
 @end
