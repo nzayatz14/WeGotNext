@@ -10,14 +10,58 @@
 
 @implementation Profile
 
-/*- (void) viewDidLoad{
-    [super viewDidLoad];
+
+//function performs if the user holds onto the front profile picture
+- (IBAction)holdProfilePicture:(UILongPressGestureRecognizer *)sender {
+    
+    //Declase action sheet (pop up window on the bottom)
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Select From Library", nil];
+    
+    //show pop up window
+    [actionSheet showInView:self.view];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}*/
+//function preforms if the user makes a selection in the pop up window
+- (void)actionSheet:(UIActionSheet *) actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    //decide which option is taken, option 1 is display the camera, option 2 is go to the devices library
+    //create an image picker for whichever option is taken and set it equal to the windows imagePicker
+    switch(buttonIndex){
+        case 0:
+        {
+            self.imagePicker = [[UIImagePickerController alloc] init];
+            self.imagePicker.delegate = self;
+            self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:self.imagePicker animated:YES completion:nil];
+        }
+            break;
+        case 1:
+        {
+            self.imagePicker = [[UIImagePickerController alloc] init];
+            self.imagePicker.delegate = self;
+            self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:self.imagePicker animated:YES completion:nil];
+        }
+            break;
+        default:
+            break;
+            
+    }
+}
 
+//when the user decides on a picture to use, hide the pop up window and set the profile
+//picture to be that newly selected picture
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    self.selectedImage = info[UIImagePickerControllerOriginalImage];
+    [self.picFrontProfilePicture setImage:self.selectedImage];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+
+}
+
+//if the user hits cancel in the pop up window, hide the pop up window
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+
+}
 @end
