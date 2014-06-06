@@ -10,4 +10,7 @@
 
 @implementation ChatWindow
 
+- (IBAction)btnBackClicked:(UIBarButtonItem *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

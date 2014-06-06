@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ChatWindow : UIViewController
+- (IBAction)btnBackClicked:(UIBarButtonItem *)sender;
 
 @end

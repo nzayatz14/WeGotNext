@@ -14,11 +14,14 @@
 //function performs if the user holds onto the front profile picture
 - (IBAction)holdProfilePicture:(UILongPressGestureRecognizer *)sender {
     
+    //statement to make sure only 1 action sheet appears
+    if(sender.state == UIGestureRecognizerStateBegan){
     //Declase action sheet (pop up window on the bottom)
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Select From Library", nil];
     
     //show pop up window
     [actionSheet showInView:self.view];
+    }
 }
 
 //function preforms if the user makes a selection in the pop up window

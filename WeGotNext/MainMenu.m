@@ -57,4 +57,12 @@
     
     return @"btnChat";
 }
+
+-(BOOL)deepnessForLeftMenu{
+    return YES;
+}
+
+-(BOOL)deepnessForRightMenu{
+    return YES;
+}
 @end
