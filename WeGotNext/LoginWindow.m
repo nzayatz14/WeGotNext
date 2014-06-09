@@ -26,6 +26,7 @@
     NSString *userName = self.txtUserName.text;
     NSString *password = self.txtPassword.text;
     
+    
     //hide keyboards
     [_txtUserName resignFirstResponder];
     [_txtPassword resignFirstResponder];

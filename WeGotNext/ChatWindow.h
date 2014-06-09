@@ -10,5 +10,7 @@
 
 @interface ChatWindow : UIViewController
 - (IBAction)btnBackClicked:(UIBarButtonItem *)sender;
+@property (nonatomic, strong) NSString *myTitle;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 
 @end
