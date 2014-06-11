@@ -7,6 +7,7 @@
 //
 
 #import "LoginWindow.h"
+#import "MyManager.h"
 
 @implementation LoginWindow
 
@@ -36,6 +37,10 @@
     
     //if passwords match
         //load person's data
+    MyManager *sharedManager = [MyManager sharedManager];
+    [sharedManager.user setUserName:userName];
+    [sharedManager.user setPassword:password];
+    
     [super performSegueWithIdentifier:@"btnLogin" sender:self];
 }
 

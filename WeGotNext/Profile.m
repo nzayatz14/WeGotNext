@@ -10,6 +10,20 @@
 
 @implementation Profile
 
+//initialize the labels and such when the view appears to the user
+-(void) viewWillAppear:(BOOL)animated{
+    _txtFirstName.text = _First;
+    _txtAge.text = _Age;
+    _txtGender.text = _Gender;
+    
+    _txtExperience1.text = _Exp1;
+    _txtExperience2.text = _Exp2;
+    _txtExperience3.text = _Exp3;
+    
+    _txtCredibilityRating.text = [[NSString alloc] initWithFormat:@"%d", [_credibility intValue]];
+    
+    [_pgrCredibility setProgress:[_credibility floatValue]/100];
+}
 
 //function performs if the user holds onto the front profile picture
 - (IBAction)holdProfilePicture:(UILongPressGestureRecognizer *)sender {

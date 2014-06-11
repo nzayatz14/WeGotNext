@@ -23,17 +23,22 @@
     
     birthday = [mmddyyyy dateFromString:@"01/01/0001"];
     
+    upVotes = 0;
+    totalVotes = 0;
+    
     return self;
     
 }
 
 //constructor with parameters used to create an account
--(id) initWithUserName:(NSString *) user FirstName:(NSString *) first Password:(NSString *) pass isMale:(BOOL) Male birthdate:(NSDate *) birth{
+-(id) initWithUserName:(NSString *) user FirstName:(NSString *) first Password:(NSString *) pass isMale:(BOOL) Male birthdate:(NSDate *) birth upVotes:(int)up votes:(int)v{
     userName = user;
     firstName = first;
     password = pass;
     male = Male;
     birthday = birth;
+    upVotes = up;
+    totalVotes = v;
     
     return self;
 }
@@ -78,6 +83,16 @@
     return birthday;
 }
 
+-(int) getAge{
+    NSDate *now = [NSDate date];
+    
+    NSDateComponents *ageComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:birthday toDate: now options:0];
+    
+    NSInteger age = [ageComponents year];
+    
+    return (int)age;
+}
+
 -(void) setExperienceFromSport:(int) sp experienceNumber:(int) ex experience:(NSString *) exp{
     experience[sp][ex] = exp;
 }
@@ -92,6 +107,23 @@
 
 -(UIImage *) getProfPicFromSport:(int) sp picNumber:(int) picNum{
     return profilePics[sp][picNum];
+}
+
+-(void) addUpVote{
+    upVotes++;
+}
+
+-(void) addVote{
+    totalVotes++;
+}
+
+-(int) getCredibility{
+    
+    if(totalVotes == 0){
+        return 100;
+    }
+    
+    return (int)(((float)upVotes/(float)totalVotes)*100);
 }
 
 @end
