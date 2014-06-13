@@ -8,11 +8,14 @@
 #import "MatchesGraphics.h"
 #import "MatchCellType.h"
 #import "Person.h"
+#import "MyManager.h"
 
 @implementation MatchesGraphics
 
 -(void)viewWillAppear:(BOOL)animated{
+    MyManager *sharedManager = [MyManager sharedManager];
     
+    [sharedManager.user getMatchesFromSport:[sharedManager.user getCurrentSport] matches:_matches];
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{

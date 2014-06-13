@@ -7,11 +7,30 @@
 //
 
 #import "Profile.h"
+#import "MyManager.h"
 
 @implementation Profile
 
 //initialize the labels and such when the view appears to the user
 -(void) viewWillAppear:(BOOL)animated{
+    
+    MyManager *sharedManager = [MyManager sharedManager];
+    //set the information of the profile menu equal to the information of the user
+    
+
+    _First = [sharedManager.user getFirstName];
+    _Age = [NSString stringWithFormat:@"%d", [sharedManager.user getAge]];
+    _Exp1 = [[NSString alloc] initWithFormat:@"Exp 1"];
+    _Exp2 = [[NSString alloc] initWithFormat:@"Exp 2"];
+    _Exp3 = [[NSString alloc] initWithFormat:@"Exp 3"];
+    _credibility = [NSNumber numberWithInt:[sharedManager.user getCredibility]];
+    
+    if([sharedManager.user isMale]){
+        _Gender = [[NSString alloc] initWithFormat:@"M"];
+    }else{
+        _Gender = [[NSString alloc] initWithFormat:@"F"];
+    }
+    
     _txtFirstName.text = _First;
     _txtAge.text = _Age;
     _txtGender.text = _Gender;
