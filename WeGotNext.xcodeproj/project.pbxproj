@@ -33,6 +33,7 @@
 		84317E6A1937CF1600EF952F /* AMSlideMenuRightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E621937CF0400EF952F /* AMSlideMenuRightTableViewController.m */; };
 		84317E6B1937CF1600EF952F /* UIViewController+AMSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E641937CF0400EF952F /* UIViewController+AMSlideMenu.m */; };
 		84317E6E1937D3DE00EF952F /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E6D1937D3DE00EF952F /* MainMenu.m */; };
+		84459733194B497D00877BBE /* MatchCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84459732194B497D00877BBE /* MatchCellType.m */; };
 		844F37521948A66000A89B80 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844F37511948A66000A89B80 /* MyManager.m */; };
 		8452A3A2194209B40044A2D4 /* CreateUserWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8452A3A1194209B40044A2D4 /* CreateUserWindow.m */; };
 		8452A3A519420FC60044A2D4 /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8452A3A419420FC60044A2D4 /* DismissSegue.m */; };
@@ -98,6 +99,8 @@
 		84317E641937CF0400EF952F /* UIViewController+AMSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AMSlideMenu.m"; sourceTree = "<group>"; };
 		84317E6C1937D3DE00EF952F /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		84317E6D1937D3DE00EF952F /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
+		84459731194B497D00877BBE /* MatchCellType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchCellType.h; sourceTree = "<group>"; };
+		84459732194B497D00877BBE /* MatchCellType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCellType.m; sourceTree = "<group>"; };
 		844F37501948A66000A89B80 /* MyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyManager.h; sourceTree = "<group>"; };
 		844F37511948A66000A89B80 /* MyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyManager.m; sourceTree = "<group>"; };
 		8452A3A0194209B40044A2D4 /* CreateUserWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUserWindow.h; sourceTree = "<group>"; };
@@ -179,8 +182,6 @@
 				84B844EE193CF44500CF8A07 /* ChatWindow.m */,
 				8452A3A0194209B40044A2D4 /* CreateUserWindow.h */,
 				8452A3A1194209B40044A2D4 /* CreateUserWindow.m */,
-				845BA3BE1945EC1B00927A63 /* Person.h */,
-				845BA3BF1945EC1B00927A63 /* Person.m */,
 				84A6E98B193F8320001E0600 /* default.png */,
 				8452A3A319420FC60044A2D4 /* DismissSegue.h */,
 				8452A3A419420FC60044A2D4 /* DismissSegue.m */,
@@ -190,10 +191,14 @@
 				84909940193D078300E4A914 /* LoginWindow.m */,
 				84317E6C1937D3DE00EF952F /* MainMenu.h */,
 				84317E6D1937D3DE00EF952F /* MainMenu.m */,
+				84459731194B497D00877BBE /* MatchCellType.h */,
+				84459732194B497D00877BBE /* MatchCellType.m */,
 				841FB89D193CCA80004CD043 /* MatchesGraphics.h */,
 				841FB89E193CCA80004CD043 /* MatchesGraphics.m */,
 				844F37501948A66000A89B80 /* MyManager.h */,
 				844F37511948A66000A89B80 /* MyManager.m */,
+				845BA3BE1945EC1B00927A63 /* Person.h */,
+				845BA3BF1945EC1B00927A63 /* Person.m */,
 				841FB894193CC3ED004CD043 /* Profile.h */,
 				841FB895193CC3ED004CD043 /* Profile.m */,
 				841FB89A193CC849004CD043 /* Settings.h */,
@@ -378,6 +383,7 @@
 				84317E311937CA8400EF952F /* AppDelegate.m in Sources */,
 				84909941193D078300E4A914 /* LoginWindow.m in Sources */,
 				84317E681937CF1600EF952F /* AMSlideMenuMainViewController.m in Sources */,
+				84459733194B497D00877BBE /* MatchCellType.m in Sources */,
 				841FB8A2193CD3D1004CD043 /* TeamGraphics.m in Sources */,
 				84317E691937CF1600EF952F /* AMSlideMenuRightMenuSegue.m in Sources */,
 				84317E2D1937CA8300EF952F /* main.m in Sources */,

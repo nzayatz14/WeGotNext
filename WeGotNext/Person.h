@@ -28,12 +28,16 @@
     NSDate *birthday;
     int upVotes;
     int totalVotes;
+    int currentSport;
     
     //make these 2D arrays so the user can have experiences and pictures for each sport
     NSString *experience[SPORT_COUNT][EXP_COUNT];
     UIImage *profilePics[SPORT_COUNT][IMAGE_COUNT];
     
     //ex: to access the users 3rd picture from Lacrosse (sport number 4) you would get profilePics[4][3];
+    
+    //create an array of mutable arrays to hold the users matches for each sport
+    NSMutableArray *matches[SPORT_COUNT];
     
 }
 -(id) init;
@@ -61,8 +65,15 @@
 -(void) setProfPicFromSport:(int) sp picNumber:(int) picNum picture:(UIImage *) pic;
 -(UIImage *) getProfPicFromSport:(int) sp picNumber:(int) picNum;
 
+-(void) addMatchFromSport:(int) sport match:(Person *) p;
+-(Person *) getMatchFromSport:(int) sport matchNumber:(int) match;
+-(void) getMatchesFromSport:(int) sport matches:(NSMutableArray *) array;
+
 -(void) addUpVote;
 -(void) addVote;
 -(int) getCredibility;
+
+-(void)setCurrentSport:(int) temp;
+-(int) getCurrentSport;
 
 @end

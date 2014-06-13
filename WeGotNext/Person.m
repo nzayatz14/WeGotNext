@@ -26,6 +26,8 @@
     upVotes = 0;
     totalVotes = 0;
     
+    currentSport = 0;
+    
     return self;
     
 }
@@ -39,6 +41,8 @@
     birthday = birth;
     upVotes = up;
     totalVotes = v;
+    
+    currentSport = 0;
     
     return self;
 }
@@ -124,6 +128,30 @@
     }
     
     return (int)(((float)upVotes/(float)totalVotes)*100);
+}
+
+-(void) addMatchFromSport:(int) sport match:(Person *) p{
+    [matches[sport] addObject:p];
+}
+
+-(Person *) getMatchFromSport:(int) sport matchNumber:(int) match{
+    return [matches[sport] objectAtIndex:match];
+}
+
+-(void) getMatchesFromSport:(int) sport matches:(NSMutableArray *) array{
+    [array removeAllObjects];
+    
+    for(Person* p in matches[sport]){
+        [array addObject:p];
+    }
+}
+
+-(void)setCurrentSport:(int) temp{
+    currentSport = temp;
+}
+
+-(int) getCurrentSport{
+    return currentSport;
 }
 
 @end

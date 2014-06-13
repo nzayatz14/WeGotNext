@@ -10,4 +10,7 @@
 
 @interface MatchesGraphics : UITableViewController
 
+@property (nonatomic, strong) NSNumber *numberOfMatches;
+@property (nonatomic, strong) NSMutableArray *matches;
+
 @end

@@ -1,4 +1,3 @@
-//
 //  Matches.m
 //  WeGotNext
 //
@@ -7,19 +6,36 @@
 //
 
 #import "MatchesGraphics.h"
+#import "MatchCellType.h"
+#import "Person.h"
 
 @implementation MatchesGraphics
 
-
-/*- (void) viewDidLoad{
-    [super viewDidLoad];
+-(void)viewWillAppear:(BOOL)animated{
+    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}*/
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [_numberOfMatches integerValue];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellID = @"MatchCell";
+    
+    MatchCellType *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    if(cell == nil){
+        cell = [[MatchCellType alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    
+    cell.lblName.text = [(Person *)[_matches objectAtIndex: [indexPath row]] getFirstName];
+    
+    return cell;
+}
 
 
 @end
