@@ -13,20 +13,27 @@
 @implementation MatchesGraphics
 
 -(void)viewWillAppear:(BOOL)animated{
-    MyManager *sharedManager = [MyManager sharedManager];
     
+    //copy array of matches over from the user to the graphics class
+    MyManager *sharedManager = [MyManager sharedManager];
     [sharedManager.user getMatchesFromSport:[sharedManager.user getCurrentSport] matches:_matches];
+    
 }
+
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_numberOfMatches integerValue];
 }
 
+//set the information of each cell based on the information in the array of matches
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //set template of the cell
     static NSString *cellID = @"MatchCell";
     
     MatchCellType *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -35,6 +42,7 @@
         cell = [[MatchCellType alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     
+    //set label text (also need to do picture)
     cell.lblName.text = [(Person *)[_matches objectAtIndex: [indexPath row]] getFirstName];
     
     return cell;

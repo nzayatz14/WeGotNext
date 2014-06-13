@@ -14,9 +14,13 @@
 //initialize the labels and such when the view appears to the user
 -(void) viewWillAppear:(BOOL)animated{
     
+    //create the manager to access the users information
     MyManager *sharedManager = [MyManager sharedManager];
-    //set the information of the profile menu equal to the information of the user
     
+    //set the information of the profile menu equal to the information of the user
+    //(strong variables then weak variables)
+    
+    //also need to set picture(s)
 
     _First = [sharedManager.user getFirstName];
     _Age = [NSString stringWithFormat:@"%d", [sharedManager.user getAge]];
