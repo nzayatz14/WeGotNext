@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SwitchSports : UITableViewController{
-    NSIndexPath * checkedIndexPath;
+    //NSIndexPath * checkedIndexPath;
 }
 
 @property (nonatomic, retain) NSIndexPath * checkedIndexPath;
