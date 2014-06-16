@@ -7,17 +7,22 @@
 //
 
 #import "Home.h"
+#import "MyManager.h"
 
 @implementation Home
 
-/*- (void) viewDidLoad{
-    [super viewDidLoad];
+-(void) viewWillAppear:(BOOL)animated{
+    //MyManager *sharedManager = [MyManager sharedManager];
+    
+    //Person * temp = [[Person alloc] init];
+    //NSLog(@"%@", [temp getFirstName]);
+    
+    //[sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:temp];
+    //[sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:temp];
+    
+    //NSLog(@"Add Person");
+    //NSLog(@"%d", [sharedManager.user getNumberOfMatchesFromSport:[sharedManager.user getCurrentSport]]);
+   // NSLog(@"%d", [sharedManager.user getCurrentSport]);
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}*/
 
 @end

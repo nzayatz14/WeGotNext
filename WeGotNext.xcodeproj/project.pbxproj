@@ -12,6 +12,7 @@
 		841FB89C193CC849004CD043 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB89B193CC849004CD043 /* Settings.m */; };
 		841FB89F193CCA80004CD043 /* MatchesGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB89E193CCA80004CD043 /* MatchesGraphics.m */; };
 		841FB8A2193CD3D1004CD043 /* TeamGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB8A1193CD3D1004CD043 /* TeamGraphics.m */; };
+		84314F41194F32FA008DC865 /* TeamCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84314F40194F32FA008DC865 /* TeamCellType.m */; };
 		84317E211937CA8100EF952F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84317E201937CA8100EF952F /* Foundation.framework */; };
 		84317E231937CA8100EF952F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84317E221937CA8100EF952F /* CoreGraphics.framework */; };
 		84317E251937CA8100EF952F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84317E241937CA8100EF952F /* UIKit.framework */; };
@@ -65,6 +66,8 @@
 		841FB89E193CCA80004CD043 /* MatchesGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchesGraphics.m; sourceTree = "<group>"; };
 		841FB8A0193CD3D1004CD043 /* TeamGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamGraphics.h; sourceTree = "<group>"; };
 		841FB8A1193CD3D1004CD043 /* TeamGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamGraphics.m; sourceTree = "<group>"; };
+		84314F3F194F32FA008DC865 /* TeamCellType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamCellType.h; sourceTree = "<group>"; };
+		84314F40194F32FA008DC865 /* TeamCellType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCellType.m; sourceTree = "<group>"; };
 		84317E1D1937CA8100EF952F /* WeGotNext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeGotNext.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84317E201937CA8100EF952F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		84317E221937CA8100EF952F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -205,6 +208,8 @@
 				841FB89B193CC849004CD043 /* Settings.m */,
 				84CA39A6193CD90E00636B4E /* SwitchSports.h */,
 				84CA39A7193CD90E00636B4E /* SwitchSports.m */,
+				84314F3F194F32FA008DC865 /* TeamCellType.h */,
+				84314F40194F32FA008DC865 /* TeamCellType.m */,
 				841FB8A0193CD3D1004CD043 /* TeamGraphics.h */,
 				841FB8A1193CD3D1004CD043 /* TeamGraphics.m */,
 				84317E381937CA8700EF952F /* Images.xcassets */,
@@ -382,6 +387,7 @@
 				844F37521948A66000A89B80 /* MyManager.m in Sources */,
 				84317E311937CA8400EF952F /* AppDelegate.m in Sources */,
 				84909941193D078300E4A914 /* LoginWindow.m in Sources */,
+				84314F41194F32FA008DC865 /* TeamCellType.m in Sources */,
 				84317E681937CF1600EF952F /* AMSlideMenuMainViewController.m in Sources */,
 				84459733194B497D00877BBE /* MatchCellType.m in Sources */,
 				841FB8A2193CD3D1004CD043 /* TeamGraphics.m in Sources */,

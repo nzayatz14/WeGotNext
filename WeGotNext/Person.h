@@ -8,18 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-#define IMAGE_COUNT 5
-#define SPORT_COUNT 5
-#define EXP_COUNT 3
+#define IMAGE_COUNT 5 //how many images the user can have in 1 sport
+#define SPORT_COUNT 5 //how many total sports we have
+#define EXP_COUNT 3 //how many experiences the user can put
 //0 = Basketball
 //1 = Baseball
 //2 = Soccer
 //3 = Football
 //4 = Lacrosse
 @interface Person : NSObject{
-    //const int IMAGE_COUNT; //how many images the user can have in 1 sport
-    //const int SPORT_COUNT; //how many total sports we have
-    //const int EXP_COUNT; //how many experiences the user can put
     
     NSString *userName;
     NSString *firstName;
@@ -38,6 +35,7 @@
     
     //create an array of mutable arrays to hold the users matches for each sport
     NSMutableArray *matches[SPORT_COUNT];
+    NSMutableArray *team[SPORT_COUNT];
     
 }
 -(id) init;
@@ -68,6 +66,8 @@
 -(void) addMatchFromSport:(int) sport match:(Person *) p;
 -(Person *) getMatchFromSport:(int) sport matchNumber:(int) match;
 -(void) getMatchesFromSport:(int) sport matches:(NSMutableArray *) array;
+-(void) removeMatchFromSport:(int) sp matchNumber:(int) number;
+-(int) getNumberOfMatchesFromSport:(int) sp;
 
 -(void) addUpVote;
 -(void) addVote;
@@ -75,5 +75,12 @@
 
 -(void)setCurrentSport:(int) temp;
 -(int) getCurrentSport;
+
+-(void) addToTeamFromSport:(int) sport person:(Person *) p;
+-(Person *) getTeammateFromSport:(int) sp teammateNumber:(int) match;
+-(void) getTeamFromSport:(int) sport team:(NSMutableArray *) array;
+-(void) removeTeammateFromSport:(int) sp teammateNumber:(int) number;
+-(int) getNumberOfTeammatesFromSport:(int) sp;
+
 
 @end

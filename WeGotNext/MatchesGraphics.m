@@ -7,16 +7,20 @@
 
 #import "MatchesGraphics.h"
 #import "MatchCellType.h"
-#import "Person.h"
 #import "MyManager.h"
 
 @implementation MatchesGraphics
+
+-(void) viewDidLoad{
+    _matches = [[NSMutableArray alloc] init];
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     
     //copy array of matches over from the user to the graphics class
     MyManager *sharedManager = [MyManager sharedManager];
     [sharedManager.user getMatchesFromSport:[sharedManager.user getCurrentSport] matches:_matches];
+    _numberOfMatches = [NSNumber numberWithInteger:[_matches count]];
     
 }
 

@@ -28,6 +28,14 @@
     
     currentSport = 0;
     
+    for(int i = 0;i<SPORT_COUNT; i++){
+        matches[i] = [[NSMutableArray alloc] init];
+    }
+    
+    for(int i = 0;i<SPORT_COUNT; i++){
+        team[i] = [[NSMutableArray alloc] init];
+    }
+    
     return self;
     
 }
@@ -43,6 +51,14 @@
     totalVotes = v;
     
     currentSport = 0;
+    
+    for(int i = 0;i<SPORT_COUNT; i++){
+        matches[i] = [[NSMutableArray alloc] init];
+    }
+    
+    for(int i = 0;i<SPORT_COUNT; i++){
+        team[i] = [[NSMutableArray alloc] init];
+    }
     
     return self;
 }
@@ -146,12 +162,44 @@
     }
 }
 
+-(void) removeMatchFromSport:(int) sp matchNumber:(int) number{
+    [matches[sp] removeObjectAtIndex:number];
+}
+
+-(int) getNumberOfMatchesFromSport:(int) sp{
+    return (int)[matches[sp] count];
+}
+
 -(void)setCurrentSport:(int) temp{
     currentSport = temp;
 }
 
 -(int) getCurrentSport{
     return currentSport;
+}
+
+-(void) addToTeamFromSport:(int) sport person:(Person *) p{
+    [team[sport] addObject:p];
+}
+
+-(Person *) getTeammateFromSport:(int) sp teammateNumber:(int) match{
+    return [team[sp] objectAtIndex:match];
+}
+
+-(void) getTeamFromSport:(int) sport team:(NSMutableArray *) array{
+    [array removeAllObjects];
+    
+    for(Person *p in team[sport]){
+        [array addObject:p];
+    }
+}
+
+-(void) removeTeammateFromSport:(int) sp teammateNumber:(int) number{
+    [team[sp] removeObjectAtIndex:number];
+}
+
+-(int) getNumberOfTeammatesFromSport:(int) sp{
+    return (int)[team[sp] count];
 }
 
 @end

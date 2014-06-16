@@ -37,11 +37,11 @@
     [_txtFirstName resignFirstResponder];
     [_txtBirthday resignFirstResponder];
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)btnCancelClicked:(UIBarButtonItem *)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //method called when 'done' button is clicked on keyboard

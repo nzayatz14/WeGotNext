@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SwitchSports : UITableViewController
+@interface SwitchSports : UITableViewController{
+    NSIndexPath * checkedIndexPath;
+}
 
+@property (nonatomic, retain) NSIndexPath * checkedIndexPath;
 @end

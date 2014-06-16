@@ -10,4 +10,7 @@
 
 @interface TeamGraphics : UITableViewController
 
+@property (nonatomic, strong) NSNumber *numberOfTeammates;
+@property (nonatomic, strong) NSMutableArray *team;
+
 @end
