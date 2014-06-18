@@ -37,6 +37,7 @@
     
     //if passwords match
         //load person's data
+    
     MyManager *sharedManager = [MyManager sharedManager];
     [sharedManager.user setUserName:userName];
     [sharedManager.user setPassword:password];
