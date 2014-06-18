@@ -22,20 +22,22 @@
     
     //also need to set picture(s)
 
-    _First = [sharedManager.user getFirstName];
-    _Age = [NSString stringWithFormat:@"%d", [sharedManager.user getAge]];
-    _Exp1 = [[NSString alloc] initWithFormat:@"Exp 1"];
-    _Exp2 = [[NSString alloc] initWithFormat:@"Exp 2"];
-    _Exp3 = [[NSString alloc] initWithFormat:@"Exp 3"];
-    _credibility = [NSNumber numberWithInt:[sharedManager.user getCredibility]];
+    _txtFirstName.text = [sharedManager.user getFirstName];
+    _txtAge.text = [NSString stringWithFormat:@"%d", [sharedManager.user getAge]];
+    _txtExperience1.text = [[NSString alloc] initWithFormat:@"Exp 1"];
+    _txtExperience2.text = [[NSString alloc] initWithFormat:@"Exp 2"];
+    _txtExperience3.text = [[NSString alloc] initWithFormat:@"Exp 3"];
+    _txtCredibilityRating.text = [[NSString alloc]initWithFormat:@"%d",[[NSNumber numberWithInt:[sharedManager.user getCredibility]] intValue]];
     
     if([sharedManager.user isMale]){
-        _Gender = [[NSString alloc] initWithFormat:@"M"];
+        _txtGender.text = [[NSString alloc] initWithFormat:@"M"];
     }else{
-        _Gender = [[NSString alloc] initWithFormat:@"F"];
+        _txtGender.text = [[NSString alloc] initWithFormat:@"F"];
     }
     
-    _txtFirstName.text = _First;
+    [_pgrCredibility setProgress:[[NSNumber numberWithInt:[sharedManager.user getCredibility]] floatValue]/100];
+    
+   /* _txtFirstName.text = _First;
     _txtAge.text = _Age;
     _txtGender.text = _Gender;
     
@@ -44,8 +46,8 @@
     _txtExperience3.text = _Exp3;
     
     _txtCredibilityRating.text = [[NSString alloc] initWithFormat:@"%d", [_credibility intValue]];
+    */
     
-    [_pgrCredibility setProgress:[_credibility floatValue]/100];
 }
 
 //function performs if the user holds onto the front profile picture
