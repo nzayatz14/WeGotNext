@@ -39,6 +39,7 @@
 		8452A3A2194209B40044A2D4 /* CreateUserWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8452A3A1194209B40044A2D4 /* CreateUserWindow.m */; };
 		8452A3A519420FC60044A2D4 /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8452A3A419420FC60044A2D4 /* DismissSegue.m */; };
 		845BA3C01945EC1B00927A63 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BA3BF1945EC1B00927A63 /* Person.m */; };
+		84807EF619532865008229EB /* RightSlideMenuCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84807EF519532865008229EB /* RightSlideMenuCellType.m */; };
 		84909941193D078300E4A914 /* LoginWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 84909940193D078300E4A914 /* LoginWindow.m */; };
 		84A6E98C193F8320001E0600 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A6E98B193F8320001E0600 /* default.png */; };
 		84B844EF193CF44500CF8A07 /* ChatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B844EE193CF44500CF8A07 /* ChatWindow.m */; };
@@ -113,6 +114,8 @@
 		8454EE21193D056700169D83 /* LoginWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginWindow.h; sourceTree = "<group>"; };
 		845BA3BE1945EC1B00927A63 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		845BA3BF1945EC1B00927A63 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		84807EF419532865008229EB /* RightSlideMenuCellType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightSlideMenuCellType.h; sourceTree = "<group>"; };
+		84807EF519532865008229EB /* RightSlideMenuCellType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightSlideMenuCellType.m; sourceTree = "<group>"; };
 		84909940193D078300E4A914 /* LoginWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindow.m; sourceTree = "<group>"; };
 		84A6E98B193F8320001E0600 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		84B844ED193CF44400CF8A07 /* ChatWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatWindow.h; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				845BA3BF1945EC1B00927A63 /* Person.m */,
 				841FB894193CC3ED004CD043 /* Profile.h */,
 				841FB895193CC3ED004CD043 /* Profile.m */,
+				84807EF419532865008229EB /* RightSlideMenuCellType.h */,
+				84807EF519532865008229EB /* RightSlideMenuCellType.m */,
 				841FB89A193CC849004CD043 /* Settings.h */,
 				841FB89B193CC849004CD043 /* Settings.m */,
 				84CA39A6193CD90E00636B4E /* SwitchSports.h */,
@@ -392,6 +397,7 @@
 				84459733194B497D00877BBE /* MatchCellType.m in Sources */,
 				841FB8A2193CD3D1004CD043 /* TeamGraphics.m in Sources */,
 				84317E691937CF1600EF952F /* AMSlideMenuRightMenuSegue.m in Sources */,
+				84807EF619532865008229EB /* RightSlideMenuCellType.m in Sources */,
 				84317E2D1937CA8300EF952F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

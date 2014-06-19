@@ -12,12 +12,12 @@
 @implementation Home
 
 -(void) viewWillAppear:(BOOL)animated{
-    //MyManager *sharedManager = [MyManager sharedManager];
+    MyManager *sharedManager = [MyManager sharedManager];
     
-    //Person * temp = [[Person alloc] init];
+    Person * temp = [[Person alloc] init];
     //NSLog(@"%@", [temp getFirstName]);
     
-    //[sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:temp];
+    [sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:temp];
     //[sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:temp];
     
     //NSLog(@"Add Person");
