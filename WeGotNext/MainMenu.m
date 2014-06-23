@@ -33,7 +33,7 @@
             identifier = @"btnProfile";
             break;
         case 2:
-            identifier = @"btnMatches";
+            [self openRightMenu];
             break;
         case 3:
             identifier = @"btnTeam";
