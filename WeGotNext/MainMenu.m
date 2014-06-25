@@ -7,6 +7,7 @@
 //
 
 #import "MainMenu.h"
+#import "LoginWindow.h"
 
 @implementation MainMenu
 
@@ -44,6 +45,11 @@
         case 5:
             identifier = @"btnSwitchSports";
             break;
+        case 6:
+        { UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wait" message:@"After logging out, players will still be able to see your account at the location of last log in." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
+            [alert show];
+        }
+            break;
         default:
             identifier = @"btnHome";
             break;
@@ -66,5 +72,16 @@
 
 -(BOOL)deepnessForRightMenu{
     return YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    //if delete is clicked
+    if(buttonIndex == 1){
+        /*LoginWindow *back = [[LoginWindow alloc] initWithNibName:@"LoginWindow" bundle:nil];
+        NSMutableArray *vcs = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+        [vcs insertObject:back atIndex:[vcs count] -1];
+        [self.navigationController setViewControllers:vcs];
+        [self.navigationController popToViewController:self animated:YES];*/
+    }
 }
 @end

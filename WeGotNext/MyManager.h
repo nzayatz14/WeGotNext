@@ -15,6 +15,10 @@
 
 @property (nonatomic, retain) Person *user;
 
+@property (nonatomic, assign) BOOL notifyNewPair;
+@property (nonatomic, assign) BOOL notifyNewPlayerMessage;
+@property (nonatomic, assign) BOOL notifyNewTeammateMessage;
+
 +(id)sharedManager;
 
 @end

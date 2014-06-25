@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Settings : UIViewController
+@interface Settings : UIViewController <UIAlertViewDelegate>
+- (IBAction)sldPlayerPaired:(UISwitch *)sender;
+- (IBAction)sldPlayerMsg:(UISwitch *)sender;
+- (IBAction)sldTeammateMsg:(UISwitch *)sender;
+
+@property (weak, nonatomic) IBOutlet UISwitch *sldPlayerPairedObj;
+@property (weak, nonatomic) IBOutlet UISwitch *sldPlayerMsgObj;
+@property (weak, nonatomic) IBOutlet UISwitch *sldTeammateMsgObj;
+
+- (IBAction)btnDeleteAccountClicked:(id)sender;
 
 @end

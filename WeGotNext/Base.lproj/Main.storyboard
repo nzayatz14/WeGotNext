@@ -426,6 +426,9 @@
                                 <state key="normal" title="Delete Account">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnDeleteAccountClicked:" destination="tet-01-ycT" eventType="touchUpInside" id="cle-Ch-FCS"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Players Paired" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7RV-JV-41f">
                                 <rect key="frame" x="147" y="138" width="153" height="21"/>
@@ -448,19 +451,33 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Lqc-9Z-uxo">
                                 <rect key="frame" x="20" y="133" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sldPlayerPaired:" destination="tet-01-ycT" eventType="valueChanged" id="H7X-Mh-5oJ"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Obm-pt-Xad">
                                 <rect key="frame" x="20" y="172" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sldPlayerMsg:" destination="tet-01-ycT" eventType="valueChanged" id="eoM-D5-n88"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="v1F-b8-N38">
                                 <rect key="frame" x="20" y="211" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sldTeammateMsg:" destination="tet-01-ycT" eventType="valueChanged" id="jcc-kr-dZh"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.39983339312178739" green="0.75736787044955067" blue="0.8045479910714286" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="b3r-JU-fK6"/>
+                    <connections>
+                        <outlet property="sldPlayerMsgObj" destination="Obm-pt-Xad" id="RBL-tf-e8i"/>
+                        <outlet property="sldPlayerPairedObj" destination="Lqc-9Z-uxo" id="HgQ-vM-klJ"/>
+                        <outlet property="sldTeammateMsgObj" destination="v1F-b8-N38" id="eNs-f8-T5o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lG5-BM-fEg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -867,7 +884,6 @@
         <!--Slide Menu Right Table View Controller-->
         <scene sceneID="jC3-PP-6ae">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zgf-qi-Yvv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="rXY-8L-pyU" customClass="AMSlideMenuRightTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Nyc-4M-x2v">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -919,6 +935,7 @@
                         <segue destination="5lg-dB-vg6" kind="custom" identifier="btnChat" customClass="AMSlideMenuContentSegue" id="igl-HX-gD4"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zgf-qi-Yvv" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="sG3-0I-rsb">
                     <connections>
                         <outlet property="delegate" destination="rXY-8L-pyU" id="GmC-Jh-r3j"/>

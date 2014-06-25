@@ -23,6 +23,9 @@
 -(id) init {
     if(self = [super init]){
         user = [[Person alloc] init];
+        _notifyNewPair = YES;
+        _notifyNewPlayerMessage = YES;
+        _notifyNewTeammateMessage = YES;
     }
     return self;
 }

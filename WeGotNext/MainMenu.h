@@ -8,7 +8,7 @@
 
 #import "AMSlideMenuMainViewController.h"
 
-@interface MainMenu : AMSlideMenuMainViewController
+@interface MainMenu : AMSlideMenuMainViewController <UIAlertViewDelegate>
 
 
 
