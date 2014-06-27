@@ -34,7 +34,7 @@
             identifier = @"btnProfile";
             break;
         case 2:
-            [self openRightMenu];
+            identifier = @"btnMatches";
             break;
         case 3:
             identifier = @"btnTeam";

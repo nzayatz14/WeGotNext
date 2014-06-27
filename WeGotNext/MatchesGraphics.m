@@ -8,7 +8,7 @@
 #import "MatchesGraphics.h"
 #import "MatchCellType.h"
 #import "MyManager.h"
-#import "ChatWindow.h"
+#import "userProfile.h"
 
 @implementation MatchesGraphics
 
@@ -67,22 +67,21 @@
      }
      } */
     
-    [self performSegueWithIdentifier:@"btnMatchChat" sender:self];
+    [self performSegueWithIdentifier:@"pairSelected" sender:self];
 }
 
 //passes data through the segue when the user clicks on one of the chat menu items
 -(void) prepareForSegue:(UIStoryboardSegue *) segue sender:(id)sender{
+    
     //if the segue is for a chat window
-    if([segue.identifier isEqualToString:@"btnMatchChat"]){
+    if([segue.identifier isEqualToString:@"pairSelected"]){
         
         //get which position was clicked on and set the title of the window to "Chat #" where # is the number of which row was clicked
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ChatWindow *chat  = (ChatWindow*)[[segue destinationViewController] topViewController];
+        userProfile *chat  = (userProfile*)[segue destinationViewController];
         
-        if(_numberOfMatches >0)
-            chat.navItem.title = [(Person *)[_matches objectAtIndex: [indexPath row]] getFirstName];
-        else
-            chat.navItem.title = [[NSString alloc] initWithFormat:@"Chat"];
+        chat.player = [[Person alloc] init];
+        [chat.player copyPerson:(Person *) [_matches objectAtIndex:indexPath.row]];
     }
 }
 

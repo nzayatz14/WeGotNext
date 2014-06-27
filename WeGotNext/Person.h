@@ -41,6 +41,8 @@
 -(id) init;
 -(id) initWithUserName:(NSString *) user FirstName:(NSString *) first Password:(NSString *) pass isMale:(BOOL) Male birthdate:(NSDate *) birth upVotes:(int) up votes:(int) v;
 
+-(void) copyPerson:(Person *) p;
+
 -(void) setUserName:(NSString *) name;
 -(NSString *) getUserName;
 
@@ -62,6 +64,7 @@
 
 -(void) setProfPicFromSport:(int) sp picNumber:(int) picNum picture:(UIImage *) pic;
 -(UIImage *) getProfPicFromSport:(int) sp picNumber:(int) picNum;
+-(void) getProfPicsFromSport:(int) sp pics:(NSMutableArray *)array;
 
 -(void) addMatchFromSport:(int) sport match:(Person *) p;
 -(Person *) getMatchFromSport:(int) sport matchNumber:(int) match;
@@ -71,6 +74,8 @@
 
 -(void) addUpVote;
 -(void) addVote;
+-(int) getUpVotes;
+-(int) getVotes;
 -(int) getCredibility;
 
 -(void)setCurrentSport:(int) temp;

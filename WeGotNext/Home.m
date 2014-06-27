@@ -15,6 +15,7 @@
     MyManager *sharedManager = [MyManager sharedManager];
     
     Person * temp = [[Person alloc] init];
+    [temp setFirstName:[[NSString alloc] initWithFormat:@"FirstName%d", [sharedManager.user getNumberOfMatchesFromSport:[sharedManager.user getCurrentSport]]]];
     //NSLog(@"%@", [temp getFirstName]);
     
     [sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:temp];

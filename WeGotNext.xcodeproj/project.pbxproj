@@ -36,6 +36,7 @@
 		84317E6E1937D3DE00EF952F /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E6D1937D3DE00EF952F /* MainMenu.m */; };
 		84459733194B497D00877BBE /* MatchCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84459732194B497D00877BBE /* MatchCellType.m */; };
 		844F37521948A66000A89B80 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844F37511948A66000A89B80 /* MyManager.m */; };
+		8451C512195DB112002EA936 /* userProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451C511195DB112002EA936 /* userProfile.m */; };
 		8452A3A2194209B40044A2D4 /* CreateUserWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8452A3A1194209B40044A2D4 /* CreateUserWindow.m */; };
 		8452A3A519420FC60044A2D4 /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8452A3A419420FC60044A2D4 /* DismissSegue.m */; };
 		845BA3C01945EC1B00927A63 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BA3BF1945EC1B00927A63 /* Person.m */; };
@@ -107,6 +108,8 @@
 		84459732194B497D00877BBE /* MatchCellType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCellType.m; sourceTree = "<group>"; };
 		844F37501948A66000A89B80 /* MyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyManager.h; sourceTree = "<group>"; };
 		844F37511948A66000A89B80 /* MyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyManager.m; sourceTree = "<group>"; };
+		8451C510195DB112002EA936 /* userProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userProfile.h; sourceTree = "<group>"; };
+		8451C511195DB112002EA936 /* userProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userProfile.m; sourceTree = "<group>"; };
 		8452A3A0194209B40044A2D4 /* CreateUserWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUserWindow.h; sourceTree = "<group>"; };
 		8452A3A1194209B40044A2D4 /* CreateUserWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUserWindow.m; sourceTree = "<group>"; };
 		8452A3A319420FC60044A2D4 /* DismissSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissSegue.h; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				84314F40194F32FA008DC865 /* TeamCellType.m */,
 				841FB8A0193CD3D1004CD043 /* TeamGraphics.h */,
 				841FB8A1193CD3D1004CD043 /* TeamGraphics.m */,
+				8451C510195DB112002EA936 /* userProfile.h */,
+				8451C511195DB112002EA936 /* userProfile.m */,
 				84317E381937CA8700EF952F /* Images.xcassets */,
 				84317E271937CA8200EF952F /* Supporting Files */,
 			);
@@ -388,6 +393,7 @@
 				84317E651937CF0400EF952F /* AMSlideMenuContentSegue.m in Sources */,
 				84317E6B1937CF1600EF952F /* UIViewController+AMSlideMenu.m in Sources */,
 				84317E671937CF1600EF952F /* AMSlideMenuLeftTableViewController.m in Sources */,
+				8451C512195DB112002EA936 /* userProfile.m in Sources */,
 				84317E6E1937D3DE00EF952F /* MainMenu.m in Sources */,
 				844F37521948A66000A89B80 /* MyManager.m in Sources */,
 				84317E311937CA8400EF952F /* AppDelegate.m in Sources */,

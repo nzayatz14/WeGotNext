@@ -194,12 +194,60 @@
     }
 }
 
+-(void) getProfPicsFromSport:(int) sp pics:(NSMutableArray *)array{
+    [array removeAllObjects];
+    
+    for(int i = 0;i<IMAGE_COUNT;i++){
+        [array addObject:profilePics[sp][i]];
+    }
+}
+
 -(void) removeTeammateFromSport:(int) sp teammateNumber:(int) number{
     [team[sp] removeObjectAtIndex:number];
 }
 
 -(int) getNumberOfTeammatesFromSport:(int) sp{
     return (int)[team[sp] count];
+}
+
+-(int) getUpVotes{
+    return upVotes;
+}
+
+-(int) getVotes{
+    return totalVotes;
+}
+
+-(void) copyPerson:(Person *) p{
+    userName = [p getUserName];
+    firstName = [p getFirstName];
+    password = [p getPassword];
+    male = [p isMale];
+    birthday = [p getBirthday];
+    upVotes = [p getUpVotes];
+    totalVotes = [p getVotes];
+    
+    currentSport = [p getCurrentSport];
+    
+    for(int i = 0;i<SPORT_COUNT; i++){
+        [p getMatchesFromSport:i matches:matches[i]];
+    }
+    
+    for(int i = 0;i<SPORT_COUNT; i++){
+        [p getTeamFromSport:i team:team[i]];
+    }
+    
+    for(int i=  0;i<SPORT_COUNT; i++){
+        for(int j = 0;j<EXP_COUNT; j++){
+            experience[i][j] = [p getExperienceFromSport:i experienceNumber:j];
+        }
+    }
+    
+    for(int i=  0;i<SPORT_COUNT; i++){
+        for(int j = 0;j<IMAGE_COUNT; j++){
+            profilePics[i][j] = [p getProfPicFromSport:i picNumber:j];
+        }
+    }
 }
 
 @end
