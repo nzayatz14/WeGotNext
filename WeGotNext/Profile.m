@@ -9,7 +9,19 @@
 #import "Profile.h"
 #import "MyManager.h"
 
+//Constant to hold the height of the menu accessory for the textEditor
+#define TEXT_EDITOR_ACCESSORY_WIDTH 50
+
 @implementation Profile
+
+-(void) viewDidLoad{
+    //delegate the text fields so they can be closed when necessary
+    [_txtExperience1 setDelegate:self];
+    [_txtExperience2 setDelegate:self];
+    [_txtExperience3 setDelegate:self];
+    
+    _editableColor = _txtExperience1.backgroundColor;
+}
 
 //initialize the labels and such when the view appears to the user
 -(void) viewWillAppear:(BOOL)animated{
@@ -18,24 +30,32 @@
     MyManager *sharedManager = [MyManager sharedManager];
     
     //set the information of the profile menu equal to the information of the user
-    //(strong variables then weak variables)
-    
-    //also need to set picture(s)
 
     _txtFirstName.text = [sharedManager.user getFirstName];
     _txtAge.text = [NSString stringWithFormat:@"%d", [sharedManager.user getAge]];
-    _txtExperience1.text = [[NSString alloc] initWithFormat:@"Exp 1"];
-    _txtExperience2.text = [[NSString alloc] initWithFormat:@"Exp 2"];
-    _txtExperience3.text = [[NSString alloc] initWithFormat:@"Exp 3"];
+    
+    _txtExperience1.text = [sharedManager.user getExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:0];
+    _txtExperience2.text = [sharedManager.user getExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:1];
+    _txtExperience3.text = [sharedManager.user getExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:2];
+    
+    _picFrontProfilePicture.image = [sharedManager.user getProfPicFromSport:[sharedManager.user getCurrentSport] picNumber:0];
+    [_picFrontProfilePicture sizeToFit];
+    
     _txtCredibilityRating.text = [[NSString alloc]initWithFormat:@"%d",[[NSNumber numberWithInt:[sharedManager.user getCredibility]] intValue]];
     
+   
+    
     if([sharedManager.user isMale]){
-        _txtGender.text = [[NSString alloc] initWithFormat:@"M"];
+        _txtGender.text = @"M";
     }else{
-        _txtGender.text = [[NSString alloc] initWithFormat:@"F"];
+        _txtGender.text = @"F";
     }
     
     [_pgrCredibility setProgress:[[NSNumber numberWithInt:[sharedManager.user getCredibility]] floatValue]/100];
+    
+    //sets the view as not editable to start
+    isEditable = NO;
+    [self makeViewUneditable];
     
    /* _txtFirstName.text = _First;
     _txtAge.text = _Age;
@@ -105,5 +125,75 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
 
+}
+
+//makes the users profile editable to the user
+- (void) makeViewEditable{
+    [_btnEdit setTitle:@"Done" forState:UIControlStateNormal];
+    [_btnEdit setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    _LongPressGestureRecognizer.enabled = YES;
+    _txtExperience1.editable = YES;
+    _txtExperience2.editable = YES;
+    _txtExperience3.editable = YES;
+    _txtExperience1.backgroundColor = _editableColor;
+    _txtExperience2.backgroundColor = _editableColor;
+    _txtExperience3.backgroundColor = _editableColor;
+    
+    //creates toolbar for textViews to hold the 'Done' button
+    UIToolbar *helperToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, TEXT_EDITOR_ACCESSORY_WIDTH)];
+    helperToolBar.barStyle = UIBarStyleDefault;
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(closeTextView:)];
+    [doneButton setWidth:65.0f];
+    
+    helperToolBar.items = [NSArray arrayWithObjects:doneButton, nil];
+    
+    [_txtExperience1 setInputAccessoryView:helperToolBar];
+    [_txtExperience2 setInputAccessoryView:helperToolBar];
+    [_txtExperience3 setInputAccessoryView:helperToolBar];
+}
+
+- (void) closeTextView:(id) sender{
+    [_txtExperience1 resignFirstResponder];
+    [_txtExperience2 resignFirstResponder];
+    [_txtExperience3 resignFirstResponder];
+}
+
+//makes the users profile uneditable
+- (void) makeViewUneditable{
+    [_btnEdit setTitle:@"Edit" forState:UIControlStateNormal];
+    [_btnEdit setTitleColor:nil forState:UIControlStateNormal];
+    _LongPressGestureRecognizer.enabled = NO;
+    _txtExperience1.editable = NO;
+    _txtExperience2.editable = NO;
+    _txtExperience3.editable = NO;
+    _txtExperience1.backgroundColor = [UIColor clearColor];
+    _txtExperience2.backgroundColor = [UIColor clearColor];
+    _txtExperience3.backgroundColor = [UIColor clearColor];
+}
+
+//saves the changes that the user made while editing the profile
+- (void) saveChanges{
+    MyManager *sharedManager = [MyManager sharedManager];
+    [sharedManager.user setExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:0 experience:[NSString stringWithFormat:@"%@", _txtExperience1.text]];
+    [sharedManager.user setExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:1 experience:[NSString stringWithFormat:@"%@", _txtExperience2.text]];
+    [sharedManager.user setExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:2 experience:[NSString stringWithFormat:@"%@", _txtExperience3.text]];
+    
+    //save these changes to database
+}
+
+//toggles between editable and not editable views with button clicks
+- (IBAction)btnEditClicked:(UIButton *)sender {
+    if(isEditable == NO)
+        isEditable = YES;
+    else
+        isEditable = NO;
+    
+    if(isEditable){
+        [self makeViewEditable];
+    }else{
+        [self makeViewUneditable];
+        [self saveChanges];
+    }
 }
 @end

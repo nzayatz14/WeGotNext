@@ -28,6 +28,19 @@
     
     currentSport = 0;
     
+    for(int i = 0;i<SPORT_COUNT;i++){
+        for(int j = 0;j<EXP_COUNT;j++){
+            experience[i][j] = [NSString stringWithFormat:@"%d%d", i, j];
+        }
+    }
+    
+    for(int i = 0;i<SPORT_COUNT;i++){
+        for(int j = 0;j<IMAGE_COUNT;j++){
+            profilePics[i][j] = [[UIImage alloc] init];
+            profilePics[i][j] = [UIImage imageNamed:@"default.png"];
+        }
+    }
+    
     for(int i = 0;i<SPORT_COUNT; i++){
         matches[i] = [[NSMutableArray alloc] init];
     }
@@ -51,6 +64,19 @@
     totalVotes = v;
     
     currentSport = 0;
+    
+    for(int i = 0;i<SPORT_COUNT;i++){
+        for(int j = 0;j<EXP_COUNT;j++){
+            experience[i][j] = [NSString stringWithFormat:@"%d%d", i, j];
+        }
+    }
+    
+    for(int i = 0;i<SPORT_COUNT;i++){
+        for(int j = 0;j<IMAGE_COUNT;j++){
+            profilePics[i][j] = [[UIImage alloc] init];
+            profilePics[i][j] = [UIImage imageNamed:@"default.png"];
+        }
+    }
     
     for(int i = 0;i<SPORT_COUNT; i++){
         matches[i] = [[NSMutableArray alloc] init];

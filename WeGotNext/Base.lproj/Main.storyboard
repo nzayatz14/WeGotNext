@@ -745,6 +745,24 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bU4-aR-47P">
+                                        <rect key="frame" x="165" y="159" width="97" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Add To Team">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnAddToTeamClicked:" destination="5IC-vN-ubT" eventType="touchUpInside" id="raw-Ia-rH4"/>
+                                        </connections>
+                                    </button>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="lLG-if-3iA">
+                                        <rect key="frame" x="99" y="447" width="123" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Up"/>
+                                            <segment title="Down"/>
+                                        </segments>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725496529999996" green="0.89019614459999996" blue="0.72156864399999998" alpha="1" colorSpace="deviceRGB"/>
                             </view>
@@ -753,6 +771,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="User Profile" id="FPe-9s-Hqu"/>
                     <connections>
+                        <outlet property="btnAddToTeam" destination="bU4-aR-47P" id="lwL-v9-8V6"/>
                         <outlet property="pgrCredibility" destination="zAe-Gh-AVa" id="R8e-eJ-bD1"/>
                         <outlet property="picFrontProfilePicture" destination="dWF-pN-L1i" id="ixP-oI-0Va"/>
                         <outlet property="txtAge" destination="dn3-UX-CI4" id="Lbf-Hs-k0o"/>
@@ -895,14 +914,14 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="College Basketball: University of Nowhere" selectable="NO" id="Vz9-Zq-ela">
                                 <rect key="frame" x="20" y="205" width="240" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.79490194520000002" green="0.75272204990000002" blue="0.57735905980000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="High School Basketball: Some High School" selectable="NO" id="Cv3-Y4-7Cg">
                                 <rect key="frame" x="20" y="268" width="240" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.79490194520000002" green="0.75272204990000002" blue="0.57735905980000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -915,7 +934,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Other Experience: AAU for Manchester United" selectable="NO" id="zd0-AD-uNB">
                                 <rect key="frame" x="20" y="331" width="240" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.79490194515306123" green="0.75272204992658742" blue="0.57735905984791225" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -942,11 +961,23 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OKm-lr-Nq8">
+                                <rect key="frame" x="162" y="159" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnEditClicked:" destination="eoQ-bo-Uqk" eventType="touchUpInside" id="g2f-d5-79V"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725496529999996" green="0.89019614459999996" blue="0.72156864399999998" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="3Yy-NI-Re1"/>
                     <connections>
+                        <outlet property="LongPressGestureRecognizer" destination="Xwb-65-zGM" id="99o-UL-2LA"/>
+                        <outlet property="btnEdit" destination="OKm-lr-Nq8" id="A5n-HT-auT"/>
                         <outlet property="pgrCredibility" destination="tXN-cX-Vja" id="Rxm-jK-GjI"/>
                         <outlet property="picFrontProfilePicture" destination="h7H-WS-3hq" id="BOU-Vz-bzq"/>
                         <outlet property="txtAge" destination="vA8-l1-10v" id="VnV-eG-vfs"/>

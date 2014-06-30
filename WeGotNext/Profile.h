@@ -8,16 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Profile : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
+@interface Profile : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UITextViewDelegate>{
+    BOOL isEditable;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *picFrontProfilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *txtFirstName;
 @property (weak, nonatomic) IBOutlet UILabel *txtAge;
 @property (weak, nonatomic) IBOutlet UILabel *txtGender;
 
+- (IBAction)btnEditClicked:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btnEdit;
+
+
+
 @property (weak, nonatomic) IBOutlet UITextView *txtExperience1;
 @property (weak, nonatomic) IBOutlet UITextView *txtExperience2;
 @property (weak, nonatomic) IBOutlet UITextView *txtExperience3;
+@property (strong, nonatomic) UIColor *editableColor;
 
 
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
@@ -34,6 +42,7 @@
 @property (strong, nonatomic) NSString *Exp3;
 @property (strong, nonatomic) NSNumber *credibility;
 
+@property (strong, nonatomic) IBOutlet UILongPressGestureRecognizer *LongPressGestureRecognizer;
 
 - (IBAction)holdProfilePicture:(UILongPressGestureRecognizer *)sender;
 @end

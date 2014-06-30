@@ -7,8 +7,13 @@
 //
 
 #import "userProfile.h"
+#import "MyManager.h"
 
 @implementation userProfile
+
+- (void) viewDidLoad{
+    isOnTeam = NO;
+}
 
 //initialize the labels and such when the view appears to the user
 -(void) viewWillAppear:(BOOL)animated{
@@ -34,5 +39,13 @@
     
 }
 
+- (void) addToTeam{
+    MyManager *sharedManager = [MyManager sharedManager];
+    [sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:[sharedManager.user getMatchFromSport:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue]]];
+}
 
+- (IBAction)btnAddToTeamClicked:(UIButton *)sender {
+    _btnAddToTeam.enabled = NO;
+    [self addToTeam];
+}
 @end

@@ -82,6 +82,8 @@
         
         chat.player = [[Person alloc] init];
         [chat.player copyPerson:(Person *) [_matches objectAtIndex:indexPath.row]];
+        
+        chat.matchNumber = [[NSNumber alloc] initWithInteger:indexPath.row];
     }
 }
 
