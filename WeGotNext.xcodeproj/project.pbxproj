@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8408A1C519633D7C00E5AD98 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8408A1C419633D7C00E5AD98 /* libsqlite3.dylib */; };
 		841FB896193CC3ED004CD043 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB895193CC3ED004CD043 /* Profile.m */; };
 		841FB899193CC42D004CD043 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB898193CC42D004CD043 /* Home.m */; };
 		841FB89C193CC849004CD043 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB89B193CC849004CD043 /* Settings.m */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8408A1C419633D7C00E5AD98 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		841FB894193CC3ED004CD043 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		841FB895193CC3ED004CD043 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		841FB897193CC42D004CD043 /* Home.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Home.h; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8408A1C519633D7C00E5AD98 /* libsqlite3.dylib in Frameworks */,
 				84317E231937CA8100EF952F /* CoreGraphics.framework in Frameworks */,
 				84317E251937CA8100EF952F /* UIKit.framework in Frameworks */,
 				84317E211937CA8100EF952F /* Foundation.framework in Frameworks */,
@@ -173,6 +176,7 @@
 		84317E1F1937CA8100EF952F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8408A1C419633D7C00E5AD98 /* libsqlite3.dylib */,
 				84317E201937CA8100EF952F /* Foundation.framework */,
 				84317E221937CA8100EF952F /* CoreGraphics.framework */,
 				84317E241937CA8100EF952F /* UIKit.framework */,
