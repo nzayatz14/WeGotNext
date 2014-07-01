@@ -20,5 +20,6 @@
 @property (nonatomic, assign) BOOL notifyNewTeammateMessage;
 
 +(id)sharedManager;
+- (BOOL) isUserOnTeam:(Person *) p;
 
 @end

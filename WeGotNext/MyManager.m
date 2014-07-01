@@ -33,4 +33,18 @@
 -(void) dealloc {
     
 }
+
+- (BOOL) isUserOnTeam:(Person *) p{
+    NSString *userComparedName = [p getUserName];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    [user getTeamFromSport:[user getCurrentSport] team:array];
+    
+    for(Person *pair in array){
+        if([userComparedName isEqualToString:[pair getUserName]])
+            return YES;
+    }
+    
+    return NO;
+}
 @end

@@ -236,6 +236,17 @@
     return (int)[team[sp] count];
 }
 
+- (BOOL) isUserOnTeam:(Person *) p{
+    NSString *userComparedName = [p getUserName];
+    
+    for(Person *pair in team[currentSport]){
+        if([userComparedName isEqualToString:[pair getUserName]])
+            return YES;
+    }
+    
+    return NO;
+}
+
 -(int) getUpVotes{
     return upVotes;
 }

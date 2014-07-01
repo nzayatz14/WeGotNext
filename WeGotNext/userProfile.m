@@ -37,6 +37,11 @@
     
     [_pgrCredibility setProgress:[[NSNumber numberWithInt:[_player getCredibility]] floatValue]/100];
     
+    MyManager *sharedManager = [MyManager sharedManager];
+    
+    isOnTeam = [sharedManager isUserOnTeam:_player];
+    _btnAddToTeam.enabled = (!isOnTeam);
+    
 }
 
 - (void) addToTeam{
