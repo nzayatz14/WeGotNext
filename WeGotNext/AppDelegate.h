@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <sqlite3.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+-(NSString *)copyDatabaseToDocuments;
+-(void) readInformationFromDatabaseWithPath:(NSString *)filePath;
 
 @end

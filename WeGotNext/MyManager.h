@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <sqlite3.h>
 #import "Person.h"
 
 @interface MyManager : NSObject{
@@ -21,5 +22,6 @@
 
 +(id)sharedManager;
 - (BOOL) isUserOnTeam:(Person *) p;
+- (void) addPersonToDatabase:(Person *) p sport:(int) sp;
 
 @end

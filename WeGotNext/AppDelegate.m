@@ -7,12 +7,18 @@
 //
 
 #import "AppDelegate.h"
+#import "MyManager.h"
+#define SPORT_COUNT 5
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    NSString *filePath = [self copyDatabaseToDocuments];
+    [self readInformationFromDatabaseWithPath:filePath];
+    
     return YES;
 }
 							
@@ -41,6 +47,63 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (NSString *)copyDatabaseToDocuments{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppDatabase_WeGotNext.sqlite"];
+    
+    if(![fileManager fileExistsAtPath:filePath]){
+        NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"inAppDatabase_WeGotNext.sqlite"];
+        [fileManager copyItemAtPath:bundlePath toPath:filePath error:nil];
+    }
+    
+    return filePath;
+}
+
+- (void) readInformationFromDatabaseWithPath:(NSString *) filePath{
+    sqlite3 *inAppDatabase;
+    MyManager *sharedManager = [MyManager sharedManager];
+    
+    if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
+        NSLog(@"Opened Database!! :D");
+        
+        for(int i = 0;i <SPORT_COUNT;i++){
+            NSString *temp = [[NSString alloc] initWithFormat:@"SELECT * FROM pairsCurrentUser%d", i];
+            const char *sqlStatement = [temp UTF8String];
+            sqlite3_stmt *compiledStatement;
+            
+            if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+                
+                int players = 0;
+                while(sqlite3_step(compiledStatement) == SQLITE_ROW){
+                    
+                    NSString *userName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 1)];
+                    
+                    NSLog(@"%@",userName);
+                    
+                    Person *p = [[Person alloc] init];
+                    [p setUserName:userName];
+                    
+                    //read in the rest of the persons data
+                    
+                    [sharedManager.user addMatchFromSport:i match:p];
+                    players++;
+                }
+                NSLog(@"Players in sport %d: %d", i, players);
+            }else{
+                NSLog(@"FAIL");
+            }
+            sqlite3_finalize(compiledStatement);
+        }
+    }else{
+        NSLog(@"Failed to open database :(");
+    }
+    
+    sqlite3_close(inAppDatabase);
 }
 
 @end

@@ -20,6 +20,7 @@
     //NSLog(@"%@", [temp getFirstName]);
     
     [sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:temp];
+    [sharedManager addPersonToDatabase:temp sport:[sharedManager.user getCurrentSport]];
     //[sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:temp];
     
     //NSLog(@"Add Person");
