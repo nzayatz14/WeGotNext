@@ -49,6 +49,9 @@
 }
 
 - (void) addPersonToDatabase:(Person *) p sport:(int) sp{
+    
+    NSLog(@"Add to database");
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 
 	NSString *documentsPath = [paths objectAtIndex:0];
@@ -58,13 +61,23 @@
     sqlite3 *inAppDatabase;
     
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-        NSString *temp = [[NSString alloc] initWithFormat:@"INSERT INTO pairsCurrentUser%d (userName, firstName, isMale, birthday, upVotes, totalVotes) VALUES (?,?,?,?,?,?)", sp];
+        NSLog(@"Open Database to save info");
+        
+        NSString *temp = [[NSString alloc] initWithFormat:@"INSERT INTO pairsCurrentUser%d (userName, firstName, isMale, upVotes, totalVotes) VALUES (?,?,?,?,?)", sp];
         const char *sqlStatement = [temp UTF8String];
         
         sqlite3_stmt *compiledStatement;
         
         if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
             //save data
+            NSLog(@"saving data");
+            
+            sqlite3_bind_text(compiledStatement,1,[p.getUserName UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(compiledStatement,2,[p.getFirstName UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_int(compiledStatement, 3, [p isMale]);
+            sqlite3_bind_int(compiledStatement, 4, [p getUpVotes]);
+            sqlite3_bind_int(compiledStatement, 5, [p getVotes]);
+
         }
         
         if(sqlite3_step(compiledStatement) == SQLITE_DONE)

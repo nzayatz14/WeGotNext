@@ -114,10 +114,10 @@
 //when the user decides on a picture to use, hide the pop up window and set the profile
 //picture to be that newly selected picture
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    
-    self.selectedImage = info[UIImagePickerControllerOriginalImage];
-    [self.picFrontProfilePicture setImage:self.selectedImage];
+
     [picker dismissViewControllerAnimated:YES completion:nil];
+    self.selectedImage = info[UIImagePickerControllerOriginalImage];
+    [_picFrontProfilePicture setImage:self.selectedImage];
 
 }
 

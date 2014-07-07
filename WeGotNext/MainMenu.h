@@ -8,8 +8,8 @@
 
 #import "AMSlideMenuMainViewController.h"
 
-@interface MainMenu : AMSlideMenuMainViewController <UIAlertViewDelegate>
-
-
+@interface MainMenu : AMSlideMenuMainViewController <UIAlertViewDelegate>{
+    BOOL didClickLogOut;
+}
 
 @end

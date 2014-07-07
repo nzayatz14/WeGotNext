@@ -36,6 +36,7 @@
 		84317E6A1937CF1600EF952F /* AMSlideMenuRightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E621937CF0400EF952F /* AMSlideMenuRightTableViewController.m */; };
 		84317E6B1937CF1600EF952F /* UIViewController+AMSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E641937CF0400EF952F /* UIViewController+AMSlideMenu.m */; };
 		84317E6E1937D3DE00EF952F /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E6D1937D3DE00EF952F /* MainMenu.m */; };
+		84416E7C196B002F00577044 /* LogOutWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 84416E7B196B002F00577044 /* LogOutWindow.m */; };
 		84459733194B497D00877BBE /* MatchCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84459732194B497D00877BBE /* MatchCellType.m */; };
 		844F37521948A66000A89B80 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844F37511948A66000A89B80 /* MyManager.m */; };
 		8451C512195DB112002EA936 /* userProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451C511195DB112002EA936 /* userProfile.m */; };
@@ -108,6 +109,8 @@
 		84317E641937CF0400EF952F /* UIViewController+AMSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AMSlideMenu.m"; sourceTree = "<group>"; };
 		84317E6C1937D3DE00EF952F /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		84317E6D1937D3DE00EF952F /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
+		84416E7A196B002F00577044 /* LogOutWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogOutWindow.h; sourceTree = "<group>"; };
+		84416E7B196B002F00577044 /* LogOutWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogOutWindow.m; sourceTree = "<group>"; };
 		84459731194B497D00877BBE /* MatchCellType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchCellType.h; sourceTree = "<group>"; };
 		84459732194B497D00877BBE /* MatchCellType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchCellType.m; sourceTree = "<group>"; };
 		844F37501948A66000A89B80 /* MyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyManager.h; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				841FB898193CC42D004CD043 /* Home.m */,
 				8454EE21193D056700169D83 /* LoginWindow.h */,
 				84909940193D078300E4A914 /* LoginWindow.m */,
+				84416E7A196B002F00577044 /* LogOutWindow.h */,
+				84416E7B196B002F00577044 /* LogOutWindow.m */,
 				84317E6C1937D3DE00EF952F /* MainMenu.h */,
 				84317E6D1937D3DE00EF952F /* MainMenu.m */,
 				84459731194B497D00877BBE /* MatchCellType.h */,
@@ -394,6 +399,7 @@
 				841FB89C193CC849004CD043 /* Settings.m in Sources */,
 				841FB899193CC42D004CD043 /* Home.m in Sources */,
 				84317E6A1937CF1600EF952F /* AMSlideMenuRightTableViewController.m in Sources */,
+				84416E7C196B002F00577044 /* LogOutWindow.m in Sources */,
 				84CA39A8193CD90E00636B4E /* SwitchSports.m in Sources */,
 				8452A3A2194209B40044A2D4 /* CreateUserWindow.m in Sources */,
 				845BA3C01945EC1B00927A63 /* Person.m in Sources */,

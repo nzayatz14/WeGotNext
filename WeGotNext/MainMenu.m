@@ -8,13 +8,16 @@
 
 #import "MainMenu.h"
 #import "LoginWindow.h"
+#import <sqlite3.h>
+#define SPORT_COUNT 5
 
 @implementation MainMenu
 
 - (void) viewDidLoad{
+    didClickLogOut = NO;
     [super viewDidLoad];
     
-//[segueWithIdentifier: @"btnHome"];
+    //[segueWithIdentifier: @"btnHome"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,11 +80,44 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     //if delete is clicked
     if(buttonIndex == 1){
+        [self.leftMenu performSegueWithIdentifier:@"btnLogOut" sender:self];
         /*LoginWindow *back = [[LoginWindow alloc] initWithNibName:@"LoginWindow" bundle:nil];
-        NSMutableArray *vcs = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-        [vcs insertObject:back atIndex:[vcs count] -1];
-        [self.navigationController setViewControllers:vcs];
-        [self.navigationController popToViewController:self animated:YES];*/
+         NSMutableArray *vcs = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+         [vcs insertObject:back atIndex:[vcs count] -1];
+         [self.navigationController setViewControllers:vcs];
+         [self.navigationController popToViewController:self animated:YES];*/
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        
+        NSString *documentsPath = [paths objectAtIndex:0];
+        
+        NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
+        
+        sqlite3 *inAppDatabase;
+        
+        if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
+            NSLog(@"Open Database to delete info");
+            
+            for(int i = 0;i<SPORT_COUNT;i++){
+                NSString *temp = [[NSString alloc] initWithFormat:@"DELETE FROM pairsCurrentUser%d", i];
+                const char *sqlStatement = [temp UTF8String];
+                
+                sqlite3_stmt *compiledStatement;
+                
+                if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+                    //delete data
+                    NSLog(@"deleting data");
+                }
+                
+                if(sqlite3_step(compiledStatement) == SQLITE_DONE)
+                    sqlite3_finalize(compiledStatement);
+                
+            }
+        }
+        
+        sqlite3_close(inAppDatabase);
     }
+    
+    //self.window.rootViewController = [[LoginWindow alloc] initWithNibName:nil bundle:nil];
 }
 @end

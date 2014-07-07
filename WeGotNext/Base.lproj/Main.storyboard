@@ -365,6 +365,7 @@
                         <segue destination="jsZ-ZT-mHo" kind="custom" identifier="btnMatches" customClass="AMSlideMenuContentSegue" id="gBR-9p-StK"/>
                         <segue destination="AYa-HM-Iq8" kind="custom" identifier="btnTeam" customClass="AMSlideMenuContentSegue" id="UqV-8J-Aon"/>
                         <segue destination="zJz-UX-get" kind="custom" identifier="btnSwitchSports" customClass="AMSlideMenuContentSegue" id="sD1-Tu-2D5"/>
+                        <segue destination="JCM-X2-jFn" kind="custom" identifier="btnLogOut" customClass="AMSlideMenuContentSegue" id="e5T-TH-xJ9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DaE-11-kCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -385,6 +386,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18Y-Ob-8uo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="230" y="1111"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eHa-iL-0lu">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="JCM-X2-jFn" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HoP-3X-Uk1">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fAx-q6-H8e" kind="relationship" relationship="rootViewController" id="eyQ-47-47Q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g2H-AJ-peg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="236" y="5112"/>
+        </scene>
+        <!--Log Out Window - Log Out-->
+        <scene sceneID="1Ei-Nc-ty4">
+            <objects>
+                <viewController id="fAx-q6-H8e" customClass="LogOutWindow" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iDW-as-Rc4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log Out Successful!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1J2-QW-Wzt">
+                                <rect key="frame" x="20" y="141" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please restart the app in order to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1JJ-Cq-s1H">
+                                <rect key="frame" x="20" y="221" width="280" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="log in to an account." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WBo-Mq-GkX">
+                                <rect key="frame" x="20" y="243" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Log Out" id="hEU-pN-Fin"/>
+                    <connections>
+                        <outlet property="lblLogOutStatus" destination="1J2-QW-Wzt" id="Gpw-wR-Cng"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3AN-aA-BVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="806" y="5112"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VSZ-Yu-BWc">

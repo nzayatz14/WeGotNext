@@ -50,14 +50,17 @@
 }
 
 - (NSString *)copyDatabaseToDocuments{
+    NSLog(@"Copy Database to Documents");
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppDatabase_WeGotNext.sqlite"];
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
     
     if(![fileManager fileExistsAtPath:filePath]){
-        NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"inAppDatabase_WeGotNext.sqlite"];
+        NSLog(@"Copy");
+        NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
         [fileManager copyItemAtPath:bundlePath toPath:filePath error:nil];
     }
     
@@ -76,7 +79,7 @@
             const char *sqlStatement = [temp UTF8String];
             sqlite3_stmt *compiledStatement;
             
-            if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+           if( sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
                 
                 int players = 0;
                 while(sqlite3_step(compiledStatement) == SQLITE_ROW){
@@ -89,14 +92,18 @@
                     [p setUserName:userName];
                     
                     //read in the rest of the persons data
+                    NSString *firstName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
+                    
+                    [p setFirstName:firstName];
+                    //
                     
                     [sharedManager.user addMatchFromSport:i match:p];
                     players++;
                 }
                 NSLog(@"Players in sport %d: %d", i, players);
-            }else{
-                NSLog(@"FAIL");
-            }
+           }else{
+               NSLog(@"Perpare Error #%i: %s",0,sqlite3_errmsg(inAppDatabase));
+           }
             sqlite3_finalize(compiledStatement);
         }
     }else{
