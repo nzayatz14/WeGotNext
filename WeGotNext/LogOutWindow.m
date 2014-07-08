@@ -11,6 +11,8 @@
 @implementation LogOutWindow
 
 -(void) viewWillAppear:(BOOL)animated{
+    [self disableSlidePanGestureForLeftMenu];
+    [self disableSlidePanGestureForRightMenu];
     _lblLogOutStatus.text = _logOut;
 }
 

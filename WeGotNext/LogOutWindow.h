@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+AMSlideMenu.h"
 
 @interface LogOutWindow : UIViewController
 
