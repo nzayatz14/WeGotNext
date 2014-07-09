@@ -80,12 +80,9 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     //if delete is clicked
     if(buttonIndex == 1){
+        
+        //send screen to the logout page
         [self.leftMenu performSegueWithIdentifier:@"btnLogOut" sender:self];
-        /*LoginWindow *back = [[LoginWindow alloc] initWithNibName:@"LoginWindow" bundle:nil];
-         NSMutableArray *vcs = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-         [vcs insertObject:back atIndex:[vcs count] -1];
-         [self.navigationController setViewControllers:vcs];
-         [self.navigationController popToViewController:self animated:YES];*/
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         
@@ -95,6 +92,7 @@
         
         sqlite3 *inAppDatabase;
         
+        //open the in-app database to delete user info
         if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
             NSLog(@"Open Database to delete info");
             
@@ -106,13 +104,68 @@
                 
                 if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
                     //delete data
-                    NSLog(@"deleting data");
+                    NSLog(@"deleting data pairs");
+                }else{
+                    NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
                 }
                 
                 if(sqlite3_step(compiledStatement) == SQLITE_DONE)
                     sqlite3_finalize(compiledStatement);
                 
             }
+            
+            for(int i = 0;i<SPORT_COUNT;i++){
+                NSString *temp = [[NSString alloc] initWithFormat:@"DELETE FROM teamCurrentUser%d", i];
+                const char *sqlStatement = [temp UTF8String];
+                
+                sqlite3_stmt *compiledStatement;
+                
+                if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+                    //delete data
+                    NSLog(@"deleting data teams");
+                }else{
+                    NSLog(@"Error 2: %s", sqlite3_errmsg(inAppDatabase));
+                }
+                
+                if(sqlite3_step(compiledStatement) == SQLITE_DONE)
+                    sqlite3_finalize(compiledStatement);
+                
+            }
+            
+            
+            //delete current user information
+            const char *sqlStatementPlayer = "DELETE FROM currentUser";
+            
+            sqlite3_stmt *compiledStatementPlayer;
+            
+            if(sqlite3_prepare_v2(inAppDatabase, sqlStatementPlayer, -1, &compiledStatementPlayer, NULL) == SQLITE_OK){
+                //delete data
+                NSLog(@"deleting data currentUser");
+            }else{
+                NSLog(@"Error 3: %s", sqlite3_errmsg(inAppDatabase));
+            }
+            
+            if(sqlite3_step(compiledStatementPlayer) == SQLITE_DONE)
+                sqlite3_finalize(compiledStatementPlayer);
+            
+            
+            
+            //delete current user experience information
+            const char *sqlStatementExperience = "DELETE FROM currentUser";
+            
+            sqlite3_stmt *compiledStatementExperience;
+            
+            if(sqlite3_prepare_v2(inAppDatabase, sqlStatementExperience, -1, &compiledStatementExperience, NULL) == SQLITE_OK){
+                //delete data
+                NSLog(@"deleting data currentUserExperience");
+            }else{
+                NSLog(@"Error 4: %s", sqlite3_errmsg(inAppDatabase));
+            }
+            
+            if(sqlite3_step(compiledStatementExperience) == SQLITE_DONE)
+                sqlite3_finalize(compiledStatementExperience);
+        }else{
+            NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
         }
         
         sqlite3_close(inAppDatabase);

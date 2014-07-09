@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyManager.h"
 
 @interface LoginWindow : UIViewController <UITextFieldDelegate>
 
@@ -14,5 +15,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 - (IBAction)btnLoginClicked:(UIButton *)sender;
 - (IBAction)btnCreateClicked:(UIButton *)sender;
-
+- (void) addPersonAsCurrentUser;
 @end
