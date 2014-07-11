@@ -23,5 +23,6 @@
 +(id)sharedManager;
 - (BOOL) isUserOnTeam:(Person *) p;
 - (void) addPersonToDatabase:(Person *) p sport:(int) sp;
+- (void) addTeammateToDatabase:(Person *) p sport:(int) sp;
 
 @end

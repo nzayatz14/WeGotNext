@@ -20,6 +20,8 @@
 
 - (IBAction)btnCreateClicked:(UIButton *)sender;
 - (IBAction)btnCancelClicked:(UIBarButtonItem *)sender;
+-(void) addPersonToOnlineDatabase;
+-(void) addPersonAsCurrentUser;
 
 
 @end

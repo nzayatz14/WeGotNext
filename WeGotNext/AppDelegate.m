@@ -17,7 +17,7 @@
     // Override point for customization after application launch.
     
     NSString *filePath = [self copyDatabaseToDocuments];
-    [self readInformationFromDatabaseWithPath:filePath];
+    //[self readInformationFromDatabaseWithPath:filePath];
     
     return YES;
 }

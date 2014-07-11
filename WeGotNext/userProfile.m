@@ -47,6 +47,8 @@
 - (void) addToTeam{
     MyManager *sharedManager = [MyManager sharedManager];
     [sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:[sharedManager.user getMatchFromSport:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue]]];
+    
+    [sharedManager addTeammateToDatabase:[sharedManager.user getMatchFromSport:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue]] sport:[sharedManager.user getCurrentSport]];
 }
 
 - (IBAction)btnAddToTeamClicked:(UIButton *)sender {

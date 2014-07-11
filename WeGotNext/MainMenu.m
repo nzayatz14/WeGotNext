@@ -151,7 +151,7 @@
             
             
             //delete current user experience information
-            const char *sqlStatementExperience = "DELETE FROM currentUser";
+            const char *sqlStatementExperience = "DELETE FROM currentUserExperience";
             
             sqlite3_stmt *compiledStatementExperience;
             

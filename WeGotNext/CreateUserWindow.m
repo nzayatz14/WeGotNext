@@ -7,9 +7,13 @@
 //
 
 #import "CreateUserWindow.h"
+#import "MyManager.h"
+#import <sqlite3.h>
 
 //Constant to hold the height of the menu accessory for the datePicker for txtBirthday
 #define DATE_PICKER_ACCESSORY_WIDTH 50
+#define USER_NAME_MIN_LENGTH 1
+#define PASSWORD_MIN_LENGTH 8
 
 @implementation CreateUserWindow
 
@@ -88,7 +92,7 @@
     //get text from text fields, birthday, and boolean from switch for gender
     NSString *userName = _txtUserName.text;
     NSString *password = _txtPassword.text;
-    NSString *confirmedPassword = _txtPassword.text;
+    NSString *confirmedPassword = _txtConfirmPassword.text;
     NSString *firstName = _txtFirstName.text;
     BOOL male = (!_sldGender.on);
     
@@ -97,17 +101,16 @@
     formatter.dateFormat = @"MM/dd/yyyy";
     NSDate *birthday = [formatter dateFromString:_txtBirthday.text];
     
-    //if username is available, print error
-    
-    //check if passwords equal
-    if([password isEqualToString:confirmedPassword]){
-        
-    }else{
-        
+    //check if information is valid
+    if([self informationIsValid:userName password:password confirmPassword:confirmedPassword firstName:firstName birthday:birthday]){
+            MyManager *sharedManager = [MyManager sharedManager];
+            [sharedManager.user setUserName:userName];
+            [sharedManager.user setPassword:password];
+            [sharedManager.user setFirstName:firstName];
+            [sharedManager.user setIsMale:male];
+            [sharedManager.user setBirthday:birthday];
+            [self addPersonToOnlineDatabase];
     }
-    
-    //dismiss the create user window
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //if cancel is clicked go back to the login window
@@ -135,6 +138,97 @@
     
     [atextField resignFirstResponder];
     return YES;
+}
+
+-(void) addPersonToOnlineDatabase{
+    
+    [self addPersonAsCurrentUser];
+}
+
+-(void) addPersonAsCurrentUser{
+    NSLog(@"Add to database");
+    
+    MyManager *sharedManager = [MyManager sharedManager];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+	NSString *documentsPath = [paths objectAtIndex:0];
+    
+	NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
+    
+    sqlite3 *inAppDatabase;
+    
+    if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
+        NSLog(@"Open Database to save info");
+        
+        const char *sqlStatement = "INSERT INTO currentUser (userName, password, firstName, isMale) VALUES (?,?,?,?)";
+        sqlite3_stmt *compiledStatement;
+        
+        if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+            //save data
+            NSLog(@"saving data");
+            
+            sqlite3_bind_text(compiledStatement,1,[sharedManager.user.getUserName UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(compiledStatement,2,[sharedManager.user.getPassword UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(compiledStatement,3,[sharedManager.user.getFirstName UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_int(compiledStatement, 4, [sharedManager.user isMale]);
+            
+            //save the rest of the users data (birthday)
+            
+            
+        }else{
+            NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
+        }
+        if(sqlite3_step(compiledStatement) == SQLITE_DONE){
+            NSLog(@"Done save");
+            sqlite3_finalize(compiledStatement);
+        }
+        
+    }else{
+        NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
+    }
+    
+    sqlite3_close(inAppDatabase);
+    
+    //dismiss the create user window
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(BOOL) informationIsValid:(NSString *) userName password:(NSString *) pass confirmPassword:(NSString *) confirm firstName:(NSString *) first birthday:(NSDate *) age{
+    
+    NSLog(@"%@", pass);
+    NSLog(@"%@", confirm);
+    
+    if([userName isEqualToString:@"userName"]){
+        NSLog(@"userName is userName");
+        return NO;
+        
+    }
+    
+    if(userName.length <USER_NAME_MIN_LENGTH){
+        NSLog(@"userName is less than min");
+        return NO;
+        
+    }
+    
+    //if userName is already taken
+    
+    if(![pass isEqualToString:confirm]){
+        NSLog(@"passwords dont match");
+        return NO;
+        
+    }
+    
+    if(pass.length <PASSWORD_MIN_LENGTH){
+        NSLog(@"password less than min");
+        return NO;
+        
+    }
+    
+    //if birthday is under age limit
+    
+    return YES;
+    
 }
 
 @end
