@@ -12,6 +12,7 @@
 		841FB89C193CC849004CD043 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB89B193CC849004CD043 /* Settings.m */; };
 		841FB89F193CCA80004CD043 /* MatchesGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB89E193CCA80004CD043 /* MatchesGraphics.m */; };
 		841FB8A2193CD3D1004CD043 /* TeamGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB8A1193CD3D1004CD043 /* TeamGraphics.m */; };
+		842787731974109B00582329 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842787721974109B00582329 /* MapKit.framework */; };
 		84314F41194F32FA008DC865 /* TeamCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84314F40194F32FA008DC865 /* TeamCellType.m */; };
 		8431694D196459B800AA0CE5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8408A1C419633D7C00E5AD98 /* libsqlite3.dylib */; };
 		8431695119645A9200AA0CE5 /* inAppStorage_WeGotNext.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8431695019645A9200AA0CE5 /* inAppStorage_WeGotNext.sqlite */; };
@@ -72,6 +73,7 @@
 		841FB89E193CCA80004CD043 /* MatchesGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchesGraphics.m; sourceTree = "<group>"; };
 		841FB8A0193CD3D1004CD043 /* TeamGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamGraphics.h; sourceTree = "<group>"; };
 		841FB8A1193CD3D1004CD043 /* TeamGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamGraphics.m; sourceTree = "<group>"; };
+		842787721974109B00582329 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		84314F3F194F32FA008DC865 /* TeamCellType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamCellType.h; sourceTree = "<group>"; };
 		84314F40194F32FA008DC865 /* TeamCellType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCellType.m; sourceTree = "<group>"; };
 		8431695019645A9200AA0CE5 /* inAppStorage_WeGotNext.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = inAppStorage_WeGotNext.sqlite; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842787731974109B00582329 /* MapKit.framework in Frameworks */,
 				8431694D196459B800AA0CE5 /* libsqlite3.dylib in Frameworks */,
 				84317E231937CA8100EF952F /* CoreGraphics.framework in Frameworks */,
 				84317E251937CA8100EF952F /* UIKit.framework in Frameworks */,
@@ -181,6 +184,7 @@
 		84317E1F1937CA8100EF952F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				842787721974109B00582329 /* MapKit.framework */,
 				8408A1C419633D7C00E5AD98 /* libsqlite3.dylib */,
 				84317E201937CA8100EF952F /* Foundation.framework */,
 				84317E221937CA8100EF952F /* CoreGraphics.framework */,

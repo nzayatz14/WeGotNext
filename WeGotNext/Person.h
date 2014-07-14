@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/Mapkit.h>
 
 #define IMAGE_COUNT 5 //how many images the user can have in 1 sport
 #define SPORT_COUNT 5 //how many total sports we have
@@ -26,6 +27,7 @@
     int upVotes;
     int totalVotes;
     int currentSport;
+    CLLocation *currentLocation;
     
     //make these 2D arrays so the user can have experiences and pictures for each sport
     NSString *experience[SPORT_COUNT][EXP_COUNT];
@@ -86,6 +88,9 @@
 -(void) getTeamFromSport:(int) sport team:(NSMutableArray *) array;
 -(void) removeTeammateFromSport:(int) sp teammateNumber:(int) number;
 -(int) getNumberOfTeammatesFromSport:(int) sp;
+
+-(void) setCurrentLocation:(CLLocation *) location;
+-(CLLocation *) getCurrentLocation;
 
 
 @end

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
-@interface Home : UIViewController
+@interface Home : UIViewController <MKMapViewDelegate>
 
-
+@property (weak, nonatomic) IBOutlet MKMapView *Map;
 
 @end

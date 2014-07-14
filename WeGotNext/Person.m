@@ -49,6 +49,7 @@
         team[i] = [[NSMutableArray alloc] init];
     }
     
+    currentLocation = [[CLLocation alloc] init];
     return self;
     
 }
@@ -86,6 +87,7 @@
         team[i] = [[NSMutableArray alloc] init];
     }
     
+    currentLocation = [[CLLocation alloc] init];
     return self;
 }
 
@@ -286,5 +288,15 @@
         }
     }
 }
+
+-(void) setCurrentLocation:(CLLocation *) location{
+    currentLocation = location;
+    NSLog(@"%g, %g", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
+}
+
+-(CLLocation *) getCurrentLocation{
+    return currentLocation;
+}
+
 
 @end

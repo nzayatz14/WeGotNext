@@ -8,11 +8,31 @@
 
 #import "Home.h"
 #import "MyManager.h"
+#define METERS_PER_MILE 1609.344
 
 @implementation Home
 
+-(void) viewDidLoad{
+    _Map.delegate = self;
+}
+
 -(void) viewWillAppear:(BOOL)animated{
+    
     MyManager *sharedManager = [MyManager sharedManager];
+    
+    //Sets the current location of the map to center at the users location
+    CLLocation *zoomLocation = [[_Map userLocation] location];
+    [sharedManager.user setCurrentLocation:zoomLocation];
+    
+    // 2
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance([[[_Map userLocation] location] coordinate], 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+    
+    // 3
+    [_Map setRegion:viewRegion animated:YES];
+    
+    
+    //TESTING: ADDS A PERSON AS A PAIR EACH TIME THE HOME SCREEN IS REACHED
+    
     
     Person * temp = [[Person alloc] init];
     [temp setFirstName:[[NSString alloc] initWithFormat:@"FirstName%d", [sharedManager.user getNumberOfMatchesFromSport:[sharedManager.user getCurrentSport]]]];
@@ -22,10 +42,6 @@
     [sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:temp];
     [sharedManager addPersonToDatabase:temp sport:[sharedManager.user getCurrentSport]];
     //[sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:temp];
-    
-    //NSLog(@"Add Person");
-    //NSLog(@"%d", [sharedManager.user getNumberOfMatchesFromSport:[sharedManager.user getCurrentSport]]);
-   // NSLog(@"%d", [sharedManager.user getCurrentSport]);
 }
 
 @end
