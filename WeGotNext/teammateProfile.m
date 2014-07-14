@@ -1,20 +1,15 @@
 //
-//  userProfile.m
+//  teammateProfile.m
 //  WeGotNext
 //
-//  Created by Nick Zayatz on 6/27/14.
+//  Created by Nick Zayatz on 7/14/14.
 //  Copyright (c) 2014 Nick Zayatz and Charlie Adams. All rights reserved.
 //
 
-#import "userProfile.h"
+#import "teammateProfile.h"
 #import "MyManager.h"
 
-@implementation userProfile
-
-- (void) viewDidLoad{
-    isOnTeam = NO;
-}
-
+@implementation teammateProfile
 //initialize the labels and such when the view appears to the user
 -(void) viewWillAppear:(BOOL)animated{
     
@@ -37,24 +32,28 @@
     
     [_pgrCredibility setProgress:[[NSNumber numberWithInt:[_player getCredibility]] floatValue]/100];
     
-    MyManager *sharedManager = [MyManager sharedManager];
-    
-    isOnTeam = [sharedManager isUserOnTeam:_player];
-    _btnAddToTeam.enabled = (!isOnTeam);
-    
 }
 
-- (void) addToTeam{
+- (void) removeFromTeam{
     MyManager *sharedManager = [MyManager sharedManager];
-    [sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:[sharedManager.user getMatchFromSport:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue]]];
     
-    [sharedManager addTeammateToDatabase:[sharedManager.user getMatchFromSport:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue]] sport:[sharedManager.user getCurrentSport]];
+    [sharedManager removeTeammateFromDatabase:[sharedManager.user getTeammateFromSport:[sharedManager.user getCurrentSport] teammateNumber:[_matchNumber intValue]] sport:[sharedManager.user getCurrentSport]];
+    
+    [sharedManager.user removeTeammateFromSport:[sharedManager.user getCurrentSport] teammateNumber:[_matchNumber intValue]];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)btnAddToTeamClicked:(UIButton *)sender {
-    _btnAddToTeam.enabled = NO;
-    [self addToTeam];
+- (IBAction)btnRemoveFromTeamClicked:(UIButton *)sender {
+    //_btnRemoveFromTeam.enabled = NO;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wait" message:@"Are you sure you want to remove this person from you team?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Remove", nil];
+    [alert show];
 }
-- (IBAction)btnVoteClicked:(UISegmentedControl *)sender {
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    if(buttonIndex == 1){
+        [self removeFromTeam];
+    }
 }
 @end

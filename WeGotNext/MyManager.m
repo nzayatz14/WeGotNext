@@ -138,4 +138,35 @@
     sqlite3_close(inAppDatabase);
 }
 
+-(void) removeTeammateFromDatabase:(Person *) p sport:(int) sp{
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
+    
+    sqlite3 *inAppDatabase;
+    
+    //open the in-app database to delete user info
+    if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
+        NSString *temp = [[NSString alloc] initWithFormat:@"DELETE FROM teamCurrentUser%d WHERE userName='%@'", sp, [p getUserName]];
+        const char *sqlStatement = [temp UTF8String];
+        
+        sqlite3_stmt *compiledStatement;
+        
+        if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+            //delete data
+            NSLog(@"deleting data teammate");
+        }else{
+            NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
+        }
+        
+        if(sqlite3_step(compiledStatement) == SQLITE_DONE)
+            sqlite3_finalize(compiledStatement);
+    }
+    
+    sqlite3_close(inAppDatabase);
+}
+
 @end

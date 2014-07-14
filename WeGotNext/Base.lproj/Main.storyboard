@@ -827,6 +827,9 @@
                                             <segment title="Up"/>
                                             <segment title="Down"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="btnVoteClicked:" destination="5IC-vN-ubT" eventType="valueChanged" id="ZyS-RY-Y5R"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725496529999996" green="0.89019614459999996" blue="0.72156864399999998" alpha="1" colorSpace="deviceRGB"/>
@@ -837,6 +840,7 @@
                     <navigationItem key="navigationItem" title="User Profile" id="FPe-9s-Hqu"/>
                     <connections>
                         <outlet property="btnAddToTeam" destination="bU4-aR-47P" id="lwL-v9-8V6"/>
+                        <outlet property="btnVote" destination="lLG-if-3iA" id="Y9R-y2-dBP"/>
                         <outlet property="pgrCredibility" destination="zAe-Gh-AVa" id="R8e-eJ-bD1"/>
                         <outlet property="picFrontProfilePicture" destination="dWF-pN-L1i" id="ixP-oI-0Va"/>
                         <outlet property="txtAge" destination="dn3-UX-CI4" id="Lbf-Hs-k0o"/>
@@ -908,6 +912,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Team" id="466-KU-Dw2"/>
+                    <connections>
+                        <segue destination="5bx-Ht-VNK" kind="push" identifier="teammateSelected" id="c32-45-mc1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Egr-44-k8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1195,6 +1202,119 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEa-FT-y6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1827" y="-391"/>
+        </scene>
+        <!--Teammate Profile - Teammate Profile-->
+        <scene sceneID="9lU-qI-nUk">
+            <objects>
+                <viewController id="5bx-Ht-VNK" customClass="teammateProfile" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4kk-hn-Fqc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="wWL-ys-N6F">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="5DO-lC-s4k">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default.png" id="Ylh-gI-S6y">
+                                        <rect key="frame" x="20" y="72" width="125" height="125"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="apn-42-gtz">
+                                        <rect key="frame" x="165" y="72" width="135" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="College Basketball: University of Nowhere" selectable="NO" id="9tu-rZ-FlY">
+                                        <rect key="frame" x="20" y="205" width="240" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="High School Basketball: Some High School" selectable="NO" id="0Yu-jl-PkC">
+                                        <rect key="frame" x="20" y="268" width="240" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PSQ-R3-XZT">
+                                        <rect key="frame" x="165" y="101" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Other Experience: AAU for Manchester United" selectable="NO" id="Ol0-6P-Lrd">
+                                        <rect key="frame" x="20" y="331" width="240" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.75999999046325684" id="0C9-aZ-Ngx">
+                                        <rect key="frame" x="58" y="423" width="204" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credibility:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JQ9-m5-O5V">
+                                        <rect key="frame" x="70" y="394" width="84" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="76" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7pA-mU-xA4">
+                                        <rect key="frame" x="162" y="394" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bcp-SF-axR">
+                                        <rect key="frame" x="165" y="130" width="71" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aJp-Gv-4ps">
+                                        <rect key="frame" x="165" y="159" width="141" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Remove From Team">
+                                            <color key="titleColor" red="1" green="0.056301427100000002" blue="0.052147332859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnRemoveFromTeamClicked:" destination="5bx-Ht-VNK" eventType="touchUpInside" id="W0p-RR-sx6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93725496529999996" green="0.89019614459999996" blue="0.72156864399999998" alpha="1" colorSpace="deviceRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Teammate Profile" id="Om5-lp-jzz"/>
+                    <connections>
+                        <outlet property="btnRemoveFromTeam" destination="aJp-Gv-4ps" id="u53-cV-Gav"/>
+                        <outlet property="pgrCredibility" destination="0C9-aZ-Ngx" id="gKG-J9-FaS"/>
+                        <outlet property="picFrontProfilePicture" destination="Ylh-gI-S6y" id="F2c-4g-T6H"/>
+                        <outlet property="txtAge" destination="PSQ-R3-XZT" id="fwK-Qe-JrQ"/>
+                        <outlet property="txtCredibilityRating" destination="7pA-mU-xA4" id="vi7-0J-dna"/>
+                        <outlet property="txtExperience1" destination="9tu-rZ-FlY" id="e3B-Rl-OfA"/>
+                        <outlet property="txtExperience2" destination="0Yu-jl-PkC" id="h5b-pu-YYQ"/>
+                        <outlet property="txtExperience3" destination="Ol0-6P-Lrd" id="nnH-Ut-pGw"/>
+                        <outlet property="txtFirstName" destination="apn-42-gtz" id="9B1-1W-1vr"/>
+                        <outlet property="txtGender" destination="bcp-SF-axR" id="BI5-wg-GTf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UyQ-6K-tCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1396" y="2761"/>
         </scene>
     </scenes>
     <resources>

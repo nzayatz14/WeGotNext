@@ -13,6 +13,7 @@
 		841FB89F193CCA80004CD043 /* MatchesGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB89E193CCA80004CD043 /* MatchesGraphics.m */; };
 		841FB8A2193CD3D1004CD043 /* TeamGraphics.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB8A1193CD3D1004CD043 /* TeamGraphics.m */; };
 		842787731974109B00582329 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842787721974109B00582329 /* MapKit.framework */; };
+		842787761974339100582329 /* teammateProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 842787751974339100582329 /* teammateProfile.m */; };
 		84314F41194F32FA008DC865 /* TeamCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84314F40194F32FA008DC865 /* TeamCellType.m */; };
 		8431694D196459B800AA0CE5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8408A1C419633D7C00E5AD98 /* libsqlite3.dylib */; };
 		8431695119645A9200AA0CE5 /* inAppStorage_WeGotNext.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8431695019645A9200AA0CE5 /* inAppStorage_WeGotNext.sqlite */; };
@@ -74,6 +75,8 @@
 		841FB8A0193CD3D1004CD043 /* TeamGraphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamGraphics.h; sourceTree = "<group>"; };
 		841FB8A1193CD3D1004CD043 /* TeamGraphics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamGraphics.m; sourceTree = "<group>"; };
 		842787721974109B00582329 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		842787741974339100582329 /* teammateProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = teammateProfile.h; sourceTree = "<group>"; };
+		842787751974339100582329 /* teammateProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = teammateProfile.m; sourceTree = "<group>"; };
 		84314F3F194F32FA008DC865 /* TeamCellType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamCellType.h; sourceTree = "<group>"; };
 		84314F40194F32FA008DC865 /* TeamCellType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCellType.m; sourceTree = "<group>"; };
 		8431695019645A9200AA0CE5 /* inAppStorage_WeGotNext.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = inAppStorage_WeGotNext.sqlite; sourceTree = "<group>"; };
@@ -235,6 +238,8 @@
 				84314F40194F32FA008DC865 /* TeamCellType.m */,
 				841FB8A0193CD3D1004CD043 /* TeamGraphics.h */,
 				841FB8A1193CD3D1004CD043 /* TeamGraphics.m */,
+				842787741974339100582329 /* teammateProfile.h */,
+				842787751974339100582329 /* teammateProfile.m */,
 				8451C510195DB112002EA936 /* userProfile.h */,
 				8451C511195DB112002EA936 /* userProfile.m */,
 				84317E381937CA8700EF952F /* Images.xcassets */,
@@ -403,6 +408,7 @@
 				841FB89C193CC849004CD043 /* Settings.m in Sources */,
 				841FB899193CC42D004CD043 /* Home.m in Sources */,
 				84317E6A1937CF1600EF952F /* AMSlideMenuRightTableViewController.m in Sources */,
+				842787761974339100582329 /* teammateProfile.m in Sources */,
 				84416E7C196B002F00577044 /* LogOutWindow.m in Sources */,
 				84CA39A8193CD90E00636B4E /* SwitchSports.m in Sources */,
 				8452A3A2194209B40044A2D4 /* CreateUserWindow.m in Sources */,
