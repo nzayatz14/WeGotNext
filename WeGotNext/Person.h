@@ -38,6 +38,7 @@
     //create an array of mutable arrays to hold the users matches for each sport
     NSMutableArray *matches[SPORT_COUNT];
     NSMutableArray *team[SPORT_COUNT];
+    NSMutableArray *upVotePairs[SPORT_COUNT];
     
 }
 -(id) init;
@@ -70,12 +71,15 @@
 
 -(void) addMatchFromSport:(int) sport match:(Person *) p;
 -(Person *) getMatchFromSport:(int) sport matchNumber:(int) match;
+-(void) setMatchFromSport:(int) sport matchNumber:(int) match person:(Person *) p;
 -(void) getMatchesFromSport:(int) sport matches:(NSMutableArray *) array;
 -(void) removeMatchFromSport:(int) sp matchNumber:(int) number;
 -(int) getNumberOfMatchesFromSport:(int) sp;
 
 -(void) addUpVote;
 -(void) addVote;
+-(void) subtractUpVote;
+-(void) subtractVote;
 -(int) getUpVotes;
 -(int) getVotes;
 -(int) getCredibility;
@@ -85,12 +89,18 @@
 
 -(void) addToTeamFromSport:(int) sport person:(Person *) p;
 -(Person *) getTeammateFromSport:(int) sp teammateNumber:(int) match;
+-(void) setTeammateFromSport:(int) sport teammateNumber:(int) teammate person:(Person *) p;
 -(void) getTeamFromSport:(int) sport team:(NSMutableArray *) array;
 -(void) removeTeammateFromSport:(int) sp teammateNumber:(int) number;
 -(int) getNumberOfTeammatesFromSport:(int) sp;
+-(int) getTeammateNumber:(Person *) p inSport:(int) sp;
 
 -(void) setCurrentLocation:(CLLocation *) location;
 -(CLLocation *) getCurrentLocation;
+
+-(void) addUpVotePair:(int) sport;
+-(void) setUpVotePair:(int) sport matchNumber:(int) match value:(BOOL) up;
+-(BOOL) getUpVotePair:(int) sport matchNumber:(int) match;
 
 
 @end

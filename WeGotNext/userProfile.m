@@ -40,6 +40,15 @@
     MyManager *sharedManager = [MyManager sharedManager];
     
     isOnTeam = [sharedManager isUserOnTeam:_player];
+    
+    BOOL up = [sharedManager.user getUpVotePair:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue]];
+    
+    if(up){
+        _btnVote.selectedSegmentIndex = 0;
+    }else{
+        _btnVote.selectedSegmentIndex = 1;
+    }
+    
     _btnAddToTeam.enabled = (!isOnTeam);
     
 }
@@ -56,5 +65,27 @@
     [self addToTeam];
 }
 - (IBAction)btnVoteClicked:(UISegmentedControl *)sender {
+    NSLog(@"Segmented Control Switched");
+    
+    if(_btnVote.selectedSegmentIndex == 0){
+        [_player addUpVote];
+    }else{
+        [_player subtractUpVote];
+    }
+    
+    MyManager *sharedManager = [MyManager sharedManager];
+    [sharedManager.user setMatchFromSport:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue] person:_player];
+    [sharedManager.user setUpVotePair:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue] value:(_btnVote.selectedSegmentIndex == 0)];
+    
+    if(isOnTeam){
+        int teammate = [sharedManager.user getTeammateNumber:_player inSport:[sharedManager.user getCurrentSport]];
+        
+        if(teammate != -1)
+            [sharedManager.user setTeammateFromSport:[sharedManager.user getCurrentSport] teammateNumber:teammate person:_player];
+    }
+    
+    _txtCredibilityRating.text = [[NSString alloc]initWithFormat:@"%d",[[NSNumber numberWithInt:[_player getCredibility]] intValue]];
+    [_pgrCredibility setProgress:[[NSNumber numberWithInt:[_player getCredibility]] floatValue]/100];
 }
+
 @end

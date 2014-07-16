@@ -49,6 +49,10 @@
         team[i] = [[NSMutableArray alloc] init];
     }
     
+    for(int i = 0;i<SPORT_COUNT; i++){
+        upVotePairs[i] = [[NSMutableArray alloc] init];
+    }
+    
     currentLocation = [[CLLocation alloc] init];
     return self;
     
@@ -85,6 +89,10 @@
     
     for(int i = 0;i<SPORT_COUNT; i++){
         team[i] = [[NSMutableArray alloc] init];
+    }
+    
+    for(int i = 0;i<SPORT_COUNT; i++){
+        upVotePairs[i] = [[NSMutableArray alloc] init];
     }
     
     currentLocation = [[CLLocation alloc] init];
@@ -176,6 +184,7 @@
 
 -(void) addMatchFromSport:(int) sport match:(Person *) p{
     [matches[sport] addObject:p];
+    [self addUpVotePair:sport];
 }
 
 -(Person *) getMatchFromSport:(int) sport matchNumber:(int) match{
@@ -298,5 +307,44 @@
     return currentLocation;
 }
 
+-(void) subtractUpVote{
+    upVotes--;
+}
+
+-(void) subtractVote{
+    totalVotes--;
+}
+
+-(void) setMatchFromSport:(int) sport matchNumber:(int) match person:(Person *) p{
+    [matches[sport] replaceObjectAtIndex:match withObject:p];
+}
+
+-(void) setTeammateFromSport:(int) sport teammateNumber:(int) teammate person:(Person *) p{
+    [team[sport] replaceObjectAtIndex:teammate withObject:p];
+}
+
+-(int) getTeammateNumber:(Person *) p inSport:(int) sp{
+    for(int i = 0;i<[team[sp] count];i++){
+        Person *temp = (Person *)[team[sp] objectAtIndex:i];
+        
+        if([[temp getUserName] isEqualToString:[p getUserName]]){
+            return i;
+        }
+    }
+    
+    return -1;
+}
+
+-(void) setUpVotePair:(int) sport matchNumber:(int) match value:(BOOL) up{
+    [upVotePairs[sport] replaceObjectAtIndex:match withObject:[NSNumber numberWithBool:up]];
+}
+
+-(BOOL) getUpVotePair:(int) sport matchNumber:(int) match{
+    return [[upVotePairs[sport] objectAtIndex:match] boolValue];
+}
+
+-(void) addUpVotePair:(int) sport{
+    [upVotePairs[sport] addObject:[NSNumber numberWithBool:YES]];
+}
 
 @end
