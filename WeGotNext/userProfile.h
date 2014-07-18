@@ -11,6 +11,7 @@
 
 @interface userProfile : UIViewController{
     BOOL isOnTeam;
+    BOOL save;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *picFrontProfilePicture;

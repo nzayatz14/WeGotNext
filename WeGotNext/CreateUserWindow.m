@@ -161,7 +161,7 @@
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
         NSLog(@"Open Database to save info");
         
-        const char *sqlStatement = "INSERT INTO currentUser (userName, password, firstName, isMale) VALUES (?,?,?,?)";
+        const char *sqlStatement = "INSERT INTO currentUser (userName, password, firstName, isMale, birthday, upVotes, totalVotes) VALUES (?,?,?,?,?,?,?)";
         sqlite3_stmt *compiledStatement;
         
         if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
@@ -174,6 +174,18 @@
             sqlite3_bind_int(compiledStatement, 4, [sharedManager.user isMale]);
             
             //save the rest of the users data (birthday)
+            NSDateFormatter *format = [[NSDateFormatter alloc] init];
+            [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSString *birthString = [format stringFromDate:[sharedManager.user getBirthday]];
+            
+            sqlite3_bind_text(compiledStatement, 5, [birthString UTF8String], -1, SQLITE_TRANSIENT);
+            
+            sqlite3_bind_int(compiledStatement, 6, 0);
+            sqlite3_bind_int(compiledStatement, 7, 0);
+            
+            /*for(int i = 0;i<EXP_COUNT;i++){
+                sqlite3_bind_text(compiledStatement,i+7,[[p getExperienceFromSport:sp experienceNumber:i] cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+            } */
             
             
         }else{

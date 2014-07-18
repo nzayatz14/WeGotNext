@@ -49,10 +49,6 @@
         team[i] = [[NSMutableArray alloc] init];
     }
     
-    for(int i = 0;i<SPORT_COUNT; i++){
-        upVotePairs[i] = [[NSMutableArray alloc] init];
-    }
-    
     currentLocation = [[CLLocation alloc] init];
     return self;
     
@@ -89,10 +85,6 @@
     
     for(int i = 0;i<SPORT_COUNT; i++){
         team[i] = [[NSMutableArray alloc] init];
-    }
-    
-    for(int i = 0;i<SPORT_COUNT; i++){
-        upVotePairs[i] = [[NSMutableArray alloc] init];
     }
     
     currentLocation = [[CLLocation alloc] init];
@@ -184,7 +176,6 @@
 
 -(void) addMatchFromSport:(int) sport match:(Person *) p{
     [matches[sport] addObject:p];
-    [self addUpVotePair:sport];
 }
 
 -(Person *) getMatchFromSport:(int) sport matchNumber:(int) match{
@@ -335,16 +326,12 @@
     return -1;
 }
 
--(void) setUpVotePair:(int) sport matchNumber:(int) match value:(BOOL) up{
-    [upVotePairs[sport] replaceObjectAtIndex:match withObject:[NSNumber numberWithBool:up]];
+-(void) setUpVotes: (int) v{
+    upVotes = v;
 }
 
--(BOOL) getUpVotePair:(int) sport matchNumber:(int) match{
-    return [[upVotePairs[sport] objectAtIndex:match] boolValue];
-}
-
--(void) addUpVotePair:(int) sport{
-    [upVotePairs[sport] addObject:[NSNumber numberWithBool:YES]];
+-(void) setVotes: (int) v{
+    totalVotes = v;
 }
 
 @end

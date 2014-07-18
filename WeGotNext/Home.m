@@ -37,11 +37,13 @@
     Person * temp = [[Person alloc] init];
     [temp setFirstName:[[NSString alloc] initWithFormat:@"FirstName%d", [sharedManager.user getNumberOfMatchesFromSport:[sharedManager.user getCurrentSport]]]];
     [temp setUserName:[[NSString alloc] initWithFormat:@"UserName%d", [sharedManager.user getNumberOfMatchesFromSport:[sharedManager.user getCurrentSport]]]];
+    //[temp setIsMale:NO];
     [temp addUpVote];
     [temp addVote];
     //NSLog(@"%@", [temp getFirstName]);
     
     [sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:temp];
+    [sharedManager addUpVotePair:[sharedManager.user getCurrentSport] value:YES];
     [sharedManager addPersonToDatabase:temp sport:[sharedManager.user getCurrentSport]];
     //[sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:temp];
 }

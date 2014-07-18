@@ -38,7 +38,6 @@
     //create an array of mutable arrays to hold the users matches for each sport
     NSMutableArray *matches[SPORT_COUNT];
     NSMutableArray *team[SPORT_COUNT];
-    NSMutableArray *upVotePairs[SPORT_COUNT];
     
 }
 -(id) init;
@@ -83,6 +82,8 @@
 -(int) getUpVotes;
 -(int) getVotes;
 -(int) getCredibility;
+-(void) setUpVotes: (int) v;
+-(void) setVotes: (int) v;
 
 -(void)setCurrentSport:(int) temp;
 -(int) getCurrentSport;
@@ -97,10 +98,6 @@
 
 -(void) setCurrentLocation:(CLLocation *) location;
 -(CLLocation *) getCurrentLocation;
-
--(void) addUpVotePair:(int) sport;
--(void) setUpVotePair:(int) sport matchNumber:(int) match value:(BOOL) up;
--(BOOL) getUpVotePair:(int) sport matchNumber:(int) match;
 
 
 @end

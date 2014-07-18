@@ -12,6 +12,7 @@
 
 @interface MyManager : NSObject{
     Person *user;
+    NSMutableArray *upVotePairs[SPORT_COUNT];
 }
 
 @property (nonatomic, retain) Person *user;
@@ -25,5 +26,8 @@
 - (void) addPersonToDatabase:(Person *) p sport:(int) sp;
 - (void) addTeammateToDatabase:(Person *) p sport:(int) sp;
 - (void) removeTeammateFromDatabase:(Person *) p sport:(int) sp;
+-(void) addUpVotePair:(int) sport value:(BOOL) up;
+-(void) setUpVotePair:(int) sport matchNumber:(int) match value:(BOOL) up;
+-(BOOL) getUpVotePair:(int) sport matchNumber:(int) match;
 
 @end

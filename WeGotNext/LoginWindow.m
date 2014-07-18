@@ -132,7 +132,7 @@
         NSLog(@"Open Database to save info");
         
         if(empty == 0){
-            const char *sqlStatement = "INSERT INTO currentUser (userName, password, firstName, isMale) VALUES (?,?,?,?)";
+            const char *sqlStatement = "INSERT INTO currentUser (userName, password, firstName, isMale, birthday, upVotes, totalVotes) VALUES (?,?,?,?,?,?,?)";
             sqlite3_stmt *compiledStatement;
             
             if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
@@ -143,6 +143,21 @@
                 sqlite3_bind_text(compiledStatement,2,[sharedManager.user.getPassword UTF8String], -1, SQLITE_TRANSIENT);
                 sqlite3_bind_text(compiledStatement,3,[sharedManager.user.getFirstName UTF8String], -1, SQLITE_TRANSIENT);
                 sqlite3_bind_int(compiledStatement, 4, [sharedManager.user isMale]);
+                
+                
+                //save the rest of the users data (birthday)
+                NSDateFormatter *format = [[NSDateFormatter alloc] init];
+                [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                NSString *birthString = [format stringFromDate:[sharedManager.user getBirthday]];
+                
+                sqlite3_bind_text(compiledStatement, 5, [birthString UTF8String], -1, SQLITE_TRANSIENT);
+                
+                sqlite3_bind_int(compiledStatement, 6, 0);
+                sqlite3_bind_int(compiledStatement, 7, 0);
+                
+                /*for(int i = 0;i<EXP_COUNT;i++){
+                 sqlite3_bind_text(compiledStatement,i+7,[[p getExperienceFromSport:sp experienceNumber:i] cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+                 } */
                 
             }else{
                 NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
@@ -189,7 +204,22 @@
                     
                     NSString *firstName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 3)];
                     
+                    BOOL male = sqlite3_column_int(compiledStatement, 4);
+                    
+                    NSString *birth = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 5)];
+                    
+                    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+                    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                    NSDate *birthDate = [format dateFromString:birth];
+                    
+                    int up = sqlite3_column_int(compiledStatement, 6);
+                    int total = sqlite3_column_int(compiledStatement, 7);
+                    
                     [sharedManager.user setFirstName:firstName];
+                    [sharedManager.user setIsMale:male];
+                    [sharedManager.user setBirthday:birthDate];
+                    [sharedManager.user setUpVotes:up];
+                    [sharedManager.user setVotes:total];
                     //
                 }
             }else{
@@ -233,10 +263,34 @@
                     //read in the rest of the persons data
                     NSString *firstName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
                     
+                    BOOL male = sqlite3_column_int(compiledStatement, 3);
+                    
+                    NSString *birth = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 4)];
+                    
+                    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+                    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                    NSDate *birthDate = [format dateFromString:birth];
+                    
+                    int up = sqlite3_column_int(compiledStatement, 5);
+                    int total = sqlite3_column_int(compiledStatement, 6);
+                    
+                    for(int j = 0;j<EXP_COUNT;j++){
+                        NSString *exp = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 7+j)];
+                        [p setExperienceFromSport:i experienceNumber:j experience:exp];
+                    }
+                    
+                    BOOL upPair = sqlite3_column_int(compiledStatement, 10);
+                    NSLog(@"%d being loaded, %d isMale", upPair, male);
+                    
                     [p setFirstName:firstName];
+                    [p setIsMale:male];
+                    [p setBirthday:birthDate];
+                    [p setUpVotes:up];
+                    [p setVotes:total];
                     //
                     
                     [sharedManager.user addMatchFromSport:i match:p];
+                    [sharedManager addUpVotePair:i value:upPair];
                     players++;
                 }
                 NSLog(@"Players in sport %d: %d", i, players);
@@ -283,6 +337,28 @@
                     NSString *firstName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
                     
                     [p setFirstName:firstName];
+                    
+                    BOOL male = sqlite3_column_int(compiledStatement, 3);
+                    
+                    NSString *birth = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 4)];
+                    
+                    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+                    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                    NSDate *birthDate = [format dateFromString:birth];
+                    
+                    int up = sqlite3_column_int(compiledStatement, 5);
+                    int total = sqlite3_column_int(compiledStatement, 6);
+                    
+                    for(int j = 0;j<EXP_COUNT;j++){
+                        NSString *exp = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 7+j)];
+                        [p setExperienceFromSport:i experienceNumber:j experience:exp];
+                    }
+                    
+                    [p setFirstName:firstName];
+                    [p setIsMale:male];
+                    [p setBirthday:birthDate];
+                    [p setUpVotes:up];
+                    [p setVotes:total];
                     //
                     
                     [sharedManager.user addToTeamFromSport:i person:p];
