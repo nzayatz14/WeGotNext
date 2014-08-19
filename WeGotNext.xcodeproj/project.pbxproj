@@ -36,7 +36,6 @@
 		844F37521948A66000A89B80 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844F37511948A66000A89B80 /* MyManager.m */; };
 		8451C512195DB112002EA936 /* userProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451C511195DB112002EA936 /* userProfile.m */; };
 		8452A3A2194209B40044A2D4 /* CreateUserWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8452A3A1194209B40044A2D4 /* CreateUserWindow.m */; };
-		8452A3A519420FC60044A2D4 /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8452A3A419420FC60044A2D4 /* DismissSegue.m */; };
 		8456225019A3A96500035BA7 /* AMSlideMenuContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456224219A3A96500035BA7 /* AMSlideMenuContentSegue.m */; };
 		8456225119A3A96500035BA7 /* AMSlideMenuLeftMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456224419A3A96500035BA7 /* AMSlideMenuLeftMenuSegue.m */; };
 		8456225219A3A96500035BA7 /* AMSlideMenuLeftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456224619A3A96500035BA7 /* AMSlideMenuLeftTableViewController.m */; };
@@ -109,8 +108,6 @@
 		8451C511195DB112002EA936 /* userProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userProfile.m; sourceTree = "<group>"; };
 		8452A3A0194209B40044A2D4 /* CreateUserWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUserWindow.h; sourceTree = "<group>"; };
 		8452A3A1194209B40044A2D4 /* CreateUserWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUserWindow.m; sourceTree = "<group>"; };
-		8452A3A319420FC60044A2D4 /* DismissSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissSegue.h; sourceTree = "<group>"; };
-		8452A3A419420FC60044A2D4 /* DismissSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissSegue.m; sourceTree = "<group>"; };
 		8454EE21193D056700169D83 /* LoginWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginWindow.h; sourceTree = "<group>"; };
 		8456224119A3A96500035BA7 /* AMSlideMenuContentSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSlideMenuContentSegue.h; sourceTree = "<group>"; };
 		8456224219A3A96500035BA7 /* AMSlideMenuContentSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSlideMenuContentSegue.m; sourceTree = "<group>"; };
@@ -208,8 +205,6 @@
 				8452A3A0194209B40044A2D4 /* CreateUserWindow.h */,
 				8452A3A1194209B40044A2D4 /* CreateUserWindow.m */,
 				84A6E98B193F8320001E0600 /* default.png */,
-				8452A3A319420FC60044A2D4 /* DismissSegue.h */,
-				8452A3A419420FC60044A2D4 /* DismissSegue.m */,
 				841FB897193CC42D004CD043 /* Home.h */,
 				841FB898193CC42D004CD043 /* Home.m */,
 				8454EE21193D056700169D83 /* LoginWindow.h */,
@@ -402,7 +397,6 @@
 			files = (
 				841FB896193CC3ED004CD043 /* Profile.m in Sources */,
 				841FB89F193CCA80004CD043 /* MatchesGraphics.m in Sources */,
-				8452A3A519420FC60044A2D4 /* DismissSegue.m in Sources */,
 				841FB89C193CC849004CD043 /* Settings.m in Sources */,
 				841FB899193CC42D004CD043 /* Home.m in Sources */,
 				842787761974339100582329 /* teammateProfile.m in Sources */,

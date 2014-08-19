@@ -11,6 +11,7 @@
 
 @implementation LoginWindow
 
+//function that is called when the window first loads
 -(void)viewDidLoad{
     //delegate the text fields so they can be closed when necessary
     [self.txtUserName setDelegate:self];
@@ -25,7 +26,12 @@
     [super viewDidLoad];
 }
 
+//function that is called each time the window loads
+//check to see if there is a user currently logges in on the device, if there is,
+//pass the user to the home screen and set the current users information to his/her information
 -(void) viewWillAppear:(BOOL)animated{
+    
+    //get the file path of the database
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
 	NSString *documentsPath = [paths objectAtIndex:0];
@@ -34,12 +40,16 @@
     
     sqlite3 *inAppDatabase;
     
+    //open the database, if there is an error, print the error
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
         NSLog(@"Open Database to save info");
         
+        //sql statement to get the length of the current user table
+        //(if its 1 someone is logged in, if its 0 nobody is)
         const char *sqlCount = "SELECT COUNT(*) FROM currentUser";
         sqlite3_stmt *compiledCountStatement;
         
+        //if the sql statement is valid, load the count, if not print an error
         if(sqlite3_prepare_v2(inAppDatabase, sqlCount, -1, &compiledCountStatement, NULL) == SQLITE_OK){
             while(sqlite3_step(compiledCountStatement) == SQLITE_ROW){
                 empty = sqlite3_column_int(compiledCountStatement, 0);
@@ -49,11 +59,19 @@
             NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
         }
         
+        //finalize the statement after it is executed or an error occurs
         NSLog(@"Done Count");
         sqlite3_finalize(compiledCountStatement);
+        
+    }else{
+        NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
     }
+    
+    //close the database
     sqlite3_close(inAppDatabase);
     
+    //if there is a current user AND the data is NOT ALREADY loaded (like when a new user is created)
+    //load the data, and pass the user to the home window
     MyManager *sharedManager = [MyManager sharedManager];
     if(empty == 1 && [[sharedManager.user getUserName] isEqualToString:@"userName"]){
         [self loadUserInformation:filePath];
@@ -63,7 +81,11 @@
 
 }
 
+/* FUNCTION IS INCOMPLETE*/
+//function called when the login button is clicked
 - (IBAction)btnLoginClicked:(UIButton *)sender {
+    
+    //get the userName and password from the text boxes
     NSString *userName = self.txtUserName.text;
     NSString *password = self.txtPassword.text;
     
@@ -84,13 +106,17 @@
     
     //set the rest of the users data
     
+    //add the person who just logged in as the current user
     [self addPersonAsCurrentUser];
 }
 
+//if the create button is clicked, open the create user window
 - (IBAction)btnCreateClicked:(UIButton *)sender {
     [super performSegueWithIdentifier:@"btnCreate" sender:self];
 }
 
+/*FUNCTION IS INCOMPLETE*/
+//if the forgot password function is clicked
 - (IBAction)btnForgotPasswordClicked:(UIButton *)sender {
     
 }
@@ -379,6 +405,8 @@
     [self loadUserExperiences:filePath];
 }
 
+/*FUNCTION IS INCOMPLETE*/
+//loads the experiences of the current user from the database
 -(void) loadUserExperiences:(NSString *) filePath{
     
     [super performSegueWithIdentifier:@"btnLogin" sender:self];

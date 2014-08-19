@@ -12,10 +12,12 @@
 
 @implementation Home
 
+//function that is called when the window first loads
 -(void) viewDidLoad{
     _Map.delegate = self;
 }
 
+//function that is called each time the window loads
 -(void) viewWillAppear:(BOOL)animated{
     
     MyManager *sharedManager = [MyManager sharedManager];
@@ -24,10 +26,8 @@
     CLLocation *zoomLocation = [[_Map userLocation] location];
     [sharedManager.user setCurrentLocation:zoomLocation];
     
-    // 2
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance([[[_Map userLocation] location] coordinate], 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
     
-    // 3
     [_Map setRegion:viewRegion animated:YES];
     
     

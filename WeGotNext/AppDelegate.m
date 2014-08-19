@@ -49,15 +49,19 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+//if the database is not already in the documents folder, copy it
+//there so the database tables are able to be edited
 - (NSString *)copyDatabaseToDocuments{
     NSLog(@"Copy Database to Documents");
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
+    //get the file path of where the database should be
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [paths objectAtIndex:0];
     NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
     
+    //if the file does not exist at that path, copy it there
     if(![fileManager fileExistsAtPath:filePath]){
         NSLog(@"Copy");
         NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
@@ -67,6 +71,9 @@
     return filePath;
 }
 
+
+/*FUNCTION IS NOT IN USE RIGHT NOW, DOES NOT NEED TO BE CALLED ON EVERY START UP SO IT WAS PUT ELSEWHERE */
+//Reads in the information from the database's tables and loads the arrays with that information
 - (void) readInformationFromDatabaseWithPath:(NSString *) filePath{
     sqlite3 *inAppDatabase;
     MyManager *sharedManager = [MyManager sharedManager];
