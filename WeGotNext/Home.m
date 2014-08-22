@@ -43,7 +43,10 @@
     //NSLog(@"%@", [temp getFirstName]);
     
     [sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:temp];
+    
+    //IMPORTANT: WITH EVERY MATCH MADE, AUTOMATTICALLY ADD AN UPVOTE TO PREVENT NEGATIVE MATCHES
     [sharedManager addUpVotePair:[sharedManager.user getCurrentSport] value:YES];
+    
     [sharedManager addPersonToDatabase:temp sport:[sharedManager.user getCurrentSport]];
     //[sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:temp];
 }

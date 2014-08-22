@@ -26,15 +26,17 @@
     [self.tableView reloadData];
 }
 
+//returns the number of sections in the table
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
-
+//returns the number of rows in the table
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_numberOfTeammates integerValue];
 }
 
+/*FUNCTION IS INCOMPLETE*/
 //set the information of each cell based on the information in the array of matches
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -53,6 +55,7 @@
     return cell;
 }
 
+//when a cell is selected, open the teammate profile of that selected player
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     /* if ([self.mainVC respondsToSelector:@selector(navigationControllerForIndexPathInRightMenu:)]) {
@@ -76,7 +79,8 @@
     //if the segue is for a chat window
     if([segue.identifier isEqualToString:@"teammateSelected"]){
         
-        //get which position was clicked on and set the title of the window to "Chat #" where # is the number of which row was clicked
+        //get which position was clicked on, set 'player' you are chatting with
+        //and set the match number that that player is
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         teammateProfile *chat  = (teammateProfile*)[segue destinationViewController];
         

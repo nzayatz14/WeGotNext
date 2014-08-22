@@ -10,7 +10,7 @@
 #import "MyManager.h"
 
 //Constant to hold the height of the menu accessory for the textEditor
-#define TEXT_EDITOR_ACCESSORY_WIDTH 50
+#define TEXT_EDITOR_ACCESSORY_WIDTH 40
 
 @implementation Profile
 
@@ -172,6 +172,7 @@
     _txtExperience3.backgroundColor = [UIColor clearColor];
 }
 
+/*FUNCITON IS INCOMPLETE*/
 //saves the changes that the user made while editing the profile
 - (void) saveChanges{
     MyManager *sharedManager = [MyManager sharedManager];

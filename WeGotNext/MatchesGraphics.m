@@ -13,6 +13,7 @@
 @implementation MatchesGraphics
 
 -(void) viewDidLoad{
+    //initialize the local array of matches
     _matches = [[NSMutableArray alloc] init];
 }
 
@@ -25,12 +26,12 @@
     
 }
 
-
+//returns how many sections in the table there are
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
-
+//returns how many rows in the table there are
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_numberOfMatches integerValue];
 }
@@ -53,6 +54,7 @@
     return cell;
 }
 
+//if a cell is selected in the table, open the userProfile window
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     /* if ([self.mainVC respondsToSelector:@selector(navigationControllerForIndexPathInRightMenu:)]) {

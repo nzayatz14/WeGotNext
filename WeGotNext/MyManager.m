@@ -12,6 +12,7 @@
 
 @synthesize user;
 
+//call to make sure this is the only manager in the program to be created
 +(id)sharedManager {
     static MyManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
@@ -20,6 +21,7 @@
     return sharedMyManager;
 }
 
+//initialize the person object (user) for myManager
 -(id) init {
     if(self = [super init]){
         user = [[Person alloc] init];
@@ -38,12 +40,14 @@
     
 }
 
+//checks to see if the person p is on the users team for the current sport
 - (BOOL) isUserOnTeam:(Person *) p{
     NSString *userComparedName = [p getUserName];
     NSMutableArray *array = [[NSMutableArray alloc] init];
     
     [user getTeamFromSport:[user getCurrentSport] team:array];
     
+    //run through the list of teammates from that sport to see if he/she is already on a team
     for(Person *pair in array){
         if([userComparedName isEqualToString:[pair getUserName]])
             return YES;
@@ -52,9 +56,10 @@
     return NO;
 }
 
+//adds a newly paired player p into the inApp pairs database for the sport sp
 - (void) addPersonToDatabase:(Person *) p sport:(int) sp{
     
-    NSLog(@"Add to person database");
+    //NSLog(@"Add to person database");
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 
@@ -64,17 +69,19 @@
     
     sqlite3 *inAppDatabase;
     
+    //attempts to open the inApp database. if successful, continue, if not, print error.
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-        NSLog(@"Open Database to save info");
+        //NSLog(@"Open Database to save info");
         
         NSString *temp = [[NSString alloc] initWithFormat:@"INSERT INTO pairsCurrentUser%d (userName, firstName, isMale, birthday, upVotes, totalVotes, experience1, experience2, experience3, upVotePair) VALUES (?,?,?,?,?,?,?,?,?,?)", sp];
         const char *sqlStatement = [temp UTF8String];
         
         sqlite3_stmt *compiledStatement;
         
+        //attempts to compiled the SQL statement. if successful, continue, if not print error.
         if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
             //save data
-            NSLog(@"saving data");
+            //NSLog(@"saving data");
             
             sqlite3_bind_text(compiledStatement,1,[p.getUserName UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(compiledStatement,2,[p.getFirstName UTF8String], -1, SQLITE_TRANSIENT);
@@ -93,24 +100,29 @@
                 sqlite3_bind_text(compiledStatement,i+7,[[p getExperienceFromSport:sp experienceNumber:i] cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
             }
             
-            NSLog(@"%d being saved", [p isMale]);
+            //NSLog(@"%d being saved", [p isMale]);
             
             sqlite3_bind_int(compiledStatement, 10, 1);
 
         }else{
-            NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
+            NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
         }
         
+        //finalize the SQL statement
         if(sqlite3_step(compiledStatement) == SQLITE_DONE)
             sqlite3_finalize(compiledStatement);
+    }else{
+        NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
     }
     
+    //close the database
     sqlite3_close(inAppDatabase);
 }
 
+//adds a newly made teammate player p into the inApp team database for the sport sp
 -(void) addTeammateToDatabase:(Person *) p sport:(int) sp{
     
-    NSLog(@"Add to teammate database");
+    //NSLog(@"Add to teammate database");
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
@@ -120,17 +132,19 @@
     
     sqlite3 *inAppDatabase;
     
+    //attempts to open the inApp database. if successful, continue, if not, print error.
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-        NSLog(@"Open Database to save info");
+        //NSLog(@"Open Database to save info");
         
         NSString *temp = [[NSString alloc] initWithFormat:@"INSERT INTO teamCurrentUser%d (userName, firstName, isMale, birthday, upVotes, totalVotes, experience1, experience2, experience3) VALUES (?,?,?,?,?,?,?,?,?)", sp];
         const char *sqlStatement = [temp UTF8String];
         
         sqlite3_stmt *compiledStatement;
         
+        //attempts to compiled the SQL statement. if successful, continue, if not print error.
         if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
             //save data
-            NSLog(@"saving data");
+            //NSLog(@"saving data");
             
             sqlite3_bind_text(compiledStatement,1,[p.getUserName UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(compiledStatement,2,[p.getFirstName UTF8String], -1, SQLITE_TRANSIENT);
@@ -150,16 +164,21 @@
             }
             
         }else{
-            NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
+            NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
         }
         
+        //finalize the SQL statement
         if(sqlite3_step(compiledStatement) == SQLITE_DONE)
             sqlite3_finalize(compiledStatement);
+    }else{
+        NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
     }
     
+    //close the database
     sqlite3_close(inAppDatabase);
 }
 
+//removes player p from the team of the sport sp
 -(void) removeTeammateFromDatabase:(Person *) p sport:(int) sp{
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -177,28 +196,38 @@
         
         sqlite3_stmt *compiledStatement;
         
+        //attempts to compiled the SQL statement. if successful, continue, if not print error.
         if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
             //delete data
-            NSLog(@"deleting data teammate");
+            //NSLog(@"deleting data teammate");
         }else{
             NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
         }
         
+        //finalize the SQL statement
         if(sqlite3_step(compiledStatement) == SQLITE_DONE)
             sqlite3_finalize(compiledStatement);
+    }else{
+        NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
     }
     
+    //close the database
     sqlite3_close(inAppDatabase);
 }
 
+//sets the users vote on the 'match'-numbered pair in the 'sport' sport to the boolean 'up'
+//(up vote if true, down vote if false)
 -(void) setUpVotePair:(int) sport matchNumber:(int) match value:(BOOL) up{
     [upVotePairs[sport] replaceObjectAtIndex:match withObject:[NSNumber numberWithBool:up]];
 }
 
+//returns the users vote on the 'match'-numbered pair in the 'sport' as a boolean
+//(up vote if true, down vote if false)
 -(BOOL) getUpVotePair:(int) sport matchNumber:(int) match{
     return [[upVotePairs[sport] objectAtIndex:match] boolValue];
 }
 
+//creates a new voteable object each time a new pair is made
 -(void) addUpVotePair:(int) sport value:(BOOL) up{
     [upVotePairs[sport] addObject:[NSNumber numberWithBool:up]];
 }

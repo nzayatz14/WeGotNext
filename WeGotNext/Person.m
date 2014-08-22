@@ -28,6 +28,7 @@
     
     currentSport = 0;
     
+    //initialize all arrays and current user location
     for(int i = 0;i<SPORT_COUNT;i++){
         for(int j = 0;j<EXP_COUNT;j++){
             experience[i][j] = [NSString stringWithFormat:@"%d%d", i, j];
@@ -66,6 +67,7 @@
     
     currentSport = 0;
     
+    //initialize all arrays and current user location
     for(int i = 0;i<SPORT_COUNT;i++){
         for(int j = 0;j<EXP_COUNT;j++){
             experience[i][j] = [NSString stringWithFormat:@"%d%d", i, j];
@@ -257,6 +259,7 @@
     return totalVotes;
 }
 
+//copies a person p into this person object
 -(void) copyPerson:(Person *) p{
     userName = [p getUserName];
     firstName = [p getFirstName];
@@ -287,11 +290,13 @@
             profilePics[i][j] = [p getProfPicFromSport:i picNumber:j];
         }
     }
+    
+    currentLocation = [p getCurrentLocation];
 }
 
 -(void) setCurrentLocation:(CLLocation *) location{
     currentLocation = location;
-    NSLog(@"%g, %g", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
+    //NSLog(@"%g, %g", currentLocation.coordinate.latitude, currentLocation.coordinate.longitude);
 }
 
 -(CLLocation *) getCurrentLocation{
@@ -314,6 +319,8 @@
     [team[sport] replaceObjectAtIndex:teammate withObject:p];
 }
 
+//returns the number in the array the supplied person p is in the team array from the sport sp
+//returns -1 if the teammate is not found
 -(int) getTeammateNumber:(Person *) p inSport:(int) sp{
     for(int i = 0;i<[team[sp] count];i++){
         Person *temp = (Person *)[team[sp] objectAtIndex:i];

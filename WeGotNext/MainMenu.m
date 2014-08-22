@@ -26,9 +26,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+//decides which window to show when one of the options on the left menu is clicked
 -(NSString *)segueIdentifierForIndexPathInLeftMenu:(NSIndexPath *)indexPath{
     NSString *identifier;
     
+    //depending on the option selected perform the respective segue.
+    //if the log out button is clicked, print the warning.
     switch (indexPath.row){
         case 0:
             identifier = @"btnHome";
@@ -61,14 +64,14 @@
     return identifier;
 }
 
+//if any option is selected in the right menu, go to the chat window
 -(NSString *)segueIdentifierForIndexPathInRightMenu:(NSIndexPath *)indexPath{
-    //int personNumber = indexPath.row;
     
     return @"btnChat";
 }
 
 
-
+//sets depth percetion when loading left or right menus
 -(BOOL)deepnessForLeftMenu{
     return YES;
 }
@@ -77,6 +80,7 @@
     return YES;
 }
 
+//decides what to do when an option on the warning menu is clicked after hitting the log out button
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     //if delete is clicked
     if(buttonIndex == 1){
@@ -92,19 +96,21 @@
         
         sqlite3 *inAppDatabase;
         
-        //open the in-app database to delete user info
+        //atempt to open the in-app database to delete user info, if attempt fails, print error
         if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-            NSLog(@"Open Database to delete info");
+            //NSLog(@"Open Database to delete info");
             
+            //delete all users from inApp pairs tables
             for(int i = 0;i<SPORT_COUNT;i++){
                 NSString *temp = [[NSString alloc] initWithFormat:@"DELETE FROM pairsCurrentUser%d", i];
                 const char *sqlStatement = [temp UTF8String];
                 
                 sqlite3_stmt *compiledStatement;
                 
+                //attempt to compile the SQL statement. continue if it works, if not, print an error.
                 if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
                     //delete data
-                    NSLog(@"deleting data pairs");
+                    //NSLog(@"deleting data pairs");
                 }else{
                     NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
                 }
@@ -114,15 +120,17 @@
                 
             }
             
+            //delete all users from inApp teams tables
             for(int i = 0;i<SPORT_COUNT;i++){
                 NSString *temp = [[NSString alloc] initWithFormat:@"DELETE FROM teamCurrentUser%d", i];
                 const char *sqlStatement = [temp UTF8String];
                 
                 sqlite3_stmt *compiledStatement;
                 
+                //attempt to compile the SQL statement. continue if it works, if not, print an error.
                 if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
                     //delete data
-                    NSLog(@"deleting data teams");
+                    //NSLog(@"deleting data teams");
                 }else{
                     NSLog(@"Error 2: %s", sqlite3_errmsg(inAppDatabase));
                 }
@@ -138,9 +146,10 @@
             
             sqlite3_stmt *compiledStatementPlayer;
             
+            //attempt to compile the SQL statement. continue if it works, if not, print an error.
             if(sqlite3_prepare_v2(inAppDatabase, sqlStatementPlayer, -1, &compiledStatementPlayer, NULL) == SQLITE_OK){
                 //delete data
-                NSLog(@"deleting data currentUser");
+                //NSLog(@"deleting data currentUser");
             }else{
                 NSLog(@"Error 3: %s", sqlite3_errmsg(inAppDatabase));
             }
@@ -155,9 +164,10 @@
             
             sqlite3_stmt *compiledStatementExperience;
             
+            //attempt to compile the SQL statement. continue if it works, if not, print an error.
             if(sqlite3_prepare_v2(inAppDatabase, sqlStatementExperience, -1, &compiledStatementExperience, NULL) == SQLITE_OK){
                 //delete data
-                NSLog(@"deleting data currentUserExperience");
+                //NSLog(@"deleting data currentUserExperience");
             }else{
                 NSLog(@"Error 4: %s", sqlite3_errmsg(inAppDatabase));
             }
@@ -168,6 +178,7 @@
             NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
         }
         
+        //close the database
         sqlite3_close(inAppDatabase);
     }
     

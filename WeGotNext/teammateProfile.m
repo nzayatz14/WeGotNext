@@ -10,6 +10,8 @@
 #import "MyManager.h"
 
 @implementation teammateProfile
+
+/*FUNCTION IS INCOMPLETE*/
 //initialize the labels and such when the view appears to the user
 -(void) viewWillAppear:(BOOL)animated{
     
@@ -34,6 +36,8 @@
     
 }
 
+//removes the currently being viewed teammate from the users team
+//then pops the user back to the table view of his/her teammates
 - (void) removeFromTeam{
     MyManager *sharedManager = [MyManager sharedManager];
     
@@ -44,12 +48,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+//function called if the remove from team buttong is clicked
+//displays warning
 - (IBAction)btnRemoveFromTeamClicked:(UIButton *)sender {
     //_btnRemoveFromTeam.enabled = NO;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wait" message:@"Are you sure you want to remove this person from you team?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Remove", nil];
     [alert show];
 }
 
+//if the user decided to hit ok, the teammate is then removed from the users team in that sport
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if(buttonIndex == 1){

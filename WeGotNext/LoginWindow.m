@@ -42,7 +42,7 @@
     
     //open the database, if there is an error, print the error
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-        NSLog(@"Open Database to save info");
+        //NSLog(@"Open Database to save info");
         
         //sql statement to get the length of the current user table
         //(if its 1 someone is logged in, if its 0 nobody is)
@@ -53,14 +53,14 @@
         if(sqlite3_prepare_v2(inAppDatabase, sqlCount, -1, &compiledCountStatement, NULL) == SQLITE_OK){
             while(sqlite3_step(compiledCountStatement) == SQLITE_ROW){
                 empty = sqlite3_column_int(compiledCountStatement, 0);
-                NSLog(@"%d Count", empty);
+                //NSLog(@"%d Count", empty);
             }
         }else{
             NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
         }
         
         //finalize the statement after it is executed or an error occurs
-        NSLog(@"Done Count");
+        //NSLog(@"Done Count");
         sqlite3_finalize(compiledCountStatement);
         
     }else{
@@ -141,8 +141,9 @@
     return YES;
 }
 
+//adds the person who is just logging in as the current user in the inApp database
 - (void) addPersonAsCurrentUser{
-    NSLog(@"Add to database");
+    //NSLog(@"Add to database");
     
     MyManager *sharedManager = [MyManager sharedManager];
     
@@ -154,16 +155,19 @@
     
     sqlite3 *inAppDatabase;
     
+    //attempts to open the database. if there is a problem print an error, if not, continue.
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-        NSLog(@"Open Database to save info");
+        //NSLog(@"Open Database to save info");
         
+        //extra check to make sure the currentUser table is empty
         if(empty == 0){
             const char *sqlStatement = "INSERT INTO currentUser (userName, password, firstName, isMale, birthday, upVotes, totalVotes) VALUES (?,?,?,?,?,?,?)";
             sqlite3_stmt *compiledStatement;
             
+            //attempt to compile the SQL statement. continue if it works, if not, print an error.
             if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
                 //save data
-                NSLog(@"saving data");
+                //NSLog(@"saving data");
                 
                 sqlite3_bind_text(compiledStatement,1,[sharedManager.user.getUserName UTF8String], -1, SQLITE_TRANSIENT);
                 sqlite3_bind_text(compiledStatement,2,[sharedManager.user.getPassword UTF8String], -1, SQLITE_TRANSIENT);
@@ -186,19 +190,19 @@
                  } */
                 
             }else{
-                NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
+                NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
             }
             if(sqlite3_step(compiledStatement) == SQLITE_DONE){
-                NSLog(@"Done save");
+                //NSLog(@"Done save");
                 sqlite3_finalize(compiledStatement);
             }
         }
         
     }else{
-        NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
+        NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
     }
     
-    //write the users pairs, teammates, and experiences to the inApp database as well
+    //write the users pairs, teammates, and experiences to the inApp database as well from online
     
     
     
@@ -206,24 +210,31 @@
     [super performSegueWithIdentifier:@"btnLogin" sender:self];
 }
 
+//this function is called if there is a current user logged in BUT the users
+//information is not yet loaded into the app
+//loads the data in from the inApp database into the app
 -(void) loadUserInformation:(NSString *) filePath{
     
     sqlite3 *inAppDatabase;
     MyManager *sharedManager = [MyManager sharedManager];
     
+    //attempts to open the database. if there is a problem print an error, if not, continue.
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
         
             const char *sqlStatement = "SELECT * FROM currentUser";
             sqlite3_stmt *compiledStatement;
-            
+        
+            //attempt to compile the SQL statement. continue if it works, if not, print an error.
             if( sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+                //continue to load in data while the row is not the END row
+                //(there will always be either 0 or 1 rows)
                 while(sqlite3_step(compiledStatement) == SQLITE_ROW){
                     
+                    //read in the persons data
                     NSString *userName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 1)];
                     
                     [sharedManager.user setUserName:userName];
                     
-                    //read in the rest of the persons data
                     NSString *password = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
                     
                     [sharedManager.user setPassword:password];
@@ -249,44 +260,56 @@
                     //
                 }
             }else{
-                NSLog(@"Perpare Error #%i: %s",0,sqlite3_errmsg(inAppDatabase));
+                NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
             }
+        
+            //finalize the SQL statement
             sqlite3_finalize(compiledStatement);
     }else{
-        NSLog(@"Failed to open database :(");
+        NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
     }
     
+    //close the database
     sqlite3_close(inAppDatabase);
     
+    //call load user pairs, load user teams, and load user experiences (consecutively)
+    //to load all of the information
+    //start with loading the users pairs
     [self loadUserPairs:filePath];
 }
 
+//loads the users pairs from the inApp database to the app
 -(void) loadUserPairs:(NSString *) filePath{
     
     sqlite3 *inAppDatabase;
     MyManager *sharedManager = [MyManager sharedManager];
     
+    //attempts to open the database. if there is a problem print an error, if not, continue.
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-        NSLog(@"Opened Database!! :D");
+        //NSLog(@"Opened Database!! :D");
         
+        //run the code for each sport to load all pairs
         for(int i = 0;i <SPORT_COUNT;i++){
             NSString *temp = [[NSString alloc] initWithFormat:@"SELECT * FROM pairsCurrentUser%d", i];
             const char *sqlStatement = [temp UTF8String];
             sqlite3_stmt *compiledStatement;
             
+            //attempt to compile the SQL statement. continue if it works, if not, print an error.
             if( sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
                 
-                int players = 0;
+                //int players = 0;
+                
+                //load the data until the end of the table is reached for each sport
                 while(sqlite3_step(compiledStatement) == SQLITE_ROW){
                     
+                    //read in the persons data and set that data to a new person object
                     NSString *userName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 1)];
                     
-                    NSLog(@"%@",userName);
+                    //NSLog(@"%@",userName);
                     
                     Person *p = [[Person alloc] init];
                     [p setUserName:userName];
                     
-                    //read in the rest of the persons data
                     NSString *firstName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
                     
                     BOOL male = sqlite3_column_int(compiledStatement, 3);
@@ -306,7 +329,7 @@
                     }
                     
                     BOOL upPair = sqlite3_column_int(compiledStatement, 10);
-                    NSLog(@"%d being loaded, %d isMale", upPair, male);
+                    //NSLog(@"%d being loaded, %d isMale", upPair, male);
                     
                     [p setFirstName:firstName];
                     [p setIsMale:male];
@@ -315,51 +338,62 @@
                     [p setVotes:total];
                     //
                     
+                    //add the newly created person to the users pairs
                     [sharedManager.user addMatchFromSport:i match:p];
                     [sharedManager addUpVotePair:i value:upPair];
-                    players++;
+                    //players++;
                 }
-                NSLog(@"Players in sport %d: %d", i, players);
+                //NSLog(@"Players in sport %d: %d", i, players);
             }else{
-                NSLog(@"Perpare Error #%i: %s",0,sqlite3_errmsg(inAppDatabase));
+                NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
             }
+            
+            //finalize the SQL statement
             sqlite3_finalize(compiledStatement);
         }
     }else{
-        NSLog(@"Failed to open database :(");
+        NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
     }
     
+    //close the database
     sqlite3_close(inAppDatabase);
     
+    //next, load the users teams
     [self loadUserTeams:filePath];
 }
 
+//load the users teams from the inApp database to the app
 -(void) loadUserTeams:(NSString *) filePath{
     
     sqlite3 *inAppDatabase;
     MyManager *sharedManager = [MyManager sharedManager];
     
+    //attempts to open the database. if there is a problem print an error, if not, continue.
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-        NSLog(@"Opened Database!! :D");
+        //NSLog(@"Opened Database!! :D");
         
+        //run the code for each sport to load all teams
         for(int i = 0;i <SPORT_COUNT;i++){
             NSString *temp = [[NSString alloc] initWithFormat:@"SELECT * FROM teamCurrentUser%d", i];
             const char *sqlStatement = [temp UTF8String];
             sqlite3_stmt *compiledStatement;
             
+            //attempt to compile the SQL statement. continue if it works, if not, print an error.
             if( sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
                 
-                int players = 0;
+                //int players = 0;
+                
+                //load the data until the end of the table is reached for each sport
                 while(sqlite3_step(compiledStatement) == SQLITE_ROW){
                     
+                    //read in the persons data and set that data to a new person object
                     NSString *userName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 1)];
                     
-                    NSLog(@"%@",userName);
+                    //NSLog(@"%@",userName);
                     
                     Person *p = [[Person alloc] init];
                     [p setUserName:userName];
                     
-                    //read in the rest of the persons data
                     NSString *firstName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
                     
                     [p setFirstName:firstName];
@@ -387,26 +421,31 @@
                     [p setVotes:total];
                     //
                     
+                    //add the newly created person to users team
                     [sharedManager.user addToTeamFromSport:i person:p];
-                    players++;
+                    //players++;
                 }
-                NSLog(@"Teammates in sport %d: %d", i, players);
+                //NSLog(@"Teammates in sport %d: %d", i, players);
             }else{
-                NSLog(@"Perpare Error #%i: %s",0,sqlite3_errmsg(inAppDatabase));
+                NSLog(@"Error 1: %s",sqlite3_errmsg(inAppDatabase));
             }
+            
+            //finalize the SQL statement
             sqlite3_finalize(compiledStatement);
         }
     }else{
-        NSLog(@"Failed to open database :(");
+        NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
     }
     
+    //close the database
     sqlite3_close(inAppDatabase);
     
+    //next, load the users experiences
     [self loadUserExperiences:filePath];
 }
 
 /*FUNCTION IS INCOMPLETE*/
-//loads the experiences of the current user from the database
+//loads the experiences of the current user from the inApp database
 -(void) loadUserExperiences:(NSString *) filePath{
     
     [super performSegueWithIdentifier:@"btnLogin" sender:self];

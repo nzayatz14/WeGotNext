@@ -11,6 +11,7 @@
 @implementation LogOutWindow
 
 -(void) viewWillAppear:(BOOL)animated{
+    //disable the slide gestures so the user cannot access the side menus
     [self disableSlidePanGestureForLeftMenu];
     [self disableSlidePanGestureForRightMenu];
     _lblLogOutStatus.text = _logOut;

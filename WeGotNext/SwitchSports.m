@@ -16,6 +16,8 @@
 //appropriate box for the time being
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
      MyManager *sharedManager = [MyManager sharedManager];
+    
+    //sets the current sport to the newly checked cell
     [sharedManager.user setCurrentSport:(int)indexPath.row];
     
     if(self.checkedIndexPath){

@@ -52,7 +52,7 @@
 //if the database is not already in the documents folder, copy it
 //there so the database tables are able to be edited
 - (NSString *)copyDatabaseToDocuments{
-    NSLog(@"Copy Database to Documents");
+    //NSLog(@"Copy Database to Documents");
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -63,7 +63,7 @@
     
     //if the file does not exist at that path, copy it there
     if(![fileManager fileExistsAtPath:filePath]){
-        NSLog(@"Copy");
+        //NSLog(@"Copy");
         NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
         [fileManager copyItemAtPath:bundlePath toPath:filePath error:nil];
     }
@@ -79,7 +79,7 @@
     MyManager *sharedManager = [MyManager sharedManager];
     
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-        NSLog(@"Opened Database!! :D");
+        //NSLog(@"Opened Database!! :D");
         
         for(int i = 0;i <SPORT_COUNT;i++){
             NSString *temp = [[NSString alloc] initWithFormat:@"SELECT * FROM pairsCurrentUser%d", i];
@@ -93,7 +93,7 @@
                     
                     NSString *userName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 1)];
                     
-                    NSLog(@"%@",userName);
+                    //NSLog(@"%@",userName);
                     
                     Person *p = [[Person alloc] init];
                     [p setUserName:userName];
@@ -107,14 +107,14 @@
                     [sharedManager.user addMatchFromSport:i match:p];
                     players++;
                 }
-                NSLog(@"Players in sport %d: %d", i, players);
+                //NSLog(@"Players in sport %d: %d", i, players);
            }else{
-               NSLog(@"Perpare Error #%i: %s",0,sqlite3_errmsg(inAppDatabase));
+               NSLog(@"Error 1: %s",sqlite3_errmsg(inAppDatabase));
            }
             sqlite3_finalize(compiledStatement);
         }
     }else{
-        NSLog(@"Failed to open database :(");
+        NSLog(@"Error 0: %s",sqlite3_errmsg(inAppDatabase));
     }
     
     sqlite3_close(inAppDatabase);

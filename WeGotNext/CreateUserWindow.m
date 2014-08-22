@@ -152,7 +152,7 @@
 
 //adds the newly entered information to the database as the current user
 -(void) addPersonAsCurrentUser{
-    NSLog(@"Add to database");
+    //NSLog(@"Add to database");
     
     //get the path of the database
     MyManager *sharedManager = [MyManager sharedManager];
@@ -167,7 +167,7 @@
     
     //if the database is opened successfully, continue, if not, print the error
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-        NSLog(@"Open Database to save info");
+        //NSLog(@"Open Database to save info");
         
         //sql statement to add user to current database
         const char *sqlStatement = "INSERT INTO currentUser (userName, password, firstName, isMale, birthday, upVotes, totalVotes) VALUES (?,?,?,?,?,?,?)";
@@ -176,7 +176,7 @@
         //if the statement is legal, save the data. if not, print an error
         if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
             //save data
-            NSLog(@"saving data");
+            //NSLog(@"saving data");
             
             sqlite3_bind_text(compiledStatement,1,[sharedManager.user.getUserName UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(compiledStatement,2,[sharedManager.user.getPassword UTF8String], -1, SQLITE_TRANSIENT);
@@ -203,7 +203,7 @@
        
         //end the statement once actions are completed or error is printed
         if(sqlite3_step(compiledStatement) == SQLITE_DONE){
-            NSLog(@"Done save");
+            //NSLog(@"Done save");
             sqlite3_finalize(compiledStatement);
         }
         
@@ -222,19 +222,19 @@
 //checks to see if the users entered information is valid
 -(BOOL) informationIsValid:(NSString *) userName password:(NSString *) pass confirmPassword:(NSString *) confirm firstName:(NSString *) first birthday:(NSDate *) age{
     
-    NSLog(@"%@", pass);
-    NSLog(@"%@", confirm);
+    //NSLog(@"%@", pass);
+    //NSLog(@"%@", confirm);
     
     //the username cannot be equal to the string 'userName'
     if([userName isEqualToString:@"userName"]){
-        NSLog(@"userName is userName");
+        //NSLog(@"userName is userName");
         return NO;
         
     }
     
     //the userName must be at least 1 character long
     if(userName.length <USER_NAME_MIN_LENGTH){
-        NSLog(@"userName is less than min");
+       //NSLog(@"userName is less than min");
         return NO;
         
     }
@@ -244,14 +244,14 @@
     
     //the password must match the confirm password
     if(![pass isEqualToString:confirm]){
-        NSLog(@"passwords dont match");
+        //NSLog(@"passwords dont match");
         return NO;
         
     }
     
     //the password must be at least 8 characters long
     if(pass.length <PASSWORD_MIN_LENGTH){
-        NSLog(@"password less than min");
+        //NSLog(@"password less than min");
         return NO;
         
     }
