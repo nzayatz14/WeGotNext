@@ -52,6 +52,9 @@
             identifier = @"btnSwitchSports";
             break;
         case 6:
+            identifier = @"btnPlayerPreferences";
+            break;
+        case 7:
         { UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wait" message:@"After logging out, players will still be able to see your account at the location of last log in." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
             [alert show];
         }
