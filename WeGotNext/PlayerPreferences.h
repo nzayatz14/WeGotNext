@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface PlayerPreferences : UIViewController
+- (IBAction)swiMen:(UISwitch *)sender;
+- (IBAction)swiWomen:(UISwitch *)sender;
+- (IBAction)sldRange:(UISlider *)sender;
+- (IBAction)sldAge:(UISlider *)sender;
 
 @end
