@@ -107,7 +107,10 @@
     //set the rest of the users data
     
     //add the person who just logged in as the current user
-    [self addPersonAsCurrentUser];
+    //[self addPersonAsCurrentUser];
+    
+    //segue to main menu
+    //[super performSegueWithIdentifier:@"btnLogin" sender:self];
 }
 
 //if the create button is clicked, open the create user window
@@ -447,6 +450,51 @@
 /*FUNCTION IS INCOMPLETE*/
 //loads the experiences of the current user from the inApp database
 -(void) loadUserExperiences:(NSString *) filePath{
+    
+    sqlite3 *inAppDatabase;
+    MyManager *sharedManager = [MyManager sharedManager];
+    
+    //attempts to open the database. if there is a problem print an error, if not, continue.
+    if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
+        //NSLog(@"Opened Database!! :D");
+    
+            NSString *temp = [[NSString alloc] initWithFormat:@"SELECT * FROM currentUserExperience"];
+            const char *sqlStatement = [temp UTF8String];
+            sqlite3_stmt *compiledStatement;
+            
+            //attempt to compile the SQL statement. continue if it works, if not, print an error.
+            if( sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+                
+                //int times = 0;
+                //load the data until the end of the table is reached
+                while(sqlite3_step(compiledStatement) == SQLITE_ROW){
+                    
+                    //read in the persons data and set that data to a new person object
+                    int sport = sqlite3_column_int(compiledStatement, 0);
+                    int experienceNum = sqlite3_column_int(compiledStatement, 1);
+                    
+                    //times++;
+                    //NSLog(@"load user Experiences %d %d %d", sport, experienceNum, times);
+                    NSString *exp = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
+                    
+                    [sharedManager.user setExperienceFromSport:sport experienceNumber:experienceNum experience:exp];
+                }
+                //NSLog(@"Teammates in sport %d: %d", i, players);
+            }else{
+                NSLog(@"Error 1: %s",sqlite3_errmsg(inAppDatabase));
+            }
+            
+            //finalize the SQL statement
+            sqlite3_finalize(compiledStatement);
+        
+    }else{
+        NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
+    }
+    
+    //close the database
+    sqlite3_close(inAppDatabase);
+    
+    
     
     [super performSegueWithIdentifier:@"btnLogin" sender:self];
 }

@@ -39,6 +39,13 @@
     NSMutableArray *matches[SPORT_COUNT];
     NSMutableArray *team[SPORT_COUNT];
     
+    BOOL findMen;
+    BOOL findWomen;
+    int distance;
+    int minAge;
+    int maxAge;
+    
+    
 }
 -(id) init;
 -(id) initWithUserName:(NSString *) user FirstName:(NSString *) first Password:(NSString *) pass isMale:(BOOL) Male birthdate:(NSDate *) birth upVotes:(int) up votes:(int) v;
@@ -99,5 +106,19 @@
 -(void) setCurrentLocation:(CLLocation *) location;
 -(CLLocation *) getCurrentLocation;
 
+-(void) setFindMale:(BOOL) find;
+-(BOOL) getFindMale;
+
+-(void) setFindFemale:(BOOL) find;
+-(BOOL) getFindFemale;
+
+-(void) setFindDistance:(int) dist;
+-(int) getFindDistance;
+
+-(void) setMinAge:(int) age;
+-(int) getMinAge;
+
+-(void) setMaxAge:(int) age;
+-(int) getMaxAge;
 
 @end

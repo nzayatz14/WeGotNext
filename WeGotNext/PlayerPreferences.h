@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlayerPreferences : UIViewController
-- (IBAction)swiMen:(UISwitch *)sender;
-- (IBAction)swiWomen:(UISwitch *)sender;
-- (IBAction)sldRange:(UISlider *)sender;
-- (IBAction)sldAge:(UISlider *)sender;
+@interface PlayerPreferences : UIViewController{
+    BOOL save;
+}
+
+- (IBAction)swiMenClicked:(UISwitch *)sender;
+- (IBAction)swiWomenClicked:(UISwitch *)sender;
+- (IBAction)sldRangeChanged:(UISlider *)sender;
+- (IBAction)sldAgeChanged:(UISlider *)sender;
+
+@property (weak, nonatomic) IBOutlet UISwitch *swiMen;
+@property (weak, nonatomic) IBOutlet UISwitch *swiWomen;
+@property (weak, nonatomic) IBOutlet UISlider *sldRange;
+@property (weak, nonatomic) IBOutlet UISlider *sldAge;
+
 
 @end

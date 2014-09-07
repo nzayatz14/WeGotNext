@@ -105,13 +105,13 @@
     //check if information is valid. if it is, set the current users information
     //to the information that was just entered
     if([self informationIsValid:userName password:password confirmPassword:confirmedPassword firstName:firstName birthday:birthday]){
-            MyManager *sharedManager = [MyManager sharedManager];
-            [sharedManager.user setUserName:userName];
-            [sharedManager.user setPassword:password];
-            [sharedManager.user setFirstName:firstName];
-            [sharedManager.user setIsMale:male];
-            [sharedManager.user setBirthday:birthday];
-            [self addPersonToOnlineDatabase];
+        MyManager *sharedManager = [MyManager sharedManager];
+        [sharedManager.user setUserName:userName];
+        [sharedManager.user setPassword:password];
+        [sharedManager.user setFirstName:firstName];
+        [sharedManager.user setIsMale:male];
+        [sharedManager.user setBirthday:birthday];
+        [self addPersonToOnlineDatabase];
     }
 }
 
@@ -152,7 +152,7 @@
 
 //adds the newly entered information to the database as the current user
 -(void) addPersonAsCurrentUser{
-    //NSLog(@"Add to database");
+    //NSLog(@"Add person as current user");
     
     //get the path of the database
     MyManager *sharedManager = [MyManager sharedManager];
@@ -193,14 +193,14 @@
             sqlite3_bind_int(compiledStatement, 7, 0);
             
             /*for(int i = 0;i<EXP_COUNT;i++){
-                sqlite3_bind_text(compiledStatement,i+7,[[p getExperienceFromSport:sp experienceNumber:i] cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
-            } */
+             sqlite3_bind_text(compiledStatement,i+7,[[p getExperienceFromSport:sp experienceNumber:i] cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
+             } */
             
             
         }else{
             NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
         }
-       
+        
         //end the statement once actions are completed or error is printed
         if(sqlite3_step(compiledStatement) == SQLITE_DONE){
             //NSLog(@"Done save");
@@ -214,8 +214,8 @@
     //close the database
     sqlite3_close(inAppDatabase);
     
-    //dismiss the create user window
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //create experiences for inApp database
+    [self addUserExperiences: filePath];
 }
 
 /*FUNCTION IS INCOMPLETE*/
@@ -234,7 +234,7 @@
     
     //the userName must be at least 1 character long
     if(userName.length <USER_NAME_MIN_LENGTH){
-       //NSLog(@"userName is less than min");
+        //NSLog(@"userName is less than min");
         return NO;
         
     }
@@ -260,6 +260,62 @@
     
     return YES;
     
+}
+
+-(void) addUserExperiences:(NSString *) filePath{
+    
+    //NSLog(@"Add user experiences");
+    sqlite3 *inAppDatabase;
+    
+    //if the database is opened successfully, continue, if not, print the error
+    if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
+        //NSLog(@"Open Database to save info");
+        
+        MyManager *sharedManager = [MyManager sharedManager];
+        
+        int times = 0;
+        for(int i = 0;i<SPORT_COUNT;i++){
+            for(int j = 0;j<EXP_COUNT;j++){
+                //sql statement to add user to current database
+                const char *sqlStatement = "INSERT INTO currentUserExperience (sport, experienceNumber, experience) VALUES (?,?,?)";
+                sqlite3_stmt *compiledStatement;
+                
+                //if the statement is legal, save the data. if not, print an error
+                if(sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+                    //save data
+                    //NSLog(@"saving data");
+                    
+                    NSString *currentExperience = [sharedManager.user getExperienceFromSport:i experienceNumber:j];
+                    //NSLog(@"%@", currentExperience);
+                    
+                    sqlite3_bind_int(compiledStatement, 1, i);
+                    sqlite3_bind_int(compiledStatement, 2, j);
+                    sqlite3_bind_text(compiledStatement,3,[currentExperience UTF8String], -1, SQLITE_TRANSIENT);
+                    
+                    //times++;
+                    //NSLog(@"%d", times);
+                }else{
+                    NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
+                }
+                
+                //end the statement once actions are completed or error is printed
+                if(sqlite3_step(compiledStatement) == SQLITE_DONE){
+                    //NSLog(@"Done save");
+                    sqlite3_finalize(compiledStatement);
+                }
+            }
+        }
+        
+    }else{
+        NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
+    }
+    
+    //close the database
+    sqlite3_close(inAppDatabase);
+    
+    
+    //dismiss the create user window
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

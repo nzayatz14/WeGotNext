@@ -51,6 +51,12 @@
     }
     
     currentLocation = [[CLLocation alloc] init];
+    
+    findMen = YES;
+    findWomen = NO;
+    distance = 50;
+    minAge = 18;
+    maxAge = 50;
     return self;
     
 }
@@ -90,6 +96,13 @@
     }
     
     currentLocation = [[CLLocation alloc] init];
+    
+    findMen = male;
+    findWomen = (!male);
+    distance = 50;
+    minAge = 18;
+    maxAge = 50;
+    
     return self;
 }
 
@@ -339,6 +352,46 @@
 
 -(void) setVotes: (int) v{
     totalVotes = v;
+}
+
+-(void) setFindMale:(BOOL) find{
+    findMen = find;
+}
+
+-(BOOL) getFindMale{
+    return findMen;
+}
+
+-(void) setFindFemale:(BOOL) find{
+    findWomen = find;
+}
+
+-(BOOL) getFindFemale{
+    return findWomen;
+}
+
+-(void) setFindDistance:(int) dist{
+    distance = dist;
+}
+
+-(int) getFindDistance{
+    return distance;
+}
+
+-(void) setMinAge:(int) age{
+    minAge = age;
+}
+
+-(int) getMinAge{
+    return minAge;
+}
+
+-(void) setMaxAge:(int) age{
+    maxAge = age;
+}
+
+-(int) getMaxAge{
+    return maxAge;
 }
 
 @end

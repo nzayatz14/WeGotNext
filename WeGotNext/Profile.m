@@ -11,6 +11,7 @@
 
 //Constant to hold the height of the menu accessory for the textEditor
 #define TEXT_EDITOR_ACCESSORY_WIDTH 40
+#define EXP_COUNT 3 //how many experiences the user can put
 
 @implementation Profile
 
@@ -30,7 +31,7 @@
     MyManager *sharedManager = [MyManager sharedManager];
     
     //set the information of the profile menu equal to the information of the user
-
+    
     _txtFirstName.text = [sharedManager.user getFirstName];
     _txtAge.text = [NSString stringWithFormat:@"%d", [sharedManager.user getAge]];
     
@@ -43,7 +44,7 @@
     
     _txtCredibilityRating.text = [[NSString alloc]initWithFormat:@"%d",[[NSNumber numberWithInt:[sharedManager.user getCredibility]] intValue]];
     
-   
+    
     
     if([sharedManager.user isMale]){
         _txtGender.text = @"M";
@@ -57,16 +58,16 @@
     isEditable = NO;
     [self makeViewUneditable];
     
-   /* _txtFirstName.text = _First;
-    _txtAge.text = _Age;
-    _txtGender.text = _Gender;
-    
-    _txtExperience1.text = _Exp1;
-    _txtExperience2.text = _Exp2;
-    _txtExperience3.text = _Exp3;
-    
-    _txtCredibilityRating.text = [[NSString alloc] initWithFormat:@"%d", [_credibility intValue]];
-    */
+    /* _txtFirstName.text = _First;
+     _txtAge.text = _Age;
+     _txtGender.text = _Gender;
+     
+     _txtExperience1.text = _Exp1;
+     _txtExperience2.text = _Exp2;
+     _txtExperience3.text = _Exp3;
+     
+     _txtCredibilityRating.text = [[NSString alloc] initWithFormat:@"%d", [_credibility intValue]];
+     */
     
 }
 
@@ -75,11 +76,11 @@
     
     //statement to make sure only 1 action sheet appears
     if(sender.state == UIGestureRecognizerStateBegan){
-    //Declase action sheet (pop up window on the bottom)
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Select From Library", nil];
-    
-    //show pop up window
-    [actionSheet showInView:self.view];
+        //Declase action sheet (pop up window on the bottom)
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Select From Library", nil];
+        
+        //show pop up window
+        [actionSheet showInView:self.view];
     }
 }
 
@@ -114,17 +115,17 @@
 //when the user decides on a picture to use, hide the pop up window and set the profile
 //picture to be that newly selected picture
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
     self.selectedImage = info[UIImagePickerControllerOriginalImage];
     [_picFrontProfilePicture setImage:self.selectedImage];
-
+    
 }
 
 //if the user hits cancel in the pop up window, hide the pop up window
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
-
+    
 }
 
 //makes the users profile editable to the user
@@ -181,6 +182,7 @@
     [sharedManager.user setExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:2 experience:[NSString stringWithFormat:@"%@", _txtExperience3.text]];
     
     //save these changes to database
+    [self saveChangesToDatabase];
 }
 
 //toggles between editable and not editable views with button clicks
@@ -196,5 +198,47 @@
         [self makeViewUneditable];
         [self saveChanges];
     }
+}
+
+-(void) saveChangesToDatabase{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
+    
+    sqlite3 *inAppDatabase;
+    
+    //attempts to open the inApp database. if successful, continue, if not, print error.
+    if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
+        MyManager *sharedManager = [MyManager sharedManager];
+        
+        for(int i = 0;i<EXP_COUNT;i++){
+            NSString *test = [[NSString alloc] initWithFormat:@"UPDATE currentUserExperience SET experience='%@' WHERE sport=%d AND experienceNumber=%d", [sharedManager.user getExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:i],[sharedManager.user getCurrentSport],i];
+            
+            //NSLog(@"%@",test);
+            
+            const char *testChar = [test UTF8String];
+            
+            sqlite3_stmt *compiledStatement2;
+            
+            //attempts to compiled the SQL statement. if successful, continue, if not print error.
+            if(sqlite3_prepare_v2(inAppDatabase, testChar, -1, &compiledStatement2, NULL) == SQLITE_OK){
+                //NSLog(@"Update Success");
+            }else{
+                NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
+            }
+            
+            //finalize the SQL statement
+            if(sqlite3_step(compiledStatement2) == SQLITE_DONE)
+                sqlite3_finalize(compiledStatement2);
+        }
+    }else{
+        NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
+        
+    }
+    
+    //close the database
+    sqlite3_close(inAppDatabase);
 }
 @end

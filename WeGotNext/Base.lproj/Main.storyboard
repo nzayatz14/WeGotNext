@@ -65,7 +65,6 @@
                                 </state>
                                 <connections>
                                     <action selector="btnLoginClicked:" destination="2dk-1d-1bl" eventType="touchUpInside" id="ghg-2k-bFA"/>
-                                    <segue destination="zX2-yT-l4t" kind="push" identifier="btnLogin" id="2ta-2B-3Oe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WwO-se-kEx">
@@ -96,6 +95,7 @@
                     <connections>
                         <outlet property="txtPassword" destination="v7B-SR-nK8" id="cJC-yB-PWo"/>
                         <outlet property="txtUserName" destination="7m1-BZ-Tm9" id="1NF-9q-SgM"/>
+                        <segue destination="zX2-yT-l4t" kind="push" identifier="btnLogin" id="eP7-dm-6uE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rsh-jv-jCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -449,14 +449,14 @@
                                 <rect key="frame" x="237" y="118" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="swiMen:" destination="vMH-xx-Gob" eventType="valueChanged" id="Txt-CH-VBc"/>
+                                    <action selector="swiMenClicked:" destination="vMH-xx-Gob" eventType="valueChanged" id="InR-ih-LFX"/>
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="iWc-D4-N0c">
                                 <rect key="frame" x="237" y="152" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="swiWomen:" destination="vMH-xx-Gob" eventType="valueChanged" id="Qgh-cQ-NlP"/>
+                                    <action selector="swiWomenClicked:" destination="vMH-xx-Gob" eventType="valueChanged" id="Kou-KL-ZOA"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Distance:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lhp-WZ-qJ6">
@@ -469,7 +469,7 @@
                                 <rect key="frame" x="18" y="253" width="270" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="sldRange:" destination="vMH-xx-Gob" eventType="valueChanged" id="Vyr-S5-cm1"/>
+                                    <action selector="sldRangeChanged:" destination="vMH-xx-Gob" eventType="valueChanged" id="4fw-Vf-Hag"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Ages:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xdu-Sq-YhF">
@@ -482,13 +482,19 @@
                                 <rect key="frame" x="18" y="357" width="270" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="sldAge:" destination="vMH-xx-Gob" eventType="valueChanged" id="WyV-N1-n4u"/>
+                                    <action selector="sldAgeChanged:" destination="vMH-xx-Gob" eventType="valueChanged" id="X5D-rC-o7H"/>
                                 </connections>
                             </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Player Preferences" id="ueb-pa-TUP"/>
+                    <connections>
+                        <outlet property="sldAge" destination="4Bg-q7-ae1" id="lTE-rx-QpD"/>
+                        <outlet property="sldRange" destination="P3r-8F-EQz" id="gN5-ag-vZi"/>
+                        <outlet property="swiMen" destination="rUn-Ec-HaI" id="xaB-vh-HrS"/>
+                        <outlet property="swiWomen" destination="iWc-D4-N0c" id="dLU-YF-esy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwT-RL-luG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
