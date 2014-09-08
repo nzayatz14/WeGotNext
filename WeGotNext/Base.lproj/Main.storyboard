@@ -655,6 +655,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="PIP-DZ-upp">
                                 <rect key="frame" x="20" y="250" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sldLikedPhotosClicked:" destination="tet-01-ycT" eventType="valueChanged" id="6nx-fM-vCS"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos Liked" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="00L-Vz-PSb">
                                 <rect key="frame" x="188" y="255" width="101" height="21"/>
@@ -691,6 +694,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="b3r-JU-fK6"/>
                     <connections>
+                        <outlet property="sldLikedPhotos" destination="PIP-DZ-upp" id="cGm-IO-dLY"/>
                         <outlet property="sldPlayerMsgObj" destination="Obm-pt-Xad" id="RBL-tf-e8i"/>
                         <outlet property="sldPlayerPairedObj" destination="Lqc-9Z-uxo" id="HgQ-vM-klJ"/>
                         <outlet property="sldTeammateMsgObj" destination="v1F-b8-N38" id="eNs-f8-T5o"/>

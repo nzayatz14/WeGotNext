@@ -12,10 +12,13 @@
 - (IBAction)sldPlayerPaired:(UISwitch *)sender;
 - (IBAction)sldPlayerMsg:(UISwitch *)sender;
 - (IBAction)sldTeammateMsg:(UISwitch *)sender;
+- (IBAction)sldLikedPhotosClicked:(UISwitch *)sender;
 
 @property (weak, nonatomic) IBOutlet UISwitch *sldPlayerPairedObj;
 @property (weak, nonatomic) IBOutlet UISwitch *sldPlayerMsgObj;
 @property (weak, nonatomic) IBOutlet UISwitch *sldTeammateMsgObj;
+@property (weak, nonatomic) IBOutlet UISwitch *sldLikedPhotos;
+
 
 - (IBAction)btnDeleteAccountClicked:(id)sender;
 

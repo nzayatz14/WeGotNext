@@ -38,6 +38,12 @@
     sharedManager.notifyNewTeammateMessage = [sender isOn];
 }
 
+/*FUNCTION IS INCOMPLETE*/
+//function called when the liked photos switch is switched
+- (IBAction)sldLikedPhotosClicked:(UISwitch *)sender {
+    
+}
+
 //function called when the delete account button is clicked
 - (IBAction)btnDeleteAccountClicked:(id)sender {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Wait" message:@"Are you sure you want to delete your account? This action cannot be undone." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Delete", nil];
