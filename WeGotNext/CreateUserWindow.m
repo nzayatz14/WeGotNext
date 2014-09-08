@@ -273,7 +273,7 @@
         
         MyManager *sharedManager = [MyManager sharedManager];
         
-        int times = 0;
+        //int times = 0;
         for(int i = 0;i<SPORT_COUNT;i++){
             for(int j = 0;j<EXP_COUNT;j++){
                 //sql statement to add user to current database
