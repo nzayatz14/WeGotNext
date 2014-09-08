@@ -8,6 +8,7 @@
 
 #import "Profile.h"
 #import "MyManager.h"
+#import "UIViewController+AMSlideMenu.h"
 
 //Constant to hold the height of the menu accessory for the textEditor
 #define TEXT_EDITOR_ACCESSORY_WIDTH 40
@@ -26,6 +27,9 @@
 
 //initialize the labels and such when the view appears to the user
 -(void) viewWillAppear:(BOOL)animated{
+    
+    [self addLeftMenuButton];
+    [self addRightMenuButton];
     
     //create the manager to access the users information
     MyManager *sharedManager = [MyManager sharedManager];

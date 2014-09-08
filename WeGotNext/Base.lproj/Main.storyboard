@@ -1342,15 +1342,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat" id="FXe-f3-6dJ">
-                        <barButtonItem key="backBarButtonItem" title="Nope" id="tdx-OL-lZt"/>
-                        <barButtonItem key="leftBarButtonItem" title="Nope" id="SiV-Rg-4aV">
-                            <color key="tintColor" red="0.32493878450000002" green="0.393550701" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="btnBackClicked:" destination="toM-uX-Xmd" id="FTp-Q5-5B9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Chat" id="FXe-f3-6dJ"/>
                     <connections>
                         <outlet property="navItem" destination="FXe-f3-6dJ" id="S5o-Nt-B6b"/>
                     </connections>

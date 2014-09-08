@@ -187,4 +187,26 @@
     
     //self.window.rootViewController = [[LoginWindow alloc] initWithNibName:nil bundle:nil];
 }
+
+-(void) configureLeftMenuButton:(UIButton *)button{
+    CGRect btnFrame = button.frame;
+    btnFrame.origin = (CGPoint){0,0};
+    btnFrame.size = (CGSize){70,40};
+    button.frame = btnFrame;
+    
+    [button setTitle:@"Menu" forState:UIControlStateNormal];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+}
+
+-(void) configureRightMenuButton:(UIButton *)button{
+    CGRect btnFrame = button.frame;
+    btnFrame.origin = (CGPoint){0,0};
+    btnFrame.size = (CGSize){70,40};
+    button.frame = btnFrame;
+    
+    [button setTitle:@"Chat" forState:UIControlStateNormal];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+}
 @end

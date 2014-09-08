@@ -8,6 +8,7 @@
 
 #import "Home.h"
 #import "MyManager.h"
+#import "UIViewController+AMSlideMenu.h"
 #define METERS_PER_MILE 1609.344
 
 @implementation Home
@@ -29,6 +30,9 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance([[[_Map userLocation] location] coordinate], 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
     
     [_Map setRegion:viewRegion animated:YES];
+    
+    [self addLeftMenuButton];
+    [self addRightMenuButton];
     
     
     //TESTING: ADDS A PERSON AS A PAIR EACH TIME THE HOME SCREEN IS REACHED
