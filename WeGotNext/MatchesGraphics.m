@@ -9,6 +9,7 @@
 #import "MatchCellType.h"
 #import "MyManager.h"
 #import "userProfile.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @implementation MatchesGraphics
 
@@ -18,6 +19,9 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    //[self addLeftMenuButton];
+    //[self addRightMenuButton];
     
     //copy array of matches over from the user to the graphics class
     MyManager *sharedManager = [MyManager sharedManager];

@@ -10,6 +10,7 @@
 #import "MyManager.h"
 #import "TeamCellType.h"
 #import "teammateProfile.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @implementation TeamGraphics
 
@@ -18,6 +19,9 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    //[self addLeftMenuButton];
+    //[self addRightMenuButton];
     
     //copy array of matches over from the user to the graphics class
     MyManager *sharedManager = [MyManager sharedManager];

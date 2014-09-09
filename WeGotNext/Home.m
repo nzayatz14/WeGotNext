@@ -23,16 +23,10 @@
     
     MyManager *sharedManager = [MyManager sharedManager];
     
-    //Sets the current location of the map to center at the users location
-    CLLocation *zoomLocation = [[_Map userLocation] location];
-    [sharedManager.user setCurrentLocation:zoomLocation];
-    
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance([[[_Map userLocation] location] coordinate], 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
-    
-    [_Map setRegion:viewRegion animated:YES];
-    
+    //add left and right menu buttons to the screen
     [self addLeftMenuButton];
     [self addRightMenuButton];
+    
     
     
     //TESTING: ADDS A PERSON AS A PAIR EACH TIME THE HOME SCREEN IS REACHED
@@ -55,4 +49,18 @@
     //[sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:temp];
 }
 
+-(void) viewDidAppear:(BOOL)animated{
+    
+    MyManager *sharedManager = [MyManager sharedManager];
+    
+    //Sets the current location of the map to center at the users location
+    CLLocation *zoomLocation = [[_Map userLocation] location];
+    [sharedManager.user setCurrentLocation:zoomLocation];
+}
+
+- (void)mapViewDidFinishLoadingMap:(MKMapView*)mapView {
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance([[[_Map userLocation] location] coordinate], 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+    
+    [_Map setRegion:viewRegion animated:NO];
+}
 @end

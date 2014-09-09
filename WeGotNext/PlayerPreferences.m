@@ -8,6 +8,7 @@
 
 #import "PlayerPreferences.h"
 #import "MyManager.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @implementation PlayerPreferences
 
@@ -22,6 +23,11 @@
     
     save = NO;
 
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    //[self addLeftMenuButton];
+    //[self addRightMenuButton];
 }
 
 //if the switch changes value, set the new value to the BOOL in the person class and set 'save' to YES

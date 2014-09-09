@@ -8,6 +8,7 @@
 
 #import "SwitchSports.h"
 #import "MyManager.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @implementation SwitchSports
 
@@ -15,6 +16,10 @@
 //selects which sport the user is looking at and places a check mark at the
 //appropriate box for the time being
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //[self addLeftMenuButton];
+    //[self addRightMenuButton];
+    
      MyManager *sharedManager = [MyManager sharedManager];
     
     //sets the current sport to the newly checked cell

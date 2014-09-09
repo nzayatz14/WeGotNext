@@ -8,12 +8,17 @@
 
 #import "Settings.h"
 #import "MyManager.h"
+#import "UIViewController+AMSlideMenu.h"
 
 @implementation Settings
 
 /*FUNCTION IS INCOMPLETE*/
 //sets the slide switches to the users options on each subject
 -(void) viewWillAppear:(BOOL)animated{
+    
+    //[self addLeftMenuButton];
+    //[self addRightMenuButton];
+    
     MyManager *sharedManager = [MyManager sharedManager];
     [_sldPlayerPairedObj setOn:sharedManager.notifyNewPair];
     [_sldPlayerMsgObj setOn:sharedManager.notifyNewPlayerMessage];

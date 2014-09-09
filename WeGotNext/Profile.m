@@ -28,8 +28,8 @@
 //initialize the labels and such when the view appears to the user
 -(void) viewWillAppear:(BOOL)animated{
     
-    [self addLeftMenuButton];
-    [self addRightMenuButton];
+    //[self addLeftMenuButton];
+    //[self addRightMenuButton];
     
     //create the manager to access the users information
     MyManager *sharedManager = [MyManager sharedManager];
