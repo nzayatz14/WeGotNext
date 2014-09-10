@@ -485,11 +485,26 @@
                                     <action selector="sldAgeChanged:" destination="vMH-xx-Gob" eventType="valueChanged" id="X5D-rC-o7H"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 Miles" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YX0-UJ-yPu">
+                                <rect key="frame" x="202" y="224" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 Years" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rY0-qj-NG7">
+                                <rect key="frame" x="202" y="328" width="84" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Preferences" id="ueb-pa-TUP"/>
                     <connections>
+                        <outlet property="lblAge" destination="rY0-qj-NG7" id="uiF-iX-dbD"/>
+                        <outlet property="lblDistance" destination="YX0-UJ-yPu" id="8OX-E7-Vue"/>
                         <outlet property="sldAge" destination="4Bg-q7-ae1" id="lTE-rx-QpD"/>
                         <outlet property="sldRange" destination="P3r-8F-EQz" id="gN5-ag-vZi"/>
                         <outlet property="swiMen" destination="rUn-Ec-HaI" id="xaB-vh-HrS"/>
@@ -518,6 +533,7 @@
         <!--Navigation Controller-->
         <scene sceneID="eHa-iL-0lu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g2H-AJ-peg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="JCM-X2-jFn" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HoP-3X-Uk1">
                         <autoresizingMask key="autoresizingMask"/>
@@ -526,7 +542,6 @@
                         <segue destination="fAx-q6-H8e" kind="relationship" relationship="rootViewController" id="eyQ-47-47Q"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g2H-AJ-peg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="236" y="5112"/>
         </scene>
@@ -534,7 +549,7 @@
         <scene sceneID="1Ei-Nc-ty4">
             <objects>
                 <viewController id="fAx-q6-H8e" customClass="LogOutWindow" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="iDW-as-Rc4">
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="iDW-as-Rc4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>

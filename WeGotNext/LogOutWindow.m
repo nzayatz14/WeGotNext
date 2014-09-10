@@ -14,7 +14,14 @@
     //disable the slide gestures so the user cannot access the side menus
     [self disableSlidePanGestureForLeftMenu];
     [self disableSlidePanGestureForRightMenu];
+    [self removeLeftMenuButton];
+    [self removeRightMenuButton];
     _lblLogOutStatus.text = _logOut;
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    [self disableSlidePanGestureForLeftMenu];
+    [self disableSlidePanGestureForRightMenu];
 }
 
 @end

@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UISwitch *swiWomen;
 @property (weak, nonatomic) IBOutlet UISlider *sldRange;
 @property (weak, nonatomic) IBOutlet UISlider *sldAge;
+@property (weak, nonatomic) IBOutlet UILabel *lblDistance;
+@property (weak, nonatomic) IBOutlet UILabel *lblAge;
 
 
 @end

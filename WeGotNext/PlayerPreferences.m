@@ -19,6 +19,18 @@
     [_swiMen setOn:[sharedManager.user getFindMale]];
     [_swiWomen setOn:[sharedManager.user getFindFemale]];
     
+    [_sldAge setMinimumValue:16];
+    [_sldAge setMaximumValue:99];
+    
+    [_sldRange setMinimumValue:1];
+    [_sldRange setMaximumValue:100];
+    
+    //set initial text for range and age labels
+    NSString *milesRange = [NSString stringWithFormat:@"%d Mile(s)",(int)[_sldRange value]];
+    [_lblDistance setText:milesRange];
+    NSString *ageRange = [NSString stringWithFormat:@"%d Years",(int)[_sldAge value]];
+    [_lblAge setText:ageRange];
+    
     //set the rest of the initial values
     
     save = NO;
@@ -50,12 +62,16 @@
 //if the slider changes values, set the new value to the int in the person class and set 'save' to YES
 - (IBAction)sldRangeChanged:(UISlider *)sender {
     save = YES;
+    NSString *milesRange = [NSString stringWithFormat:@"%d Mile(s)",(int)[_sldRange value]];
+    [_lblDistance setText:milesRange];
 }
 
 /*FUNCTION IS INCOMPLETE*/
 //if the slider changes values, set the new value to the int in the person class and set 'save' to YES
 - (IBAction)sldAgeChanged:(UISlider *)sender {
     save = YES;
+    NSString *ageRange = [NSString stringWithFormat:@"%d Years",(int)[_sldAge value]];
+    [_lblAge setText:ageRange];
 }
 
 /*FUNCTION IS INCOMPLETE*/

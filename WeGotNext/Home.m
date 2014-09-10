@@ -58,6 +58,7 @@
     [sharedManager.user setCurrentLocation:zoomLocation];
 }
 
+//call this method once the map finishes loading so the location can be set to the users current location
 - (void)mapViewDidFinishLoadingMap:(MKMapView*)mapView {
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance([[[_Map userLocation] location] coordinate], 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
     

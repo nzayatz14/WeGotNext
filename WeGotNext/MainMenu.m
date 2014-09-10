@@ -88,8 +88,9 @@
     //if delete is clicked
     if(buttonIndex == 1){
         
-        //send screen to the logout page
+        //send screen to the logout page and disable user interaction with the page
         [self.leftMenu performSegueWithIdentifier:@"btnLogOut" sender:self];
+        self.view.userInteractionEnabled = NO;
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         
