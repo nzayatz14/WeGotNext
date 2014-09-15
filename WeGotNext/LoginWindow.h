@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Security/Security.h>
 #import "MyManager.h"
 
 @interface LoginWindow : UIViewController <UITextFieldDelegate>{
     int empty;
+    NSString *serviceName;
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;

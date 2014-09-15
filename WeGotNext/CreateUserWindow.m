@@ -9,6 +9,8 @@
 #import "CreateUserWindow.h"
 #import "MyManager.h"
 #import <sqlite3.h>
+#import <Security/Security.h>
+#import <CoreFoundation/CoreFoundation.h>
 
 //Constant to hold the height of the menu accessory for the datePicker for txtBirthday
 #define DATE_PICKER_ACCESSORY_WIDTH 50
@@ -18,6 +20,9 @@
 @implementation CreateUserWindow
 
 -(void) viewDidLoad{
+    
+    serviceName = @"com.WeGotNext.";
+    
     //delegate the text fields so they can be closed when necessary
     [self.txtUserName setDelegate:self];
     [self.txtPassword setDelegate:self];
@@ -147,6 +152,8 @@
 //in the database to the newly entered information
 -(void) addPersonToOnlineDatabase{
     
+    
+    
     [self addPersonAsCurrentUser];
 }
 
@@ -214,6 +221,9 @@
     //close the database
     sqlite3_close(inAppDatabase);
     
+    //save the password to the keychain
+    [self createKeychainValue:_txtPassword.text forIdentifier:@"Password"];
+    
     //create experiences for inApp database
     [self addUserExperiences: filePath];
 }
@@ -262,6 +272,7 @@
     
 }
 
+//saves the user experience information to the inApp database
 -(void) addUserExperiences:(NSString *) filePath{
     
     //NSLog(@"Add user experiences");
@@ -316,6 +327,39 @@
     
     //dismiss the create user window
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//creates a new search key (identifier) to search the keychain with
+- (NSMutableDictionary *)newSearchDictionary:(NSString *)identifier {
+    NSLog(@"Create keychain identifier NewUser");
+    
+    NSMutableDictionary *searchDictionary = [[NSMutableDictionary alloc] init];
+    
+    [searchDictionary setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
+    
+    NSData *encodedIdentifier = [identifier dataUsingEncoding:NSUTF8StringEncoding];
+    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)kSecAttrGeneric];
+    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)kSecAttrAccount];
+    [searchDictionary setObject:serviceName forKey:(__bridge id)kSecAttrService];
+    
+    return searchDictionary;
+}
+
+//creates a value (password) under the given identifier (identifier)
+- (BOOL)createKeychainValue:(NSString *)password forIdentifier:(NSString *)identifier {
+    NSLog(@"Add password to my keychain");
+    
+    NSMutableDictionary *dictionary = [self newSearchDictionary:identifier];
+    
+    NSData *passwordData = [password dataUsingEncoding:NSUTF8StringEncoding];
+    [dictionary setObject:passwordData forKey:(__bridge id)kSecValueData];
+    
+    OSStatus status = SecItemAdd((__bridge CFDictionaryRef)dictionary, NULL);
+    
+    if (status == errSecSuccess) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

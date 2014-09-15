@@ -8,6 +8,8 @@
 
 #import "LoginWindow.h"
 #import "MyManager.h"
+#import <Security/Security.h>
+#import <CoreFoundation/CoreFoundation.h>
 
 @implementation LoginWindow
 
@@ -22,6 +24,8 @@
     [self.txtPassword setReturnKeyType:UIReturnKeyDone];
     
     empty = -1;
+    
+    serviceName = @"com.WeGotNext.";
     
     [super viewDidLoad];
 }
@@ -239,6 +243,14 @@
                     [sharedManager.user setUserName:userName];
                     
                     NSString *password = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
+                    
+                    NSData *passwordData = [self searchKeychainCopyMatching:@"Password"];
+                    
+                    if (passwordData) {
+                        password = [[NSString alloc] initWithData:passwordData encoding:NSUTF8StringEncoding];
+                    }else{
+                        NSLog(@"Error loading Password");
+                    }
                     
                     [sharedManager.user setPassword:password];
                     
@@ -497,6 +509,44 @@
     
     
     [super performSegueWithIdentifier:@"btnLogin" sender:self];
+}
+
+
+//creates a new search key (identifier) to search the keychain with
+- (NSMutableDictionary *)newSearchDictionary:(NSString *)identifier {
+    NSLog(@"create new keychain identifier login");
+    
+    NSMutableDictionary *searchDictionary = [[NSMutableDictionary alloc] init];
+    
+    [searchDictionary setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
+    
+    NSData *encodedIdentifier = [identifier dataUsingEncoding:NSUTF8StringEncoding];
+    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)kSecAttrGeneric];
+    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)kSecAttrAccount];
+    [searchDictionary setObject:serviceName forKey:(__bridge id)kSecAttrService];
+    
+    return searchDictionary;
+}
+
+//search for the information stored under the "identifier" and returns 1 object
+//(only storing 1 object at a time)
+- (NSData *)searchKeychainCopyMatching:(NSString *)identifier {
+    NSLog(@"Get password from keychain");
+    
+    NSMutableDictionary *searchDictionary = [self newSearchDictionary:identifier];
+    
+    // return only 1 object
+    [searchDictionary setObject:(__bridge id)kSecMatchLimitOne forKey:(__bridge id)kSecMatchLimit];
+    
+    // set return type
+    [searchDictionary setObject:(id)kCFBooleanTrue forKey:(__bridge id)kSecReturnData];
+    
+    NSData *result = nil;
+    CFTypeRef cfType = (__bridge CFTypeRef)result;
+    
+    OSStatus status = SecItemCopyMatching(((__bridge CFDictionaryRef)searchDictionary), &cfType);
+    
+    return result;
 }
 
 @end

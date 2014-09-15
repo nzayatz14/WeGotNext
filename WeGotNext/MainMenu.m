@@ -15,6 +15,9 @@
 
 - (void) viewDidLoad{
     didClickLogOut = NO;
+    
+    serviceName = @"com.WeGotNext.";
+    
     [super viewDidLoad];
     
     //[segueWithIdentifier: @"btnHome"];
@@ -184,9 +187,36 @@
         
         //close the database
         sqlite3_close(inAppDatabase);
+        
+        //delete the value of the password stored in the keychain
+        [self deleteKeychainValue:@"Password"];
     }
     
     //self.window.rootViewController = [[LoginWindow alloc] initWithNibName:nil bundle:nil];
+}
+
+//creates a new search key (identifier) to search the keychain with
+- (NSMutableDictionary *)newSearchDictionary:(NSString *)identifier {
+    NSLog(@"Create kaychain identifier logout");
+    
+    NSMutableDictionary *searchDictionary = [[NSMutableDictionary alloc] init];
+    
+    [searchDictionary setObject:(__bridge id)kSecClassGenericPassword forKey:(__bridge id)kSecClass];
+    
+    NSData *encodedIdentifier = [identifier dataUsingEncoding:NSUTF8StringEncoding];
+    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)kSecAttrGeneric];
+    [searchDictionary setObject:encodedIdentifier forKey:(__bridge id)kSecAttrAccount];
+    [searchDictionary setObject:serviceName forKey:(__bridge id)kSecAttrService];
+    
+    return searchDictionary;
+}
+
+//deletes the current value stored in the keychain
+- (void)deleteKeychainValue:(NSString *)identifier {
+    NSLog(@"Delete keychain values");
+    
+    NSMutableDictionary *searchDictionary = [self newSearchDictionary:identifier];
+    SecItemDelete((__bridge CFDictionaryRef)searchDictionary);
 }
 
 -(void) configureLeftMenuButton:(UIButton *)button{

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateUserWindow : UIViewController <UITextFieldDelegate>
+@interface CreateUserWindow : UIViewController <UITextFieldDelegate>{
+    NSString *serviceName;
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;

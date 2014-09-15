@@ -45,6 +45,8 @@
 		8456225519A3A96500035BA7 /* AMSlideMenuRightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456224D19A3A96500035BA7 /* AMSlideMenuRightTableViewController.m */; };
 		8456225619A3A96500035BA7 /* UIViewController+AMSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456224F19A3A96500035BA7 /* UIViewController+AMSlideMenu.m */; };
 		845BA3C01945EC1B00927A63 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BA3BF1945EC1B00927A63 /* Person.m */; };
+		8476DC7819C758FA002C2AFE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8476DC7719C758FA002C2AFE /* Security.framework */; };
+		847FA30219C7868C00A449D5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847FA30119C7868C00A449D5 /* MobileCoreServices.framework */; };
 		84807EF619532865008229EB /* RightSlideMenuCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84807EF519532865008229EB /* RightSlideMenuCellType.m */; };
 		84909941193D078300E4A914 /* LoginWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 84909940193D078300E4A914 /* LoginWindow.m */; };
 		84A6E98C193F8320001E0600 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A6E98B193F8320001E0600 /* default.png */; };
@@ -129,6 +131,8 @@
 		8456224F19A3A96500035BA7 /* UIViewController+AMSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AMSlideMenu.m"; sourceTree = "<group>"; };
 		845BA3BE1945EC1B00927A63 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		845BA3BF1945EC1B00927A63 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		8476DC7719C758FA002C2AFE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		847FA30119C7868C00A449D5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		84807EF419532865008229EB /* RightSlideMenuCellType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightSlideMenuCellType.h; sourceTree = "<group>"; };
 		84807EF519532865008229EB /* RightSlideMenuCellType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightSlideMenuCellType.m; sourceTree = "<group>"; };
 		84909940193D078300E4A914 /* LoginWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindow.m; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				847FA30219C7868C00A449D5 /* MobileCoreServices.framework in Frameworks */,
+				8476DC7819C758FA002C2AFE /* Security.framework in Frameworks */,
 				842787731974109B00582329 /* MapKit.framework in Frameworks */,
 				8431694D196459B800AA0CE5 /* libsqlite3.dylib in Frameworks */,
 				84317E231937CA8100EF952F /* CoreGraphics.framework in Frameworks */,
@@ -187,6 +193,8 @@
 		84317E1F1937CA8100EF952F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				847FA30119C7868C00A449D5 /* MobileCoreServices.framework */,
+				8476DC7719C758FA002C2AFE /* Security.framework */,
 				842787721974109B00582329 /* MapKit.framework */,
 				8408A1C419633D7C00E5AD98 /* libsqlite3.dylib */,
 				84317E201937CA8100EF952F /* Foundation.framework */,

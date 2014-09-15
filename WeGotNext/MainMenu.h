@@ -10,6 +10,7 @@
 
 @interface MainMenu : AMSlideMenuMainViewController <UIAlertViewDelegate>{
     BOOL didClickLogOut;
+    NSString *serviceName;
 }
 
 @end
