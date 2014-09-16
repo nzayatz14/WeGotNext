@@ -16,7 +16,7 @@
 - (void) viewDidLoad{
     didClickLogOut = NO;
     
-    serviceName = @"com.WeGotNext.";
+    serviceName = @"com.WeGotNext.WeGotNextKeys";
     
     [super viewDidLoad];
     
@@ -197,7 +197,7 @@
 
 //creates a new search key (identifier) to search the keychain with
 - (NSMutableDictionary *)newSearchDictionary:(NSString *)identifier {
-    NSLog(@"Create kaychain identifier logout");
+    //NSLog(@"Create kaychain identifier logout");
     
     NSMutableDictionary *searchDictionary = [[NSMutableDictionary alloc] init];
     
@@ -213,7 +213,7 @@
 
 //deletes the current value stored in the keychain
 - (void)deleteKeychainValue:(NSString *)identifier {
-    NSLog(@"Delete keychain values");
+    //NSLog(@"Delete keychain values");
     
     NSMutableDictionary *searchDictionary = [self newSearchDictionary:identifier];
     SecItemDelete((__bridge CFDictionaryRef)searchDictionary);

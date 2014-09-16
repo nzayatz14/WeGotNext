@@ -21,7 +21,7 @@
 
 -(void) viewDidLoad{
     
-    serviceName = @"com.WeGotNext.";
+    serviceName = @"com.WeGotNext.WeGotNextKeys";
     
     //delegate the text fields so they can be closed when necessary
     [self.txtUserName setDelegate:self];
@@ -331,7 +331,7 @@
 
 //creates a new search key (identifier) to search the keychain with
 - (NSMutableDictionary *)newSearchDictionary:(NSString *)identifier {
-    NSLog(@"Create keychain identifier NewUser");
+    //NSLog(@"Create keychain identifier NewUser");
     
     NSMutableDictionary *searchDictionary = [[NSMutableDictionary alloc] init];
     
@@ -347,7 +347,7 @@
 
 //creates a value (password) under the given identifier (identifier)
 - (BOOL)createKeychainValue:(NSString *)password forIdentifier:(NSString *)identifier {
-    NSLog(@"Add password to my keychain");
+    //NSLog(@"Add password to my keychain");
     
     NSMutableDictionary *dictionary = [self newSearchDictionary:identifier];
     

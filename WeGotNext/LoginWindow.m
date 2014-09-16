@@ -25,7 +25,7 @@
     
     empty = -1;
     
-    serviceName = @"com.WeGotNext.";
+    serviceName = @"com.WeGotNext.WeGotNextKeys";
     
     [super viewDidLoad];
 }
@@ -514,7 +514,7 @@
 
 //creates a new search key (identifier) to search the keychain with
 - (NSMutableDictionary *)newSearchDictionary:(NSString *)identifier {
-    NSLog(@"create new keychain identifier login");
+    //NSLog(@"create new keychain identifier login");
     
     NSMutableDictionary *searchDictionary = [[NSMutableDictionary alloc] init];
     
@@ -531,7 +531,7 @@
 //search for the information stored under the "identifier" and returns 1 object
 //(only storing 1 object at a time)
 - (NSData *)searchKeychainCopyMatching:(NSString *)identifier {
-    NSLog(@"Get password from keychain");
+    //NSLog(@"Get password from keychain");
     
     NSMutableDictionary *searchDictionary = [self newSearchDictionary:identifier];
     
@@ -546,6 +546,7 @@
     
     OSStatus status = SecItemCopyMatching(((__bridge CFDictionaryRef)searchDictionary), &cfType);
     
+    result = (__bridge NSData *)cfType;
     return result;
 }
 
