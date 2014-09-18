@@ -99,6 +99,7 @@
             self.imagePicker = [[UIImagePickerController alloc] init];
             self.imagePicker.delegate = self;
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self.imagePicker setAllowsEditing:YES];
             [self presentViewController:self.imagePicker animated:YES completion:nil];
         }
             break;
@@ -107,6 +108,7 @@
             self.imagePicker = [[UIImagePickerController alloc] init];
             self.imagePicker.delegate = self;
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self.imagePicker setAllowsEditing:YES];
             [self presentViewController:self.imagePicker animated:YES completion:nil];
         }
             break;
@@ -121,7 +123,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
     [picker dismissViewControllerAnimated:YES completion:nil];
-    self.selectedImage = info[UIImagePickerControllerOriginalImage];
+    self.selectedImage = info[UIImagePickerControllerEditedImage];
     [_picFrontProfilePicture setImage:self.selectedImage];
     
 }
