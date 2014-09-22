@@ -63,7 +63,7 @@
     
     //if the file does not exist at that path, copy it there
     if(![fileManager fileExistsAtPath:filePath]){
-        //NSLog(@"Copy");
+        NSLog(@"Copy");
         NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
         [fileManager copyItemAtPath:bundlePath toPath:filePath error:nil];
     }

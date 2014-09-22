@@ -16,7 +16,7 @@
 - (void) viewDidLoad{
     didClickLogOut = NO;
     
-    serviceName = @"com.WeGotNext.WeGotNextKeys";
+    serviceName = @"High-Point-University.WeGotNext";
     
     [super viewDidLoad];
     

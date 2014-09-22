@@ -21,7 +21,7 @@
 
 -(void) viewDidLoad{
     
-    serviceName = @"com.WeGotNext.WeGotNextKeys";
+    serviceName = @"High-Point-University.WeGotNext";
     
     //delegate the text fields so they can be closed when necessary
     [self.txtUserName setDelegate:self];
@@ -177,7 +177,7 @@
         //NSLog(@"Open Database to save info");
         
         //sql statement to add user to current database
-        const char *sqlStatement = "INSERT INTO currentUser (userName, password, firstName, isMale, birthday, upVotes, totalVotes) VALUES (?,?,?,?,?,?,?)";
+        const char *sqlStatement = "INSERT INTO currentUser (userName, firstName, isMale, birthday, upVotes, totalVotes) VALUES (?,?,?,?,?,?)";
         sqlite3_stmt *compiledStatement;
         
         //if the statement is legal, save the data. if not, print an error
@@ -186,18 +186,17 @@
             //NSLog(@"saving data");
             
             sqlite3_bind_text(compiledStatement,1,[sharedManager.user.getUserName UTF8String], -1, SQLITE_TRANSIENT);
-            sqlite3_bind_text(compiledStatement,2,[sharedManager.user.getPassword UTF8String], -1, SQLITE_TRANSIENT);
-            sqlite3_bind_text(compiledStatement,3,[sharedManager.user.getFirstName UTF8String], -1, SQLITE_TRANSIENT);
-            sqlite3_bind_int(compiledStatement, 4, [sharedManager.user isMale]);
+            sqlite3_bind_text(compiledStatement,2,[sharedManager.user.getFirstName UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_int(compiledStatement, 3, [sharedManager.user isMale]);
             
             NSDateFormatter *format = [[NSDateFormatter alloc] init];
             [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
             NSString *birthString = [format stringFromDate:[sharedManager.user getBirthday]];
             
-            sqlite3_bind_text(compiledStatement, 5, [birthString UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(compiledStatement, 4, [birthString UTF8String], -1, SQLITE_TRANSIENT);
             
+            sqlite3_bind_int(compiledStatement, 5, 0);
             sqlite3_bind_int(compiledStatement, 6, 0);
-            sqlite3_bind_int(compiledStatement, 7, 0);
             
             /*for(int i = 0;i<EXP_COUNT;i++){
              sqlite3_bind_text(compiledStatement,i+7,[[p getExperienceFromSport:sp experienceNumber:i] cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);

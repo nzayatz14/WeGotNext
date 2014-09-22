@@ -38,7 +38,7 @@
     for(int i = 0;i<SPORT_COUNT;i++){
         for(int j = 0;j<IMAGE_COUNT;j++){
             profilePics[i][j] = [[UIImage alloc] init];
-            profilePics[i][j] = [UIImage imageNamed:@"default.png"];
+            profilePics[i][j] = [UIImage imageNamed:@"defaultProfile.png"];
         }
     }
     
@@ -83,7 +83,7 @@
     for(int i = 0;i<SPORT_COUNT;i++){
         for(int j = 0;j<IMAGE_COUNT;j++){
             profilePics[i][j] = [[UIImage alloc] init];
-            profilePics[i][j] = [UIImage imageNamed:@"default.png"];
+            profilePics[i][j] = [UIImage imageNamed:@"defaultProfile.png"];
         }
     }
     

@@ -43,8 +43,7 @@
     _txtExperience2.text = [sharedManager.user getExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:1];
     _txtExperience3.text = [sharedManager.user getExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:2];
     
-    _picFrontProfilePicture.image = [sharedManager.user getProfPicFromSport:[sharedManager.user getCurrentSport] picNumber:0];
-    [_picFrontProfilePicture sizeToFit];
+    [_picFrontProfilePicture setImage:[sharedManager.user getProfPicFromSport:[sharedManager.user getCurrentSport] picNumber:0]];
     
     _txtCredibilityRating.text = [[NSString alloc]initWithFormat:@"%d",[[NSNumber numberWithInt:[sharedManager.user getCredibility]] intValue]];
     
@@ -96,6 +95,7 @@
     switch(buttonIndex){
         case 0:
         {
+            [self saveChanges];
             self.imagePicker = [[UIImagePickerController alloc] init];
             self.imagePicker.delegate = self;
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -105,6 +105,7 @@
             break;
         case 1:
         {
+            [self saveChanges];
             self.imagePicker = [[UIImagePickerController alloc] init];
             self.imagePicker.delegate = self;
             self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -125,6 +126,8 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     self.selectedImage = info[UIImagePickerControllerEditedImage];
     [_picFrontProfilePicture setImage:self.selectedImage];
+    [self makeViewUneditable];
+    [self saveChanges];
     
 }
 
@@ -186,6 +189,8 @@
     [sharedManager.user setExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:0 experience:[NSString stringWithFormat:@"%@", _txtExperience1.text]];
     [sharedManager.user setExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:1 experience:[NSString stringWithFormat:@"%@", _txtExperience2.text]];
     [sharedManager.user setExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:2 experience:[NSString stringWithFormat:@"%@", _txtExperience3.text]];
+    
+    [sharedManager.user setProfPicFromSport:[sharedManager.user getCurrentSport] picNumber:0 picture:self.selectedImage];
     
     //save these changes to database
     [self saveChangesToDatabase];

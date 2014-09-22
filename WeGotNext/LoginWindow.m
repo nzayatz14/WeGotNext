@@ -25,7 +25,7 @@
     
     empty = -1;
     
-    serviceName = @"com.WeGotNext.WeGotNextKeys";
+    serviceName = @"High-Point-University.WeGotNext";
     
     [super viewDidLoad];
 }
@@ -168,7 +168,7 @@
         
         //extra check to make sure the currentUser table is empty
         if(empty == 0){
-            const char *sqlStatement = "INSERT INTO currentUser (userName, password, firstName, isMale, birthday, upVotes, totalVotes) VALUES (?,?,?,?,?,?,?)";
+            const char *sqlStatement = "INSERT INTO currentUser (userName, firstName, isMale, birthday, upVotes, totalVotes) VALUES (?,?,?,?,?,?)";
             sqlite3_stmt *compiledStatement;
             
             //attempt to compile the SQL statement. continue if it works, if not, print an error.
@@ -177,9 +177,8 @@
                 //NSLog(@"saving data");
                 
                 sqlite3_bind_text(compiledStatement,1,[sharedManager.user.getUserName UTF8String], -1, SQLITE_TRANSIENT);
-                sqlite3_bind_text(compiledStatement,2,[sharedManager.user.getPassword UTF8String], -1, SQLITE_TRANSIENT);
-                sqlite3_bind_text(compiledStatement,3,[sharedManager.user.getFirstName UTF8String], -1, SQLITE_TRANSIENT);
-                sqlite3_bind_int(compiledStatement, 4, [sharedManager.user isMale]);
+                sqlite3_bind_text(compiledStatement,2,[sharedManager.user.getFirstName UTF8String], -1, SQLITE_TRANSIENT);
+                sqlite3_bind_int(compiledStatement, 3, [sharedManager.user isMale]);
                 
                 
                 //save the rest of the users data (birthday)
@@ -187,10 +186,10 @@
                 [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
                 NSString *birthString = [format stringFromDate:[sharedManager.user getBirthday]];
                 
-                sqlite3_bind_text(compiledStatement, 5, [birthString UTF8String], -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(compiledStatement, 4, [birthString UTF8String], -1, SQLITE_TRANSIENT);
                 
+                sqlite3_bind_int(compiledStatement, 5, 0);
                 sqlite3_bind_int(compiledStatement, 6, 0);
-                sqlite3_bind_int(compiledStatement, 7, 0);
                 
                 /*for(int i = 0;i<EXP_COUNT;i++){
                  sqlite3_bind_text(compiledStatement,i+7,[[p getExperienceFromSport:sp experienceNumber:i] cStringUsingEncoding:NSUTF8StringEncoding], -1, SQLITE_TRANSIENT);
@@ -242,7 +241,7 @@
                     
                     [sharedManager.user setUserName:userName];
                     
-                    NSString *password = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
+                    NSString *password;
                     
                     NSData *passwordData = [self searchKeychainCopyMatching:@"Password"];
                     
@@ -254,18 +253,18 @@
                     
                     [sharedManager.user setPassword:password];
                     
-                    NSString *firstName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 3)];
+                    NSString *firstName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
                     
-                    BOOL male = sqlite3_column_int(compiledStatement, 4);
+                    BOOL male = sqlite3_column_int(compiledStatement, 3);
                     
-                    NSString *birth = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 5)];
+                    NSString *birth = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 4)];
                     
                     NSDateFormatter *format = [[NSDateFormatter alloc] init];
                     [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
                     NSDate *birthDate = [format dateFromString:birth];
                     
-                    int up = sqlite3_column_int(compiledStatement, 6);
-                    int total = sqlite3_column_int(compiledStatement, 7);
+                    int up = sqlite3_column_int(compiledStatement, 5);
+                    int total = sqlite3_column_int(compiledStatement, 6);
                     
                     [sharedManager.user setFirstName:firstName];
                     [sharedManager.user setIsMale:male];
