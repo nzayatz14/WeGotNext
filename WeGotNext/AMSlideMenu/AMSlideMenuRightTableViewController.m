@@ -108,19 +108,29 @@
 //passes data through the segue when the user clicks on one of the chat menu items
 -(void) prepareForSegue:(UIStoryboardSegue *) segue sender:(id)sender{
     
-    [_txtSearch resignFirstResponder];
-    
     //if the segue is for a chat window
     if([segue.identifier isEqualToString:@"btnChat"]){
         
-        //get which position was clicked on and set the title of the window to "Chat #" where # is the number of which row was clicked
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        //get which position was clicked on and set the title of the window to the name of the match where # is the number of which row was clicked
         ChatWindow *chat  = (ChatWindow*)[[segue destinationViewController] topViewController];
         
-        if(_numberOfMatches >0)
-            chat.navItem.title = [(Person *)[_matches objectAtIndex: [indexPath row]] getFirstName];
-        else
-            chat.navItem.title = [[NSString alloc] initWithFormat:@"Chat"];
+        if(self.searchDisplayController.active){
+            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            if(_numberOfMatches >0)
+                chat.navItem.title = [(Person *)[_searchResults objectAtIndex: [indexPath row]] getFirstName];
+            else
+                chat.navItem.title = [[NSString alloc] initWithFormat:@"Chat"];
+            
+        }else{
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            if(_numberOfMatches >0)
+                chat.navItem.title = [(Person *)[_matches objectAtIndex: [indexPath row]] getFirstName];
+            else
+                chat.navItem.title = [[NSString alloc] initWithFormat:@"Chat"];
+        }
+        
+        [_txtSearch resignFirstResponder];
+        [self.searchDisplayController setActive:NO];
     }
 }
 
@@ -140,7 +150,7 @@
 //set the information of each cell based on the information in the array of matches
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-   // NSLog(@"Cell For Row");
+    // NSLog(@"Cell For Row");
     
     //set template of the cell
     static NSString *cellID = @"RightMenuCell";
@@ -171,12 +181,12 @@
     
     //NSLog(@"Searched: %lu", (unsigned long)[_searchResults count]);
     /*[_matches enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Person *p = obj;
-        
-        if([[p getFirstName] isEqualToString:searchText])
-            [_searchResults addObject:p];
-        
-    }]; */
+     Person *p = obj;
+     
+     if([[p getFirstName] isEqualToString:searchText])
+     [_searchResults addObject:p];
+     
+     }]; */
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{

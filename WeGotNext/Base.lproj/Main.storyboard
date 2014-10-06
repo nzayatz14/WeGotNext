@@ -862,9 +862,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="0Ch-6E-odf">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="SxT-zX-fbY" id="lz5-Bk-oWR"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MatchCell" id="lu6-uK-4Za" customClass="MatchCellType">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lu6-uK-4Za" id="fyB-uh-Kxy">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -896,10 +904,29 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Players" id="rVK-cM-aQB"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="oWq-XN-WRr" id="f9p-A8-0Xr"/>
+                        <outlet property="txtSearch" destination="0Ch-6E-odf" id="7ow-nw-XM6"/>
                         <segue destination="5IC-vN-ubT" kind="push" identifier="pairSelected" id="96b-hz-wF9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v0Q-cN-5RE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="HOb-8s-tJU">
+                    <connections>
+                        <outlet property="delegate" destination="SxT-zX-fbY" id="Vtl-jb-jP4"/>
+                        <outlet property="searchContentsController" destination="SxT-zX-fbY" id="Kng-kF-qwm"/>
+                        <outlet property="searchResultsDataSource" destination="SxT-zX-fbY" id="aFC-VG-IWi"/>
+                        <outlet property="searchResultsDelegate" destination="SxT-zX-fbY" id="8Mq-oA-4oW"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="oWq-XN-WRr">
+                    <connections>
+                        <outlet property="delegate" destination="SxT-zX-fbY" id="FWd-n6-1XW"/>
+                        <outlet property="searchBar" destination="0Ch-6E-odf" id="D39-Sp-cla"/>
+                        <outlet property="searchContentsController" destination="SxT-zX-fbY" id="IGM-GZ-TmI"/>
+                        <outlet property="searchResultsDataSource" destination="SxT-zX-fbY" id="3Rs-WL-rG4"/>
+                        <outlet property="searchResultsDelegate" destination="SxT-zX-fbY" id="obu-AF-0Er"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="806" y="1998"/>
         </scene>
@@ -1050,9 +1077,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="VHj-Wu-VCd">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            <connections>
+                                <outlet property="delegate" destination="PqR-SE-ibg" id="K3Y-mv-xcs"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeamCell" id="GaB-HW-lfc" customClass="TeamCellType">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GaB-HW-lfc" id="4nn-cD-NHD">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1084,10 +1119,21 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Team" id="466-KU-Dw2"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="4T9-V3-3wg" id="7hL-84-KaQ"/>
+                        <outlet property="txtSearch" destination="VHj-Wu-VCd" id="Vts-Is-MSy"/>
                         <segue destination="5bx-Ht-VNK" kind="push" identifier="teammateSelected" id="c32-45-mc1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Egr-44-k8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="4T9-V3-3wg">
+                    <connections>
+                        <outlet property="delegate" destination="PqR-SE-ibg" id="9R1-fN-VDe"/>
+                        <outlet property="searchBar" destination="VHj-Wu-VCd" id="Lpn-Q5-0nR"/>
+                        <outlet property="searchContentsController" destination="PqR-SE-ibg" id="pmD-qf-21U"/>
+                        <outlet property="searchResultsDataSource" destination="PqR-SE-ibg" id="RLz-GT-24G"/>
+                        <outlet property="searchResultsDelegate" destination="PqR-SE-ibg" id="3ac-Oi-pPb"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="806" y="2761"/>
         </scene>

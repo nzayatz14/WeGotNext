@@ -16,6 +16,7 @@
 
 -(void) viewDidLoad{
     _team = [[NSMutableArray alloc] init];
+    _searchResults = [[NSMutableArray alloc] init];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -37,7 +38,11 @@
 
 //returns the number of rows in the table
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_numberOfTeammates integerValue];
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        return [_searchResults count];
+    }else{
+        return [_numberOfTeammates integerValue];
+    }
 }
 
 /*FUNCTION IS INCOMPLETE*/
@@ -47,7 +52,7 @@
     //set template of the cell
     static NSString *cellID = @"TeamCell";
     
-    TeamCellType *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    TeamCellType *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
     
     if(cell == nil){
         cell = [[TeamCellType alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
@@ -85,14 +90,50 @@
         
         //get which position was clicked on, set 'player' you are chatting with
         //and set the match number that that player is
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         teammateProfile *chat  = (teammateProfile*)[segue destinationViewController];
         
-        chat.player = [[Person alloc] init];
-        [chat.player copyPerson:(Person *) [_team objectAtIndex:indexPath.row]];
+        if(self.searchDisplayController.active){
+            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            chat.player = [[Person alloc] init];
+            [chat.player copyPerson:(Person *) [_searchResults objectAtIndex:indexPath.row]];
+            
+            chat.matchNumber = [[NSNumber alloc] initWithInteger:indexPath.row];
+        }else{
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            chat.player = [[Person alloc] init];
+            [chat.player copyPerson:(Person *) [_team objectAtIndex:indexPath.row]];
+            
+            chat.matchNumber = [[NSNumber alloc] initWithInteger:indexPath.row];
+        }
         
-        chat.matchNumber = [[NSNumber alloc] initWithInteger:indexPath.row];
+        [_txtSearch resignFirstResponder];
+        [self.searchDisplayController setActive:NO];
     }
+}
+
+-(void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope{
+    
+    NSPredicate *results = [NSPredicate predicateWithFormat:@"%K contains[c] %@", @"firstName", searchText];
+    _searchResults = [[_team filteredArrayUsingPredicate:results] mutableCopy];
+    
+    //NSLog(@"Searched: %lu", (unsigned long)[_searchResults count]);
+    /*[_matches enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+     Person *p = obj;
+     
+     if([[p getFirstName] isEqualToString:searchText])
+     [_searchResults addObject:p];
+     
+     }]; */
+}
+
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
+    
+    //NSLog(@"Display");
+    
+    [self filterContentForSearchText:searchString scope:[self.searchDisplayController.searchBar.scopeButtonTitles objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    
+    return YES;
 }
 
 @end

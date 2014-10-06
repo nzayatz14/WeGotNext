@@ -11,7 +11,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface Home : UIViewController <MKMapViewDelegate>
+@interface Home : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate>{
+    CLLocation *currentLocation;
+    MKCoordinateRegion viewRegion;
+}
    
 @property (weak, nonatomic) IBOutlet MKMapView *Map;
 

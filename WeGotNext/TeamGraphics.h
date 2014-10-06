@@ -12,5 +12,7 @@
 
 @property (nonatomic, strong) NSNumber *numberOfTeammates;
 @property (nonatomic, strong) NSMutableArray *team;
+@property (nonatomic, strong) NSMutableArray *searchResults;
+@property (weak, nonatomic) IBOutlet UISearchBar *txtSearch;
 
 @end

@@ -16,6 +16,19 @@
 //function that is called when the window first loads
 -(void) viewDidLoad{
     _Map.delegate = self;
+    _Map.showsUserLocation = YES;
+    _Map.showsPointsOfInterest = NO;
+    
+    CLLocationManager *locationManager;
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    [locationManager startUpdatingLocation];
+    
+    currentLocation = [[CLLocation alloc] init];
+    
+    currentLocation = [locationManager location];
 }
 
 //function that is called each time the window loads
@@ -26,8 +39,8 @@
     //add left and right menu buttons to the screen
     [self addLeftMenuButton];
     [self addRightMenuButton];
-    
-    
+
+    [_Map setCenterCoordinate:[[[_Map userLocation] location] coordinate] animated:NO];
     
     //TESTING: ADDS A PERSON AS A PAIR EACH TIME THE HOME SCREEN IS REACHED
     
@@ -49,18 +62,28 @@
     //[sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:temp];
 }
 
--(void) viewDidAppear:(BOOL)animated{
+//call this method once the map finishes loading so the location can be set to the users current location
+- (void)mapViewDidFinishLoadingMap:(MKMapView*)mapView {
+    
+    //currentLocation = [[mapView userLocation] location];
+    viewRegion = MKCoordinateRegionMakeWithDistance([currentLocation coordinate], 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+    
+    [_Map setRegion:viewRegion animated:NO];
     
     MyManager *sharedManager = [MyManager sharedManager];
     
     //Sets the current location of the map to center at the users location
-    CLLocation *zoomLocation = [[_Map userLocation] location];
-    [sharedManager.user setCurrentLocation:zoomLocation];
+    [sharedManager.user setCurrentLocation:currentLocation];
+    //NSLog(@"%g", currentLocation.coordinate.latitude);
 }
 
-//call this method once the map finishes loading so the location can be set to the users current location
-- (void)mapViewDidFinishLoadingMap:(MKMapView*)mapView {
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance([[[_Map userLocation] location] coordinate], 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error{
+    NSLog(@"Failed to load map");
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    currentLocation = oldLocation;
+    viewRegion = MKCoordinateRegionMakeWithDistance([currentLocation coordinate], 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
     
     [_Map setRegion:viewRegion animated:NO];
 }

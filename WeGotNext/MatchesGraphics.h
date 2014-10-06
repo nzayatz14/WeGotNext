@@ -12,5 +12,7 @@
 
 @property (nonatomic, strong) NSNumber *numberOfMatches;
 @property (nonatomic, strong) NSMutableArray *matches;
+@property (nonatomic, strong) NSMutableArray *searchResults;
+@property (weak, nonatomic) IBOutlet UISearchBar *txtSearch;
 
 @end
