@@ -24,6 +24,7 @@
     
     [_sldRange setMinimumValue:1];
     [_sldRange setMaximumValue:100];
+    [_sldRange setValue:[sharedManager.user getFindDistance]];
     
     //set initial text for range and age labels
     NSString *milesRange = [NSString stringWithFormat:@"%d Mile(s)",(int)[_sldRange value]];
@@ -64,6 +65,9 @@
     save = YES;
     NSString *milesRange = [NSString stringWithFormat:@"%d Mile(s)",(int)[_sldRange value]];
     [_lblDistance setText:milesRange];
+    
+    MyManager *sharedManager = [MyManager sharedManager];
+    [sharedManager.user setFindDistance:(int)[_sldRange value]];
 }
 
 /*FUNCTION IS INCOMPLETE*/
