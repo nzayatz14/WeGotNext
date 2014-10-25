@@ -48,8 +48,10 @@
 
 - (void)viewDidLoad
 {
+    _error = @"Log Out Successful!";
+    
     UIView *tableTitle = [[UIView alloc] initWithFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width, TITLE_WIDTH)];
-
+    
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10,15,[UIScreen mainScreen].bounds.size.width,25)];
     
     title.text = @"We Got Next";
@@ -113,10 +115,9 @@
         LogOutWindow *chat  = (LogOutWindow*)[[segue destinationViewController] topViewController];
         NSLog(@"%@", chat);
         NSLog(@"%@", chat.logOut);
-        if(YES) // if there was no problem logging out
-            chat.logOut = [[NSString alloc] initWithFormat:@"Log Out Successful!"];
-        else
-            chat.logOut = [[NSString alloc] initWithFormat:@"Uh Oh! There was a problem."]; 
+        
+        // if there was no problem logging out
+        chat.logOut = _error;
     }
 }
 

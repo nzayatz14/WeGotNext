@@ -119,7 +119,7 @@
                     //delete data
                     //NSLog(@"deleting data pairs");
                 }else{
-                    NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
+                    self.leftMenu.error = [NSString stringWithFormat:@"Error 1: %s", sqlite3_errmsg(inAppDatabase)];
                 }
                 
                 if(sqlite3_step(compiledStatement) == SQLITE_DONE)
@@ -139,7 +139,7 @@
                     //delete data
                     //NSLog(@"deleting data teams");
                 }else{
-                    NSLog(@"Error 2: %s", sqlite3_errmsg(inAppDatabase));
+                   self.leftMenu.error = [NSString stringWithFormat:@"Error 2: %s", sqlite3_errmsg(inAppDatabase)];
                 }
                 
                 if(sqlite3_step(compiledStatement) == SQLITE_DONE)
@@ -158,7 +158,7 @@
                 //delete data
                 //NSLog(@"deleting data currentUser");
             }else{
-                NSLog(@"Error 3: %s", sqlite3_errmsg(inAppDatabase));
+                self.leftMenu.error = [NSString stringWithFormat:@"Error 3: %s", sqlite3_errmsg(inAppDatabase)];
             }
             
             if(sqlite3_step(compiledStatementPlayer) == SQLITE_DONE)
@@ -176,13 +176,13 @@
                 //delete data
                 //NSLog(@"deleting data currentUserExperience");
             }else{
-                NSLog(@"Error 4: %s", sqlite3_errmsg(inAppDatabase));
+                self.leftMenu.error = [NSString stringWithFormat:@"Error 4: %s", sqlite3_errmsg(inAppDatabase)];
             }
             
             if(sqlite3_step(compiledStatementExperience) == SQLITE_DONE)
                 sqlite3_finalize(compiledStatementExperience);
         }else{
-            NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
+            self.leftMenu.error = [NSString stringWithFormat:@"Error 0: %s", sqlite3_errmsg(inAppDatabase)];
         }
         
         //close the database

@@ -30,6 +30,7 @@
 
 @interface AMSlideMenuLeftTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSString *error;
 @property (strong, nonatomic) AMSlideMenuMainViewController *mainVC;
 
 // Only afor non storyboard use
