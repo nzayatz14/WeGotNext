@@ -15,15 +15,22 @@
 
 //function that is called when the window first loads
 -(void) viewDidLoad{
+    
     _Map.delegate = self;
-    _Map.showsUserLocation = YES;
     _Map.showsPointsOfInterest = NO;
     
     CLLocationManager *locationManager;
     locationManager = [[CLLocationManager alloc] init];
+    
     locationManager.delegate = self;
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    
+    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [locationManager requestWhenInUseAuthorization];
+    }
+    
+    _Map.showsUserLocation = YES;
     [locationManager startUpdatingLocation];
     
     currentLocation = [[CLLocation alloc] init];
@@ -39,7 +46,7 @@
     //add left and right menu buttons to the screen
     [self addLeftMenuButton];
     [self addRightMenuButton];
-
+    
     [_Map setCenterCoordinate:[[[_Map userLocation] location] coordinate] animated:NO];
     
     //TESTING: ADDS A PERSON AS A PAIR EACH TIME THE HOME SCREEN IS REACHED

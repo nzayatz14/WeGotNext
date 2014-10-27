@@ -38,9 +38,9 @@
     //get the file path of the database
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
-	NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *documentsPath = [paths objectAtIndex:0];
     
-	NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
     
     sqlite3 *inAppDatabase;
     
@@ -82,7 +82,7 @@
     }else if (empty == 1 && ![[sharedManager.user getUserName] isEqualToString:@"userName"]){
         [super performSegueWithIdentifier:@"btnLogin" sender:self];
     }
-
+    
 }
 
 /* FUNCTION IS INCOMPLETE*/
@@ -115,6 +115,77 @@
     
     //segue to main menu
     //[super performSegueWithIdentifier:@"btnLogin" sender:self];
+}
+
+-(void)getUserFromOutsideDatabase: (NSString*) username password: (NSString*) pass{
+    NSString *query = [[NSString alloc] initWithFormat:@"SELECT * FROM users WHERE username='%@'", username];
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:query, @"query", nil];
+    
+    NSError *err = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&err];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    if (err)
+    {
+        NSLog(@"%s: JSON encode error: %@", __FUNCTION__, err);
+    }
+    
+    // start request
+    NSURL *url = [NSURL URLWithString:@"http://linus.highpoint.edu/~nzayatz/getUser.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    
+    NSString *params = [NSString stringWithFormat:@"json=%@", [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSData *paramsData = [params dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:paramsData];
+    
+    // execute request
+    NSURLResponse *response = nil;
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    if (err)
+    {
+        NSLog(@"%s: NSURLConnection error: %@", __FUNCTION__, err);
+    }
+    
+}
+
+//Initialize the data object
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    _downloadedData = [[NSMutableData alloc] init];
+}
+
+//add the newly downloaded data to the object
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [_downloadedData appendData:data];
+}
+
+//after the data has been read in, set the current users data equal to the read in data
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    MyManager *sharedManager = [MyManager sharedManager];
+    
+    //Parse the JSON that came in
+    NSError *err;
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&err];
+    
+    //get the first (and should be only) json element in the array
+    NSDictionary *jsonElement = jsonArray[0];
+    
+    // set the user person objects properties to the JsonElements properties
+    [sharedManager.user setUserName:jsonElement[@"userName"]];
+    [sharedManager.user setFirstName:jsonElement[@"firstName"]];
+    [sharedManager.user setIsMale:jsonElement[@"isMale"]];
+    
+    //also need to do birthday, upVotes, and totalVotes
+    
+    //add the newly logged in person as the current user to the in app database
+    [self addPersonAsCurrentUser];
+    
 }
 
 //if the create button is clicked, open the create user window
@@ -156,9 +227,9 @@
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
-	NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *documentsPath = [paths objectAtIndex:0];
     
-	NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
     
     sqlite3 *inAppDatabase;
     
@@ -227,58 +298,58 @@
     //attempts to open the database. if there is a problem print an error, if not, continue.
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
         
-            const char *sqlStatement = "SELECT * FROM currentUser";
-            sqlite3_stmt *compiledStatement;
+        const char *sqlStatement = "SELECT * FROM currentUser";
+        sqlite3_stmt *compiledStatement;
         
-            //attempt to compile the SQL statement. continue if it works, if not, print an error.
-            if( sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
-                //continue to load in data while the row is not the END row
-                //(there will always be either 0 or 1 rows)
-                while(sqlite3_step(compiledStatement) == SQLITE_ROW){
-                    
-                    //read in the persons data
-                    NSString *userName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 1)];
-                    
-                    [sharedManager.user setUserName:userName];
-                    
-                    NSString *password;
-                    
-                    NSData *passwordData = [self searchKeychainCopyMatching:@"Password"];
-                    
-                    if (passwordData) {
-                        password = [[NSString alloc] initWithData:passwordData encoding:NSUTF8StringEncoding];
-                    }else{
-                        NSLog(@"Error loading Password");
-                    }
-                    
-                    [sharedManager.user setPassword:password];
-                    
-                    NSString *firstName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
-                    
-                    BOOL male = sqlite3_column_int(compiledStatement, 3);
-                    
-                    NSString *birth = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 4)];
-                    
-                    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-                    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                    NSDate *birthDate = [format dateFromString:birth];
-                    
-                    int up = sqlite3_column_int(compiledStatement, 5);
-                    int total = sqlite3_column_int(compiledStatement, 6);
-                    
-                    [sharedManager.user setFirstName:firstName];
-                    [sharedManager.user setIsMale:male];
-                    [sharedManager.user setBirthday:birthDate];
-                    [sharedManager.user setUpVotes:up];
-                    [sharedManager.user setVotes:total];
-                    //
+        //attempt to compile the SQL statement. continue if it works, if not, print an error.
+        if( sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+            //continue to load in data while the row is not the END row
+            //(there will always be either 0 or 1 rows)
+            while(sqlite3_step(compiledStatement) == SQLITE_ROW){
+                
+                //read in the persons data
+                NSString *userName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 1)];
+                
+                [sharedManager.user setUserName:userName];
+                
+                NSString *password;
+                
+                NSData *passwordData = [self searchKeychainCopyMatching:@"Password"];
+                
+                if (passwordData) {
+                    password = [[NSString alloc] initWithData:passwordData encoding:NSUTF8StringEncoding];
+                }else{
+                    NSLog(@"Error loading Password");
                 }
-            }else{
-                NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
+                
+                [sharedManager.user setPassword:password];
+                
+                NSString *firstName = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
+                
+                BOOL male = sqlite3_column_int(compiledStatement, 3);
+                
+                NSString *birth = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 4)];
+                
+                NSDateFormatter *format = [[NSDateFormatter alloc] init];
+                [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                NSDate *birthDate = [format dateFromString:birth];
+                
+                int up = sqlite3_column_int(compiledStatement, 5);
+                int total = sqlite3_column_int(compiledStatement, 6);
+                
+                [sharedManager.user setFirstName:firstName];
+                [sharedManager.user setIsMale:male];
+                [sharedManager.user setBirthday:birthDate];
+                [sharedManager.user setUpVotes:up];
+                [sharedManager.user setVotes:total];
+                //
             }
+        }else{
+            NSLog(@"Error 1: %s", sqlite3_errmsg(inAppDatabase));
+        }
         
-            //finalize the SQL statement
-            sqlite3_finalize(compiledStatement);
+        //finalize the SQL statement
+        sqlite3_finalize(compiledStatement);
     }else{
         NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
     }
@@ -468,35 +539,35 @@
     //attempts to open the database. if there is a problem print an error, if not, continue.
     if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
         //NSLog(@"Opened Database!! :D");
-    
-            NSString *temp = [[NSString alloc] initWithFormat:@"SELECT * FROM currentUserExperience"];
-            const char *sqlStatement = [temp UTF8String];
-            sqlite3_stmt *compiledStatement;
+        
+        NSString *temp = [[NSString alloc] initWithFormat:@"SELECT * FROM currentUserExperience"];
+        const char *sqlStatement = [temp UTF8String];
+        sqlite3_stmt *compiledStatement;
+        
+        //attempt to compile the SQL statement. continue if it works, if not, print an error.
+        if( sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
             
-            //attempt to compile the SQL statement. continue if it works, if not, print an error.
-            if( sqlite3_prepare_v2(inAppDatabase, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+            //int times = 0;
+            //load the data until the end of the table is reached
+            while(sqlite3_step(compiledStatement) == SQLITE_ROW){
                 
-                //int times = 0;
-                //load the data until the end of the table is reached
-                while(sqlite3_step(compiledStatement) == SQLITE_ROW){
-                    
-                    //read in the persons data and set that data to a new person object
-                    int sport = sqlite3_column_int(compiledStatement, 0);
-                    int experienceNum = sqlite3_column_int(compiledStatement, 1);
-                    
-                    //times++;
-                    //NSLog(@"load user Experiences %d %d %d", sport, experienceNum, times);
-                    NSString *exp = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
-                    
-                    [sharedManager.user setExperienceFromSport:sport experienceNumber:experienceNum experience:exp];
-                }
-                //NSLog(@"Teammates in sport %d: %d", i, players);
-            }else{
-                NSLog(@"Error 1: %s",sqlite3_errmsg(inAppDatabase));
+                //read in the persons data and set that data to a new person object
+                int sport = sqlite3_column_int(compiledStatement, 0);
+                int experienceNum = sqlite3_column_int(compiledStatement, 1);
+                
+                //times++;
+                //NSLog(@"load user Experiences %d %d %d", sport, experienceNum, times);
+                NSString *exp = [NSString stringWithUTF8String:(char *) sqlite3_column_text(compiledStatement, 2)];
+                
+                [sharedManager.user setExperienceFromSport:sport experienceNumber:experienceNum experience:exp];
             }
-            
-            //finalize the SQL statement
-            sqlite3_finalize(compiledStatement);
+            //NSLog(@"Teammates in sport %d: %d", i, players);
+        }else{
+            NSLog(@"Error 1: %s",sqlite3_errmsg(inAppDatabase));
+        }
+        
+        //finalize the SQL statement
+        sqlite3_finalize(compiledStatement);
         
     }else{
         NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));

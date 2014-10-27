@@ -17,6 +17,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
+@property (strong, nonatomic) NSMutableData *downloadedData;
+
 - (IBAction)btnLoginClicked:(UIButton *)sender;
 - (IBAction)btnCreateClicked:(UIButton *)sender;
 - (IBAction)btnForgotPasswordClicked:(UIButton *)sender;
