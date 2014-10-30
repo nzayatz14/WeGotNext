@@ -143,8 +143,9 @@
     [request setHTTPBody:paramsData];
     
     // execute request
-    NSURLResponse *response = nil;
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    [connection start];
+    
     if (err)
     {
         NSLog(@"%s: NSURLConnection error: %@", __FUNCTION__, err);
@@ -179,7 +180,7 @@
     // set the user person objects properties to the JsonElements properties
     [sharedManager.user setUserName:jsonElement[@"userName"]];
     [sharedManager.user setFirstName:jsonElement[@"firstName"]];
-    [sharedManager.user setIsMale:jsonElement[@"isMale"]];
+    [sharedManager.user setIsMale:(BOOL)jsonElement[@"isMale"]];
     
     //also need to do birthday, upVotes, and totalVotes
     

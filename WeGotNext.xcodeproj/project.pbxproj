@@ -38,6 +38,7 @@
 		84459733194B497D00877BBE /* MatchCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84459732194B497D00877BBE /* MatchCellType.m */; };
 		844F37521948A66000A89B80 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 844F37511948A66000A89B80 /* MyManager.m */; };
 		8451C512195DB112002EA936 /* userProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8451C511195DB112002EA936 /* userProfile.m */; };
+		845235401A027D1D00776A7F /* addUser.php in Resources */ = {isa = PBXBuildFile; fileRef = 8452353F1A027D1D00776A7F /* addUser.php */; };
 		8452A3A2194209B40044A2D4 /* CreateUserWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8452A3A1194209B40044A2D4 /* CreateUserWindow.m */; };
 		8456225019A3A96500035BA7 /* AMSlideMenuContentSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456224219A3A96500035BA7 /* AMSlideMenuContentSegue.m */; };
 		8456225119A3A96500035BA7 /* AMSlideMenuLeftMenuSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8456224419A3A96500035BA7 /* AMSlideMenuLeftMenuSegue.m */; };
@@ -119,6 +120,7 @@
 		844F37511948A66000A89B80 /* MyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyManager.m; sourceTree = "<group>"; };
 		8451C510195DB112002EA936 /* userProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userProfile.h; sourceTree = "<group>"; };
 		8451C511195DB112002EA936 /* userProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userProfile.m; sourceTree = "<group>"; };
+		8452353F1A027D1D00776A7F /* addUser.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = addUser.php; sourceTree = "<group>"; };
 		8452A3A0194209B40044A2D4 /* CreateUserWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateUserWindow.h; sourceTree = "<group>"; };
 		8452A3A1194209B40044A2D4 /* CreateUserWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateUserWindow.m; sourceTree = "<group>"; };
 		8454EE21193D056700169D83 /* LoginWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginWindow.h; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		84317E271937CA8200EF952F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8452353F1A027D1D00776A7F /* addUser.php */,
 				8418781419FBD827007E06A1 /* getUser.php */,
 				8431695019645A9200AA0CE5 /* inAppStorage_WeGotNext.sqlite */,
 				84317E321937CA8500EF952F /* Main.storyboard */,
@@ -411,6 +414,7 @@
 				8418781519FBD827007E06A1 /* getUser.php in Resources */,
 				84CEB9B219CD018F00128145 /* 120x120.png in Resources */,
 				84317E391937CA8700EF952F /* Images.xcassets in Resources */,
+				845235401A027D1D00776A7F /* addUser.php in Resources */,
 				84CEB9B019CD018100128145 /* 80x80.png in Resources */,
 				84317E2B1937CA8200EF952F /* InfoPlist.strings in Resources */,
 				84317E341937CA8500EF952F /* Main.storyboard in Resources */,
