@@ -142,7 +142,7 @@
     
     NSLog(@"%@", query);
     
-    [request setHTTPMethod:@"GET"];
+    [request setHTTPMethod:@"POST"];
     [request setHTTPBody:paramsData];
     
     // execute request
@@ -179,16 +179,20 @@
     MyManager *sharedManager = [MyManager sharedManager];
     
     //Parse the JSON that came in
-    NSError *err;
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&err];
-    
     //get the first (and should be only) json element in the array
-    NSDictionary *jsonElement = jsonArray[0];
+    NSError *err;
+    NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&err];
+    
+    if(err){
+        NSLog(@"error getting json array");
+    }else{
+        NSLog(@"getting array success %d", [jsonArray count]);
+    }
     
     // set the user person objects properties to the JsonElements properties
-    [sharedManager.user setUserName:jsonElement[@"userName"]];
-    [sharedManager.user setFirstName:jsonElement[@"firstName"]];
-    [sharedManager.user setIsMale:(BOOL)jsonElement[@"isMale"]];
+    [sharedManager.user setUserName:jsonArray[@"userName"]];
+    [sharedManager.user setFirstName:jsonArray[@"firstName"]];
+    [sharedManager.user setIsMale:(BOOL)jsonArray[@"isMale"]];
     
     //also need to do birthday, upVotes, and totalVotes
     
