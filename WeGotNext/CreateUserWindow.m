@@ -151,11 +151,74 @@
 //adds the newly created user to the online database then sets the current users information
 //in the database to the newly entered information
 -(void) addPersonToOnlineDatabase{
+    MyManager *sharedManager = [MyManager sharedManager];
     
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *birthString = [format stringFromDate:[sharedManager.user getBirthday]];
+    
+    
+    NSString *query = [[NSString alloc] initWithFormat:@"INSERT INTO users (userName, password, firstName ,isMale, birthday, upVotes, totalVotes) VALUES ('%@', '%@', '%@', %d, '%@', %d, %d)", [sharedManager.user getUserName], [sharedManager.user getPassword], [sharedManager.user getFirstName],[sharedManager.user isMale], birthString, [sharedManager.user getUpVotes], [sharedManager.user getVotes]];
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:query, @"query", nil];
+    
+    NSError *err = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&err];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    if (err)
+    {
+        NSLog(@"%s: JSON encode error: %@", __FUNCTION__, err);
+    }
+    
+    // start request
+    NSURL *url = [NSURL URLWithString:@"http://linus.highpoint.edu/~nzayatz/addUser.php"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
+    
+    NSString *params = [NSString stringWithFormat:@"json=%@", [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSData *paramsData = [params dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:paramsData];
+    
+    // execute request
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    [connection start];
+    
+    if (!connection)
+    {
+        NSLog(@"%s: NSURLConnection error: %@", __FUNCTION__, err);
+    }else{
+        NSLog(@"Connection Success!");
+    }
     
     
     [self addPersonAsCurrentUser];
 }
+
+//Initialize the data object
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"Recieved response");
+}
+
+//add the newly downloaded data to the object
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSLog(@"Recieved data");
+    NSString *temp = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",temp);
+}
+
+//after the data has been read in, set the current users data equal to the read in data
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"connection finished loading");
+
+    
+}
+
 
 //adds the newly entered information to the database as the current user
 -(void) addPersonAsCurrentUser{

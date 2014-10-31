@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateUserWindow : UIViewController <UITextFieldDelegate>{
+@interface CreateUserWindow : UIViewController <UITextFieldDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>{
     NSString *serviceName;
 }
 

@@ -100,7 +100,7 @@
     
     //find username
     //if username found, see if passwords match
-    
+    [self getUserFromOutsideDatabase:userName password:password];
     //if passwords match
     //load person's data from online
     
@@ -126,6 +126,7 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&err];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
+    
     if (err)
     {
         NSLog(@"%s: JSON encode error: %@", __FUNCTION__, err);
@@ -139,7 +140,9 @@
     NSString *params = [NSString stringWithFormat:@"json=%@", [jsonString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSData *paramsData = [params dataUsingEncoding:NSUTF8StringEncoding];
     
-    [request setHTTPMethod:@"POST"];
+    NSLog(@"%@", query);
+    
+    [request setHTTPMethod:@"GET"];
     [request setHTTPBody:paramsData];
     
     // execute request
@@ -149,6 +152,8 @@
     if (err)
     {
         NSLog(@"%s: NSURLConnection error: %@", __FUNCTION__, err);
+    }else{
+        NSLog(@"Connection Success");
     }
     
 }
@@ -156,18 +161,21 @@
 //Initialize the data object
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+    NSLog(@"Recieved response");
     _downloadedData = [[NSMutableData alloc] init];
 }
 
 //add the newly downloaded data to the object
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    NSLog(@"Recieved data");
     [_downloadedData appendData:data];
 }
 
 //after the data has been read in, set the current users data equal to the read in data
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    NSLog(@"connection finished loading");
     MyManager *sharedManager = [MyManager sharedManager];
     
     //Parse the JSON that came in
