@@ -28,8 +28,13 @@
 //initialize the labels and such when the view appears to the user
 -(void) viewWillAppear:(BOOL)animated{
     
-    [self.scrollView setContentOffset:CGPointZero animated:NO];
+    
+    //[self.scrollView setContentOffset:CGPointZero animated:NO];
+    
+    //register keyboard for function calls
     [self registerForKeyboardNotifications];
+    
+    
     //[self addLeftMenuButton];
     //[self addRightMenuButton];
     
@@ -262,6 +267,7 @@
     sqlite3_close(inAppDatabase);
 }
 
+//register keyboard appearance and disappearance for function calls
 - (void)registerForKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     
@@ -269,7 +275,7 @@
 }
 
 
-
+//deregister keyboard appearance and disappearance for function calls
 - (void)deregisterFromKeyboardNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
     
@@ -281,9 +287,13 @@
     [self deregisterFromKeyboardNotifications];
 }
 
+//FUNCTION IS INCOMPLETE
+//if the keyboard is shown, move the window up to show the textfield while the user is typing
+//only moves up past the last textfield everytime, needs to be moved up past the corresponding text field
 - (void)keyboardWasShown:(NSNotification *)notification {
     NSDictionary* info = [notification userInfo];
 
+    //get the size of the keyboard
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     CGPoint buttonOrigin = self.txtExperience3.frame.origin;
     CGFloat buttonHeight = self.txtExperience3.frame.size.height;
@@ -291,6 +301,7 @@
     
     visibleRect.size.height -= keyboardSize.height;
     
+    //move the view up the size of the keyboard so the text field is displayed while editing
     if (!CGRectContainsPoint(visibleRect, buttonOrigin)){
         CGPoint scrollPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight);
         [self.scrollView setContentOffset:scrollPoint animated:YES];
