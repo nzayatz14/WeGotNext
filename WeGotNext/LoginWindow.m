@@ -183,19 +183,38 @@
     NSError *err;
     NSDictionary *jsonArray = [NSJSONSerialization JSONObjectWithData:_downloadedData options:NSJSONReadingAllowFragments error:&err];
     
-    if(err){
-        NSLog(@"error getting json array");
+    //if([jsonArray isKindOfClass:[NSDictionary class]]){
+        if(err){
+            NSLog(@"error getting json array");
+        }else{
+            NSLog(@"getting array success %lu", (unsigned long)[jsonArray count]);
+        }
+        
+        // set the user person objects properties to the JsonElements properties
+        [sharedManager.user setUserName:jsonArray[@"userName"]];
+        [sharedManager.user setFirstName:jsonArray[@"firstName"]];
+        [sharedManager.user setIsMale:(BOOL)jsonArray[@"isMale"]];
+        
+        //also need to do birthday, upVotes, and totalVotes
+        
+    /*}else if ([jsonArray isKindOfClass:[NSArray class]]){
+        if(err){
+            NSLog(@"error getting json array");
+        }else{
+            NSLog(@"getting array success %lu", (unsigned long)[jsonArray count]);
+        }
+        
+        NSDictionary *jsonDictionary = jsonArray[0];
+        // set the user person objects properties to the JsonElements properties
+        [sharedManager.user setUserName:jsonDictionary[@"userName"]];
+        [sharedManager.user setFirstName:jsonDictionary[@"firstName"]];
+        [sharedManager.user setIsMale:(BOOL)jsonDictionary[@"isMale"]];
+        
+        //also need to do birthday, upVotes, and totalVotes
+    
     }else{
-        NSLog(@"getting array success %d", [jsonArray count]);
-    }
-    
-    // set the user person objects properties to the JsonElements properties
-    [sharedManager.user setUserName:jsonArray[@"userName"]];
-    [sharedManager.user setFirstName:jsonArray[@"firstName"]];
-    [sharedManager.user setIsMale:(BOOL)jsonArray[@"isMale"]];
-    
-    //also need to do birthday, upVotes, and totalVotes
-    
+        NSLog(@"We gotta problem");
+    } */
     //add the newly logged in person as the current user to the in app database
     [self addPersonAsCurrentUser];
     

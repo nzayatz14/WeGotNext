@@ -28,6 +28,8 @@
 //initialize the labels and such when the view appears to the user
 -(void) viewWillAppear:(BOOL)animated{
     
+    [self.scrollView setContentOffset:CGPointZero animated:NO];
+    [self registerForKeyboardNotifications];
     //[self addLeftMenuButton];
     //[self addRightMenuButton];
     
@@ -43,11 +45,18 @@
     _txtExperience2.text = [sharedManager.user getExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:1];
     _txtExperience3.text = [sharedManager.user getExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:2];
     
-    [_picFrontProfilePicture setImage:[sharedManager.user getProfPicFromSport:[sharedManager.user getCurrentSport] picNumber:0]];
+    UIImage *picShown = [sharedManager.user getProfPicFromSport:[sharedManager.user getCurrentSport] picNumber:0];
+    
+    CGImageRef imgRef = [picShown CGImage];
+    CIImage *imgData = [picShown CIImage];
+    
+    if(imgRef == nil && imgData == NULL){
+        NSLog(@"Failed to produce Image");
+    }else{
+        [_picFrontProfilePicture setImage:picShown];
+    }
     
     _txtCredibilityRating.text = [[NSString alloc]initWithFormat:@"%d",[[NSNumber numberWithInt:[sharedManager.user getCredibility]] intValue]];
-    
-    
     
     if([sharedManager.user isMale]){
         _txtGender.text = @"M";
@@ -190,7 +199,7 @@
     [sharedManager.user setExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:1 experience:[NSString stringWithFormat:@"%@", _txtExperience2.text]];
     [sharedManager.user setExperienceFromSport:[sharedManager.user getCurrentSport] experienceNumber:2 experience:[NSString stringWithFormat:@"%@", _txtExperience3.text]];
     
-    [sharedManager.user setProfPicFromSport:[sharedManager.user getCurrentSport] picNumber:0 picture:self.selectedImage];
+    [sharedManager.user setProfPicFromSport:[sharedManager.user getCurrentSport] picNumber:0 picture:_picFrontProfilePicture.image];
     
     //save these changes to database
     [self saveChangesToDatabase];
@@ -251,5 +260,45 @@
     
     //close the database
     sqlite3_close(inAppDatabase);
+}
+
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+
+
+- (void)deregisterFromKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self deregisterFromKeyboardNotifications];
+}
+
+- (void)keyboardWasShown:(NSNotification *)notification {
+    NSDictionary* info = [notification userInfo];
+
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGPoint buttonOrigin = self.txtExperience3.frame.origin;
+    CGFloat buttonHeight = self.txtExperience3.frame.size.height;
+    CGRect visibleRect = self.view.frame;
+    
+    visibleRect.size.height -= keyboardSize.height;
+    
+    if (!CGRectContainsPoint(visibleRect, buttonOrigin)){
+        CGPoint scrollPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight);
+        [self.scrollView setContentOffset:scrollPoint animated:YES];
+    }
+}
+
+
+- (void)keyboardWillBeHidden:(NSNotification *)notification {
+    [self.scrollView setContentOffset:CGPointZero animated:YES];
 }
 @end

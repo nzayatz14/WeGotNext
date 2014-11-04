@@ -12,6 +12,8 @@
     BOOL isEditable;
 }
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *picFrontProfilePicture;
 @property (weak, nonatomic) IBOutlet UILabel *txtFirstName;
 @property (weak, nonatomic) IBOutlet UILabel *txtAge;

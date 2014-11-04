@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8IJ-xL-Z56">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8IJ-xL-Z56">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -19,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="-1557" y="-391"/>
         </scene>
-        <!--Login Window - Login-->
+        <!--Login-->
         <scene sceneID="0ix-a4-03y">
             <objects>
                 <viewController id="2dk-1d-1bl" customClass="LoginWindow" sceneMemberID="viewController">
@@ -27,10 +28,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="edB-zr-bby">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="7m1-BZ-Tm9">
                                 <rect key="frame" x="144" y="202" width="123" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -100,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rsh-jv-jCk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1015" y="-391"/>
+            <point key="canvasLocation" x="-1041" y="-415"/>
         </scene>
         <!--Create User Window-->
         <scene sceneID="Yv5-V4-tMk">
@@ -415,7 +412,7 @@
             </objects>
             <point key="canvasLocation" x="1452" y="4324"/>
         </scene>
-        <!--Player Preferences - Preferences-->
+        <!--Preferences-->
         <scene sceneID="Q4v-pK-oPV">
             <objects>
                 <viewController id="vMH-xx-Gob" customClass="PlayerPreferences" sceneMemberID="viewController">
@@ -545,7 +542,7 @@
             </objects>
             <point key="canvasLocation" x="236" y="5112"/>
         </scene>
-        <!--Log Out Window - Log Out-->
+        <!--Log Out-->
         <scene sceneID="1Ei-Nc-ty4">
             <objects>
                 <viewController id="fAx-q6-H8e" customClass="LogOutWindow" sceneMemberID="viewController">
@@ -599,7 +596,7 @@
             </objects>
             <point key="canvasLocation" x="230" y="3536"/>
         </scene>
-        <!--Settings - Settings-->
+        <!--Settings-->
         <scene sceneID="buC-W9-Y5v">
             <objects>
                 <viewController id="tet-01-ycT" customClass="Settings" sceneMemberID="viewController">
@@ -719,7 +716,7 @@
             </objects>
             <point key="canvasLocation" x="806" y="3536"/>
         </scene>
-        <!--Switch Sports - Sports-->
+        <!--Sports-->
         <scene sceneID="CfW-MI-s0P">
             <objects>
                 <tableViewController id="rnU-Ks-uGL" customClass="SwitchSports" sceneMemberID="viewController">
@@ -854,7 +851,7 @@
             </objects>
             <point key="canvasLocation" x="230" y="1998"/>
         </scene>
-        <!--Matches Graphics - Players-->
+        <!--Players-->
         <scene sceneID="eX1-V0-rW3">
             <objects>
                 <tableViewController id="SxT-zX-fbY" customClass="MatchesGraphics" sceneMemberID="viewController">
@@ -930,7 +927,7 @@
             </objects>
             <point key="canvasLocation" x="806" y="1998"/>
         </scene>
-        <!--User Profile - User Profile-->
+        <!--User Profile-->
         <scene sceneID="9qQ-Pi-Qya">
             <objects>
                 <viewController id="5IC-vN-ubT" customClass="userProfile" sceneMemberID="viewController">
@@ -1069,7 +1066,7 @@
             </objects>
             <point key="canvasLocation" x="230" y="2761"/>
         </scene>
-        <!--Team Graphics - Team-->
+        <!--Team-->
         <scene sceneID="2l9-ch-EjG">
             <objects>
                 <tableViewController id="PqR-SE-ibg" customClass="TeamGraphics" sceneMemberID="viewController">
@@ -1152,7 +1149,7 @@
             </objects>
             <point key="canvasLocation" x="236" y="341"/>
         </scene>
-        <!--Home - Home-->
+        <!--Home-->
         <scene sceneID="wBB-YG-tgv">
             <objects>
                 <viewController id="C2x-ov-dqS" customClass="Home" sceneMemberID="viewController">
@@ -1180,109 +1177,109 @@
             </objects>
             <point key="canvasLocation" x="806" y="341"/>
         </scene>
-        <!--Profile - Profile-->
+        <!--Profile-->
         <scene sceneID="Jpe-Z3-CLY">
             <objects>
-                <viewController id="eoQ-bo-Uqk" customClass="Profile" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Kry-Ks-dI7">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="eoQ-bo-Uqk" customClass="Profile" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Sp9-BT-QiM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Xmy-JK-SM5">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="KtZ-hv-FFB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfile.png" id="h7H-WS-3hq">
-                                <rect key="frame" x="20" y="72" width="125" height="125"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Xwb-65-zGM" appends="YES" id="ycA-Qh-Vqi"/>
-                                </connections>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GTm-Kr-ZKO">
-                                <rect key="frame" x="165" y="72" width="135" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fWK-dX-bxJ">
+                                <rect key="frame" x="151" y="129" width="71" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="College Basketball: University of Nowhere" selectable="NO" id="Vz9-Zq-ela">
-                                <rect key="frame" x="20" y="205" width="240" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.79490194520000002" green="0.75272204990000002" blue="0.57735905980000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="High School Basketball: Some High School" selectable="NO" id="Cv3-Y4-7Cg">
-                                <rect key="frame" x="20" y="268" width="240" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.79490194520000002" green="0.75272204990000002" blue="0.57735905980000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vA8-l1-10v">
-                                <rect key="frame" x="165" y="101" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credibility:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QGn-YV-DmB">
+                                <rect key="frame" x="59" y="409" width="84" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Other Experience: AAU for Manchester United" selectable="NO" id="zd0-AD-uNB">
-                                <rect key="frame" x="20" y="331" width="240" height="55"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="College Basketball: University of Nowhere" selectable="NO" id="jhJ-ey-BQF">
+                                <rect key="frame" x="18" y="275" width="240" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.79490194515306123" green="0.75272204992658742" blue="0.57735905984791225" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.79490194520000002" green="0.75272204990000002" blue="0.57735905980000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.76000000000000001" id="tXN-cX-Vja">
-                                <rect key="frame" x="58" y="423" width="204" height="2"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qKq-t6-q9I">
+                                <rect key="frame" x="151" y="71" width="135" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Other Experience: AAU for Manchester United" selectable="NO" id="4ex-zL-u9U">
+                                <rect key="frame" x="18" y="338" width="240" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.79490194520000002" green="0.75272204990000002" blue="0.57735905980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="High School Basketball: Some High School" selectable="NO" id="uIH-vQ-sXg">
+                                <rect key="frame" x="18" y="212" width="240" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.79490194520000002" green="0.75272204990000002" blue="0.57735905980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1fb-f1-938">
+                                <rect key="frame" x="151" y="100" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.75999999046325684" id="u8F-EB-5Yh">
+                                <rect key="frame" x="58" y="450" width="204" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credibility:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DAw-n7-cVR">
-                                <rect key="frame" x="70" y="394" width="84" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="76" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i7g-uz-Zcc">
+                                <rect key="frame" x="180" y="409" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="76" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PEK-yg-ebI">
-                                <rect key="frame" x="162" y="394" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aUi-Cq-Upu">
-                                <rect key="frame" x="165" y="130" width="71" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OKm-lr-Nq8">
-                                <rect key="frame" x="162" y="159" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZjF-gG-qsc">
+                                <rect key="frame" x="141" y="158" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Edit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnEditClicked:" destination="eoQ-bo-Uqk" eventType="touchUpInside" id="g2f-d5-79V"/>
+                                    <action selector="btnEditClicked:" destination="eoQ-bo-Uqk" eventType="touchUpInside" id="Qii-BP-Zbr"/>
                                 </connections>
                             </button>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfile.png" id="IPD-Pk-k8f">
+                                <rect key="frame" x="8" y="71" width="125" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Xwb-65-zGM" appends="YES" id="AzS-0F-lLM"/>
+                                </connections>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.93725496529999996" green="0.89019614459999996" blue="0.72156864399999998" alpha="1" colorSpace="deviceRGB"/>
-                    </view>
+                    </scrollView>
                     <navigationItem key="navigationItem" title="Profile" id="3Yy-NI-Re1"/>
                     <connections>
                         <outlet property="LongPressGestureRecognizer" destination="Xwb-65-zGM" id="99o-UL-2LA"/>
-                        <outlet property="btnEdit" destination="OKm-lr-Nq8" id="A5n-HT-auT"/>
-                        <outlet property="pgrCredibility" destination="tXN-cX-Vja" id="Rxm-jK-GjI"/>
-                        <outlet property="picFrontProfilePicture" destination="h7H-WS-3hq" id="BOU-Vz-bzq"/>
-                        <outlet property="txtAge" destination="vA8-l1-10v" id="VnV-eG-vfs"/>
-                        <outlet property="txtCredibilityRating" destination="PEK-yg-ebI" id="RnM-nl-0DA"/>
-                        <outlet property="txtExperience1" destination="Vz9-Zq-ela" id="6MV-5S-bOD"/>
-                        <outlet property="txtExperience2" destination="Cv3-Y4-7Cg" id="2GP-hR-92a"/>
-                        <outlet property="txtExperience3" destination="zd0-AD-uNB" id="adG-cB-tXK"/>
-                        <outlet property="txtFirstName" destination="GTm-Kr-ZKO" id="NaN-uB-Ktg"/>
-                        <outlet property="txtGender" destination="aUi-Cq-Upu" id="jPt-vK-DYN"/>
+                        <outlet property="btnEdit" destination="ZjF-gG-qsc" id="qbm-aC-HdZ"/>
+                        <outlet property="pgrCredibility" destination="u8F-EB-5Yh" id="R2C-cu-QMa"/>
+                        <outlet property="picFrontProfilePicture" destination="IPD-Pk-k8f" id="Eqc-1Q-d8a"/>
+                        <outlet property="scrollView" destination="Sp9-BT-QiM" id="T6e-l1-MCf"/>
+                        <outlet property="txtAge" destination="1fb-f1-938" id="JeH-lE-xve"/>
+                        <outlet property="txtCredibilityRating" destination="i7g-uz-Zcc" id="gdw-p0-aSm"/>
+                        <outlet property="txtExperience1" destination="uIH-vQ-sXg" id="fCt-Qm-iST"/>
+                        <outlet property="txtExperience2" destination="jhJ-ey-BQF" id="APp-6E-sJA"/>
+                        <outlet property="txtExperience3" destination="4ex-zL-u9U" id="52q-Hv-evs"/>
+                        <outlet property="txtFirstName" destination="qKq-t6-q9I" id="GGk-hU-5gj"/>
+                        <outlet property="txtGender" destination="fWK-dX-bxJ" id="9GF-Me-Ynw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ETR-Ak-tZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1394,7 +1391,7 @@
             </objects>
             <point key="canvasLocation" x="1244" y="-391"/>
         </scene>
-        <!--Chat Window - Chat-->
+        <!--Chat-->
         <scene sceneID="hbD-2x-vPi">
             <objects>
                 <viewController id="toM-uX-Xmd" customClass="ChatWindow" sceneMemberID="viewController">
@@ -1412,7 +1409,7 @@
             </objects>
             <point key="canvasLocation" x="1827" y="-391"/>
         </scene>
-        <!--Teammate Profile - Teammate Profile-->
+        <!--Teammate Profile-->
         <scene sceneID="9lU-qI-nUk">
             <objects>
                 <viewController id="5bx-Ht-VNK" customClass="teammateProfile" sceneMemberID="viewController">
