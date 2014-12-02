@@ -27,6 +27,9 @@
     
     serviceName = @"High-Point-University.WeGotNext";
     
+    self.loginView.delegate = self;
+    self.loginView.readPermissions = @[@"public_profile", @"email", @"user_friends"];
+    
     [super viewDidLoad];
 }
 
@@ -650,6 +653,17 @@
     
     result = (__bridge NSData *)cfType;
     return result;
+}
+
+//FACEBOOK LOGIN
+// This method will be called when the user information has been fetched
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+    
+    MyManager *sharedManager = [MyManager sharedManager];
+    [sharedManager.user setFirstName:user.first_name];
+    
+    [super performSegueWithIdentifier:@"btnLogin" sender:self];
 }
 
 @end

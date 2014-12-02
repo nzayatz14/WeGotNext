@@ -51,6 +51,7 @@
 		8476DC7819C758FA002C2AFE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8476DC7719C758FA002C2AFE /* Security.framework */; };
 		847FA30219C7868C00A449D5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847FA30119C7868C00A449D5 /* MobileCoreServices.framework */; };
 		84807EF619532865008229EB /* RightSlideMenuCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84807EF519532865008229EB /* RightSlideMenuCellType.m */; };
+		84908C5B1A2E1DCD001B9E70 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84908C5A1A2E1DCD001B9E70 /* FacebookSDK.framework */; };
 		84909941193D078300E4A914 /* LoginWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 84909940193D078300E4A914 /* LoginWindow.m */; };
 		84A6E98C193F8320001E0600 /* defaultProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = 84A6E98B193F8320001E0600 /* defaultProfile.png */; };
 		84B844EF193CF44500CF8A07 /* ChatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B844EE193CF44500CF8A07 /* ChatWindow.m */; };
@@ -145,6 +146,7 @@
 		847FA30119C7868C00A449D5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		84807EF419532865008229EB /* RightSlideMenuCellType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightSlideMenuCellType.h; sourceTree = "<group>"; };
 		84807EF519532865008229EB /* RightSlideMenuCellType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightSlideMenuCellType.m; sourceTree = "<group>"; };
+		84908C5A1A2E1DCD001B9E70 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		84909940193D078300E4A914 /* LoginWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindow.m; sourceTree = "<group>"; };
 		84A6E98B193F8320001E0600 /* defaultProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultProfile.png; sourceTree = "<group>"; };
 		84B844ED193CF44400CF8A07 /* ChatWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatWindow.h; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				842787731974109B00582329 /* MapKit.framework in Frameworks */,
 				8431694D196459B800AA0CE5 /* libsqlite3.dylib in Frameworks */,
 				84317E231937CA8100EF952F /* CoreGraphics.framework in Frameworks */,
+				84908C5B1A2E1DCD001B9E70 /* FacebookSDK.framework in Frameworks */,
 				84317E251937CA8100EF952F /* UIKit.framework in Frameworks */,
 				84317E211937CA8100EF952F /* Foundation.framework in Frameworks */,
 			);
@@ -207,6 +210,7 @@
 		84317E1F1937CA8100EF952F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84908C5A1A2E1DCD001B9E70 /* FacebookSDK.framework */,
 				847FA30119C7868C00A449D5 /* MobileCoreServices.framework */,
 				8476DC7719C758FA002C2AFE /* Security.framework */,
 				842787721974109B00582329 /* MapKit.framework */,
@@ -591,6 +595,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/nzayatz14/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WeGotNext/WeGotNext-Prefix.pch";
 				INFOPLIST_FILE = "WeGotNext/WeGotNext-Info.plist";
@@ -605,6 +613,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/nzayatz14/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WeGotNext/WeGotNext-Prefix.pch";
 				INFOPLIST_FILE = "WeGotNext/WeGotNext-Info.plist";

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Security/Security.h>
+#import <FacebookSDK/FacebookSDK.h>
 #import "MyManager.h"
 
-@interface LoginWindow : UIViewController <UITextFieldDelegate>{
+@interface LoginWindow : UIViewController <UITextFieldDelegate, FBLoginViewDelegate>{
     int empty;
     NSString *serviceName;
 }
@@ -18,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtUserName;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (strong, nonatomic) NSMutableData *downloadedData;
+
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 
 - (IBAction)btnLoginClicked:(UIButton *)sender;
 - (IBAction)btnCreateClicked:(UIButton *)sender;

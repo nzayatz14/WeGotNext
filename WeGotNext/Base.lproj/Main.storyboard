@@ -54,7 +54,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xTG-Qr-StC">
-                                <rect key="frame" x="115" y="307" width="90" height="30"/>
+                                <rect key="frame" x="115" y="288" width="90" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93725496529999996" green="0.89019614459999996" blue="0.72156864399999998" alpha="1" colorSpace="deviceRGB"/>
                                 <state key="normal" title="Login">
@@ -62,17 +62,6 @@
                                 </state>
                                 <connections>
                                     <action selector="btnLoginClicked:" destination="2dk-1d-1bl" eventType="touchUpInside" id="ghg-2k-bFA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WwO-se-kEx">
-                                <rect key="frame" x="95" y="376" width="130" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Create New User">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btnCreateClicked:" destination="2dk-1d-1bl" eventType="touchUpInside" id="FM5-ON-Eck"/>
-                                    <segue destination="5VE-1P-sII" kind="modal" identifier="btnCreate" modalTransitionStyle="coverVertical" id="Df6-bQ-ZCe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ydy-jt-dZD">
@@ -85,11 +74,28 @@
                                     <action selector="btnForgotPasswordClicked:" destination="2dk-1d-1bl" eventType="touchUpInside" id="IZd-YA-AKb"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" id="aUB-vz-99R" customClass="FBLoginView">
+                                <rect key="frame" x="35" y="326" width="251" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WwO-se-kEx">
+                                <rect key="frame" x="95" y="391" width="130" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Create New User">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnCreateClicked:" destination="2dk-1d-1bl" eventType="touchUpInside" id="FM5-ON-Eck"/>
+                                    <segue destination="5VE-1P-sII" kind="modal" identifier="btnCreate" modalTransitionStyle="coverVertical" id="Df6-bQ-ZCe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="0pD-lz-hik"/>
                     <connections>
+                        <outlet property="loginView" destination="aUB-vz-99R" id="6vW-jN-483"/>
                         <outlet property="txtPassword" destination="v7B-SR-nK8" id="cJC-yB-PWo"/>
                         <outlet property="txtUserName" destination="7m1-BZ-Tm9" id="1NF-9q-SgM"/>
                         <segue destination="zX2-yT-l4t" kind="push" identifier="btnLogin" id="eP7-dm-6uE"/>

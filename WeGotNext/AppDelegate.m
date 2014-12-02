@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MyManager.h"
+#include <FacebookSDK/FacebookSDK.h>
 #define SPORT_COUNT 5
 
 @implementation AppDelegate
@@ -19,9 +20,22 @@
     NSString *filePath = [self copyDatabaseToDocuments];
     //[self readInformationFromDatabaseWithPath:filePath];
     
+    [FBLoginView class];
+    
     return YES;
 }
-							
+
+//load facebook log in if
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    // Call FBAppCall's handleOpenURL:sourceApplication to handle Facebook app responses
+    BOOL wasHandled = [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    
+    // You can add your app-specific url handling code here if needed
+    
+    return wasHandled;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
