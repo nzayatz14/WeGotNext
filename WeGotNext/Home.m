@@ -9,6 +9,7 @@
 #import "Home.h"
 #import "MyManager.h"
 #import "UIViewController+AMSlideMenu.h"
+#import <Parse/Parse.h>
 #define METERS_PER_MILE 1609.344
 
 @implementation Home
@@ -48,6 +49,21 @@
     [self addRightMenuButton];
     
     [_Map setCenterCoordinate:[[[_Map userLocation] location] coordinate] animated:NO];
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *birthString = [format stringFromDate:[sharedManager.user getBirthday]];
+    
+    /*PFObject *userTest = [PFObject objectWithClassName:@"user"];
+    userTest[@"userName"] = [sharedManager.user getUserName];
+    userTest[@"firstName"] = [sharedManager.user getFirstName];
+    userTest[@"password"] = @"nope";
+    userTest[@"isMale"] = @[[NSNumber numberWithBool:[sharedManager.user isMale]]];
+    userTest[@"birthday"] = birthString;
+    userTest[@"upVotes"] = @[[NSNumber numberWithInt:[sharedManager.user getUpVotes]]];
+    userTest[@"totalVotes"] = @[[NSNumber numberWithInt:[sharedManager.user getVotes]]];
+    [userTest saveInBackground];*/
+    
     
     //TESTING: ADDS A PERSON AS A PAIR EACH TIME THE HOME SCREEN IS REACHED
     

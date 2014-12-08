@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Security/Security.h>
 #import <FacebookSDK/FacebookSDK.h>
+#import <Parse/Parse.h>
 #import "MyManager.h"
 
 @interface LoginWindow : UIViewController <UITextFieldDelegate, FBLoginViewDelegate>{

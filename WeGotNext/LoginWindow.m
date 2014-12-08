@@ -29,6 +29,13 @@
     
     self.loginView.delegate = self;
     self.loginView.readPermissions = @[@"public_profile", @"email", @"user_friends"];
+    //also add user_birthday and maybe user_location later
+    
+    //test object for Parse.com
+    //PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    //testObject[@"foo"] = @"bar";
+    //[testObject saveInBackground];
+    
     
     [super viewDidLoad];
 }
@@ -662,6 +669,22 @@
     
     MyManager *sharedManager = [MyManager sharedManager];
     [sharedManager.user setFirstName:user.first_name];
+    
+    NSString *gender = [user objectForKey:@"gender"];
+    
+    if([gender caseInsensitiveCompare:@"Male"] == NSOrderedSame){
+        [sharedManager.user setIsMale:YES];
+    }else{
+        [sharedManager.user setIsMale:NO];
+    }
+    
+    NSString *birthString = [user objectForKey:@"birthday"];
+    NSLog(@"%@",birthString);
+    //NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    //[format setDateFormat:@"MM/dd/yyyy"];
+    //NSDate *birthDate = [format dateFromString:birthString];
+    
+    //[sharedManager.user setBirthday:birthDate];
     
     [super performSegueWithIdentifier:@"btnLogin" sender:self];
 }

@@ -91,6 +91,15 @@
     //if delete is clicked
     if(buttonIndex == 1){
         
+        //if there is a facebook session open, close it
+        if (FBSession.activeSession.state == FBSessionStateOpen|| FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
+
+            [FBSession.activeSession closeAndClearTokenInformation];
+            [FBSession.activeSession close];
+            [FBSession setActiveSession:nil];
+        }
+        
+        
         //send screen to the logout page and disable user interaction with the page
         [self.leftMenu performSegueWithIdentifier:@"btnLogOut" sender:self];
         self.view.userInteractionEnabled = NO;

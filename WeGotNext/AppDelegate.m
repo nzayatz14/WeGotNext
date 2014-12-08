@@ -17,6 +17,12 @@
 {
     // Override point for customization after application launch.
     
+    //setup stages for Parse.com (back end of app)
+    [Parse setApplicationId:@"iRPYWMvTmQVcbB8BO9lJsLhu4q44lK74CHo198mt"
+                  clientKey:@"8jGy82HEANqITjSehT5ZHXLflVHeRNlvFZ2ZuFFT"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    
     NSString *filePath = [self copyDatabaseToDocuments];
     //[self readInformationFromDatabaseWithPath:filePath];
     
