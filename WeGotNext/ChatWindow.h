@@ -8,9 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@interface Message : NSObject
+
+@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSDate *time;
+
+-(void) setText:(NSString *)Text;
+-(void) setTime:(NSDate *)time;
+@end
+
 @interface ChatWindow : UIViewController
-- (IBAction)btnBackClicked:(UIBarButtonItem *)sender;
 @property (nonatomic, strong) NSString *myTitle;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
+
+@property (weak, nonatomic) IBOutlet UITextField *txtMessage;
+- (IBAction)btnSend:(UIButton *)sender;
+
+
+@property (nonatomic, strong) NSMutableArray *messages;
 
 @end

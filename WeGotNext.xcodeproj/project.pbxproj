@@ -33,6 +33,7 @@
 		84317E4A1937CA8900EF952F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84317E481937CA8900EF952F /* InfoPlist.strings */; };
 		84317E4C1937CA8900EF952F /* WeGotNextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E4B1937CA8900EF952F /* WeGotNextTests.m */; };
 		84317E6E1937D3DE00EF952F /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 84317E6D1937D3DE00EF952F /* MainMenu.m */; };
+		84322CEE1A369909003867E3 /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84322CED1A369909003867E3 /* ChatViewCell.m */; };
 		843B5D3D19B5248900A93787 /* PlayerPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 843B5D3C19B5248900A93787 /* PlayerPreferences.m */; };
 		84416E7C196B002F00577044 /* LogOutWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 84416E7B196B002F00577044 /* LogOutWindow.m */; };
 		84459733194B497D00877BBE /* MatchCellType.m in Sources */ = {isa = PBXBuildFile; fileRef = 84459732194B497D00877BBE /* MatchCellType.m */; };
@@ -120,6 +121,8 @@
 		84317E4B1937CA8900EF952F /* WeGotNextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeGotNextTests.m; sourceTree = "<group>"; };
 		84317E6C1937D3DE00EF952F /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
 		84317E6D1937D3DE00EF952F /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
+		84322CED1A369909003867E3 /* ChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewCell.m; sourceTree = "<group>"; };
+		84322CEF1A36992C003867E3 /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
 		843B5D3B19B5248900A93787 /* PlayerPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerPreferences.h; sourceTree = "<group>"; };
 		843B5D3C19B5248900A93787 /* PlayerPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerPreferences.m; sourceTree = "<group>"; };
 		84416E7A196B002F00577044 /* LogOutWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogOutWindow.h; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 				84317E301937CA8400EF952F /* AppDelegate.m */,
 				84B844ED193CF44400CF8A07 /* ChatWindow.h */,
 				84B844EE193CF44500CF8A07 /* ChatWindow.m */,
+				84322CEF1A36992C003867E3 /* ChatViewCell.h */,
+				84322CED1A369909003867E3 /* ChatViewCell.m */,
 				8452A3A0194209B40044A2D4 /* CreateUserWindow.h */,
 				8452A3A1194209B40044A2D4 /* CreateUserWindow.m */,
 				84A6E98B193F8320001E0600 /* defaultProfile.png */,
@@ -480,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				841FB896193CC3ED004CD043 /* Profile.m in Sources */,
+				84322CEE1A369909003867E3 /* ChatViewCell.m in Sources */,
 				841FB89F193CCA80004CD043 /* MatchesGraphics.m in Sources */,
 				841FB89C193CC849004CD043 /* Settings.m in Sources */,
 				841FB899193CC42D004CD043 /* Home.m in Sources */,
