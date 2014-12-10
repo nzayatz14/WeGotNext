@@ -8,23 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Message : NSObject
+@interface ChatWindow : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSString *text;
-@property (nonatomic, strong) NSDate *time;
-
--(void) setText:(NSString *)Text;
--(void) setTime:(NSDate *)time;
-@end
-
-@interface ChatWindow : UIViewController
 @property (nonatomic, strong) NSString *myTitle;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtMessage;
 - (IBAction)btnSend:(UIButton *)sender;
-
+@property (strong, nonatomic) IBOutlet UITableView *messageTable;
 
 @property (nonatomic, strong) NSMutableArray *messages;
+@property (nonatomic, strong) NSNumber *messagesCount;
 
 @end
