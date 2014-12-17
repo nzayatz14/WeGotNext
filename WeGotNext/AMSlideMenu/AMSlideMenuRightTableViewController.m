@@ -113,20 +113,21 @@
         
         //get which position was clicked on and set the title of the window to the name of the match where # is the number of which row was clicked
         ChatWindow *chat  = (ChatWindow*)[[segue destinationViewController] topViewController];
+        chat.myTitle = [[NSString alloc] init];
         
         if(self.searchDisplayController.active){
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
             if(_numberOfMatches >0)
-                chat.navItem.title = [(Person *)[_searchResults objectAtIndex: [indexPath row]] getFirstName];
+                chat.myTitle = [(Person *)[_searchResults objectAtIndex: [indexPath row]] getFirstName];
             else
-                chat.navItem.title = [[NSString alloc] initWithFormat:@"Chat"];
+                chat.myTitle = [[NSString alloc] initWithFormat:@"Chat"];
             
         }else{
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
             if(_numberOfMatches >0)
-                chat.navItem.title = [(Person *)[_matches objectAtIndex: [indexPath row]] getFirstName];
+                chat.myTitle = [(Person *)[_matches objectAtIndex: [indexPath row]] getFirstName];
             else
-                chat.navItem.title = [[NSString alloc] initWithFormat:@"Chat"];
+                chat.myTitle = [[NSString alloc] initWithFormat:@"Chat"];
         }
         
         [_txtSearch resignFirstResponder];

@@ -1397,87 +1397,23 @@
             </objects>
             <point key="canvasLocation" x="1244" y="-391"/>
         </scene>
-        <!--Chat-->
+        <!--Chat Window-->
         <scene sceneID="hbD-2x-vPi">
             <objects>
                 <viewController id="toM-uX-Xmd" customClass="ChatWindow" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aw0-Cn-bpR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="GXr-QH-ahw">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem style="plain" id="RrN-1V-xND">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="66r-3f-Z7b">
-                                            <rect key="frame" x="16" y="7" width="233" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="ITn-W6-cab">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kR4-oJ-umi">
-                                            <rect key="frame" x="264" y="7" width="36" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Send">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="btnSend:" destination="toM-uX-Xmd" eventType="touchUpInside" id="q9B-C1-OOk"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="WnX-ZK-VLA">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="44" id="Lkv-Bo-IaM" customClass="ChatViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lkv-Bo-IaM" id="lQv-h1-bDi">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="bottom" editable="NO" text="Us Temp" id="Yof-7S-UQH">
-                                                    <rect key="frame" x="192" y="0.0" width="120" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                                <textView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="bottom" editable="NO" text="Them Temp" id="fGt-na-iHX">
-                                                    <rect key="frame" x="8" y="0.0" width="120" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="txtThem" destination="fGt-na-iHX" id="SrE-tk-JKn"/>
-                                            <outlet property="txtYou" destination="Yof-7S-UQH" id="B9w-Um-zWj"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat" id="FXe-f3-6dJ"/>
+                    <navigationItem key="navigationItem" id="FXe-f3-6dJ"/>
                     <connections>
-                        <outlet property="messageTable" destination="WnX-ZK-VLA" id="UiW-BM-eYZ"/>
                         <outlet property="navItem" destination="FXe-f3-6dJ" id="S5o-Nt-B6b"/>
-                        <outlet property="txtMessage" destination="66r-3f-Z7b" id="vcD-QF-bZd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DEa-FT-y6Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1829" y="-369"/>
+            <point key="canvasLocation" x="1835" y="-391"/>
         </scene>
         <!--Teammate Profile-->
         <scene sceneID="9lU-qI-nUk">

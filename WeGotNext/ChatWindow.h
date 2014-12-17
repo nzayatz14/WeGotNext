@@ -7,17 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChatController.h"
 
-@interface ChatWindow : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ChatWindow : UIViewController <ChatControllerDelegate>
 
 @property (nonatomic, strong) NSString *myTitle;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 
-@property (weak, nonatomic) IBOutlet UITextField *txtMessage;
-- (IBAction)btnSend:(UIButton *)sender;
-@property (strong, nonatomic) IBOutlet UITableView *messageTable;
-
-@property (nonatomic, strong) NSMutableArray *messages;
-@property (nonatomic, strong) NSNumber *messagesCount;
+@property (strong, nonatomic) ChatController * chatController;
 
 @end

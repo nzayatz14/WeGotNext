@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		8413E2C519CC74DE00A4A8C2 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8413E2C419CC74DE00A4A8C2 /* icon@2x.png */; };
+		841826391A40B15C00CB4228 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8418262D1A40B15C00CB4228 /* ChatController.m */; };
+		8418263A1A40B15C00CB4228 /* ChatInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 8418262F1A40B15C00CB4228 /* ChatInput.m */; };
+		8418263B1A40B15C00CB4228 /* ClipboardLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 841826311A40B15C00CB4228 /* ClipboardLabel.m */; };
+		8418263C1A40B15C00CB4228 /* License in Resources */ = {isa = PBXBuildFile; fileRef = 841826321A40B15C00CB4228 /* License */; };
+		8418263D1A40B15C00CB4228 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841826341A40B15C00CB4228 /* MessageCell.m */; };
+		8418263E1A40B15C00CB4228 /* Previous.png in Resources */ = {isa = PBXBuildFile; fileRef = 841826361A40B15C00CB4228 /* Previous.png */; };
+		8418263F1A40B15C00CB4228 /* TopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 841826381A40B15C00CB4228 /* TopBar.m */; };
 		8418781519FBD827007E06A1 /* getUser.php in Resources */ = {isa = PBXBuildFile; fileRef = 8418781419FBD827007E06A1 /* getUser.php */; };
 		841FB896193CC3ED004CD043 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB895193CC3ED004CD043 /* Profile.m */; };
 		841FB899193CC42D004CD043 /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 841FB898193CC42D004CD043 /* Home.m */; };
@@ -86,6 +93,19 @@
 /* Begin PBXFileReference section */
 		8408A1C419633D7C00E5AD98 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		8413E2C419CC74DE00A4A8C2 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		8418262C1A40B15C00CB4228 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
+		8418262D1A40B15C00CB4228 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
+		8418262E1A40B15C00CB4228 /* ChatInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInput.h; sourceTree = "<group>"; };
+		8418262F1A40B15C00CB4228 /* ChatInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInput.m; sourceTree = "<group>"; };
+		841826301A40B15C00CB4228 /* ClipboardLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipboardLabel.h; sourceTree = "<group>"; };
+		841826311A40B15C00CB4228 /* ClipboardLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipboardLabel.m; sourceTree = "<group>"; };
+		841826321A40B15C00CB4228 /* License */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License; sourceTree = "<group>"; };
+		841826331A40B15C00CB4228 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		841826341A40B15C00CB4228 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		841826351A40B15C00CB4228 /* MyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMacros.h; sourceTree = "<group>"; };
+		841826361A40B15C00CB4228 /* Previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Previous.png; sourceTree = "<group>"; };
+		841826371A40B15C00CB4228 /* TopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBar.h; sourceTree = "<group>"; };
+		841826381A40B15C00CB4228 /* TopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBar.m; sourceTree = "<group>"; };
 		8418781419FBD827007E06A1 /* getUser.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = getUser.php; sourceTree = "<group>"; };
 		841FB894193CC3ED004CD043 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		841FB895193CC3ED004CD043 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
@@ -221,6 +241,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8418262B1A40B15C00CB4228 /* ChatController */ = {
+			isa = PBXGroup;
+			children = (
+				8418262C1A40B15C00CB4228 /* ChatController.h */,
+				8418262D1A40B15C00CB4228 /* ChatController.m */,
+				8418262E1A40B15C00CB4228 /* ChatInput.h */,
+				8418262F1A40B15C00CB4228 /* ChatInput.m */,
+				841826301A40B15C00CB4228 /* ClipboardLabel.h */,
+				841826311A40B15C00CB4228 /* ClipboardLabel.m */,
+				841826321A40B15C00CB4228 /* License */,
+				841826331A40B15C00CB4228 /* MessageCell.h */,
+				841826341A40B15C00CB4228 /* MessageCell.m */,
+				841826351A40B15C00CB4228 /* MyMacros.h */,
+				841826361A40B15C00CB4228 /* Previous.png */,
+				841826371A40B15C00CB4228 /* TopBar.h */,
+				841826381A40B15C00CB4228 /* TopBar.m */,
+			);
+			path = ChatController;
+			sourceTree = "<group>";
+		};
 		84317E141937CA7E00EF952F = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +308,7 @@
 		84317E261937CA8100EF952F /* WeGotNext */ = {
 			isa = PBXGroup;
 			children = (
+				8418262B1A40B15C00CB4228 /* ChatController */,
 				8456224019A3A96500035BA7 /* AMSlideMenu */,
 				84317E2F1937CA8400EF952F /* AppDelegate.h */,
 				84317E301937CA8400EF952F /* AppDelegate.m */,
@@ -461,7 +502,9 @@
 			files = (
 				84BBD0E119CBAAE7000B3230 /* Default@2x.png in Resources */,
 				8413E2C519CC74DE00A4A8C2 /* icon@2x.png in Resources */,
+				8418263C1A40B15C00CB4228 /* License in Resources */,
 				8418781519FBD827007E06A1 /* getUser.php in Resources */,
+				8418263E1A40B15C00CB4228 /* Previous.png in Resources */,
 				84CEB9B219CD018F00128145 /* 120x120.png in Resources */,
 				84317E391937CA8700EF952F /* Images.xcassets in Resources */,
 				845235401A027D1D00776A7F /* addUser.php in Resources */,
@@ -502,6 +545,8 @@
 				8456225319A3A96500035BA7 /* AMSlideMenuMainViewController.m in Sources */,
 				845BA3C01945EC1B00927A63 /* Person.m in Sources */,
 				84B844EF193CF44500CF8A07 /* ChatWindow.m in Sources */,
+				8418263D1A40B15C00CB4228 /* MessageCell.m in Sources */,
+				841826391A40B15C00CB4228 /* ChatController.m in Sources */,
 				8451C512195DB112002EA936 /* userProfile.m in Sources */,
 				843B5D3D19B5248900A93787 /* PlayerPreferences.m in Sources */,
 				84317E6E1937D3DE00EF952F /* MainMenu.m in Sources */,
@@ -510,7 +555,9 @@
 				8456225019A3A96500035BA7 /* AMSlideMenuContentSegue.m in Sources */,
 				84317E311937CA8400EF952F /* AppDelegate.m in Sources */,
 				8456225419A3A96500035BA7 /* AMSlideMenuRightMenuSegue.m in Sources */,
+				8418263A1A40B15C00CB4228 /* ChatInput.m in Sources */,
 				8456225519A3A96500035BA7 /* AMSlideMenuRightTableViewController.m in Sources */,
+				8418263F1A40B15C00CB4228 /* TopBar.m in Sources */,
 				84909941193D078300E4A914 /* LoginWindow.m in Sources */,
 				84314F41194F32FA008DC865 /* TeamCellType.m in Sources */,
 				84459733194B497D00877BBE /* MatchCellType.m in Sources */,
@@ -519,6 +566,7 @@
 				848A51511A37607700D1AD4E /* Message.m in Sources */,
 				84807EF619532865008229EB /* RightSlideMenuCellType.m in Sources */,
 				84317E2D1937CA8300EF952F /* main.m in Sources */,
+				8418263B1A40B15C00CB4228 /* ClipboardLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
