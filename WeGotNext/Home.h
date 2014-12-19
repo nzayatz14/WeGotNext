@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "MyManager.h"
 
 @interface Home : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate>{
     CLLocation *currentLocation;
@@ -17,5 +18,6 @@
 }
    
 @property (weak, nonatomic) IBOutlet MKMapView *Map;
+-(void) addPair:(Person *) p;
 
 @end

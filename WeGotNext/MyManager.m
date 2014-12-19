@@ -59,7 +59,7 @@
 //adds a newly paired player p into the inApp pairs database for the sport sp
 - (void) addPersonToDatabase:(Person *) p sport:(int) sp{
     
-    //NSLog(@"Add to person database");
+    NSLog(@"Add to person database");
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 

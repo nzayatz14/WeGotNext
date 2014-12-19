@@ -41,58 +41,8 @@
 }
 
 //function that is called each time the window loads
-//check to see if there is a user currently logges in on the device, if there is,
-//pass the user to the home screen and set the current users information to his/her information
 -(void) viewWillAppear:(BOOL)animated{
-    
-    //get the file path of the database
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    NSString *documentsPath = [paths objectAtIndex:0];
-    
-    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
-    
-    sqlite3 *inAppDatabase;
-    
-    //open the database, if there is an error, print the error
-    if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
-        //NSLog(@"Open Database to save info");
-        
-        //sql statement to get the length of the current user table
-        //(if its 1 someone is logged in, if its 0 nobody is)
-        const char *sqlCount = "SELECT COUNT(*) FROM currentUser";
-        sqlite3_stmt *compiledCountStatement;
-        
-        //if the sql statement is valid, load the count, if not print an error
-        if(sqlite3_prepare_v2(inAppDatabase, sqlCount, -1, &compiledCountStatement, NULL) == SQLITE_OK){
-            while(sqlite3_step(compiledCountStatement) == SQLITE_ROW){
-                empty = sqlite3_column_int(compiledCountStatement, 0);
-                //NSLog(@"%d Count", empty);
-            }
-        }else{
-            NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
-        }
-        
-        //finalize the statement after it is executed or an error occurs
-        //NSLog(@"Done Count");
-        sqlite3_finalize(compiledCountStatement);
-        
-    }else{
-        NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
-    }
-    
-    //close the database
-    sqlite3_close(inAppDatabase);
-    
-    //if there is a current user AND the data is NOT ALREADY loaded (like when a new user is created)
-    //load the data, and pass the user to the home window
-    MyManager *sharedManager = [MyManager sharedManager];
-    if(empty == 1 && [[sharedManager.user getUserName] isEqualToString:@"userName"]){
-        [self loadUserInformation:filePath];
-    }else if (empty == 1 && ![[sharedManager.user getUserName] isEqualToString:@"userName"]){
-        [super performSegueWithIdentifier:@"btnLogin" sender:self];
-    }
-    
+ 
 }
 
 /* FUNCTION IS INCOMPLETE*/
@@ -664,29 +614,84 @@
 
 //FACEBOOK LOGIN
 // This method will be called when the user information has been fetched
+//check to see if there is a user currently logges in on the device, if there is,
+//pass the user to the home screen and set the current users information to his/her information
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     
     MyManager *sharedManager = [MyManager sharedManager];
-    [sharedManager.user setFirstName:user.first_name];
     
-    NSString *gender = [user objectForKey:@"gender"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
-    if([gender caseInsensitiveCompare:@"Male"] == NSOrderedSame){
-        [sharedManager.user setIsMale:YES];
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    NSString *filePath = [documentsPath stringByAppendingPathComponent:@"inAppStorage_WeGotNext.sqlite"];
+    
+    sqlite3 *inAppDatabase;
+    
+    //open the database, if there is an error, print the error
+    if(sqlite3_open([filePath UTF8String], &inAppDatabase) == SQLITE_OK){
+        //NSLog(@"Open Database to save info");
+        
+        //sql statement to get the length of the current user table
+        //(if its 1 someone is logged in, if its 0 nobody is)
+        const char *sqlCount = "SELECT COUNT(*) FROM currentUser";
+        sqlite3_stmt *compiledCountStatement;
+        
+        //if the sql statement is valid, load the count, if not print an error
+        if(sqlite3_prepare_v2(inAppDatabase, sqlCount, -1, &compiledCountStatement, NULL) == SQLITE_OK){
+            while(sqlite3_step(compiledCountStatement) == SQLITE_ROW){
+                empty = sqlite3_column_int(compiledCountStatement, 0);
+                //NSLog(@"%d Count", empty);
+            }
+        }else{
+            NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
+        }
+        
+        //finalize the statement after it is executed or an error occurs
+        //NSLog(@"Done Count");
+        sqlite3_finalize(compiledCountStatement);
+        
     }else{
-        [sharedManager.user setIsMale:NO];
+        NSLog(@"Error: %s", sqlite3_errmsg(inAppDatabase));
     }
     
-    NSString *birthString = [user objectForKey:@"birthday"];
-    NSLog(@"%@",birthString);
-    //NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    //[format setDateFormat:@"MM/dd/yyyy"];
-    //NSDate *birthDate = [format dateFromString:birthString];
+    //close the database
+    sqlite3_close(inAppDatabase);
     
-    //[sharedManager.user setBirthday:birthDate];
+    //if there is a current user AND the data is NOT ALREADY loaded (like when a new user is created)
+    //load the data, and pass the user to the home window
+    if(empty == 1 && [[sharedManager.user getUserName] isEqualToString:@"userName"]){
+        [self loadUserInformation:filePath];
+    }else if (empty == 1 && ![[sharedManager.user getUserName] isEqualToString:@"userName"]){
+        [super performSegueWithIdentifier:@"btnLogin" sender:self];
+    }else{
+        
+        [sharedManager.user setFirstName:user.first_name];
+        [sharedManager.user setUserName:[user objectForKey:@"id"]];
+        
+        NSLog(@"%@", [user objectForKey:@"id"]);
+        
+        NSString *gender = [user objectForKey:@"gender"];
+        
+        if([gender caseInsensitiveCompare:@"Male"] == NSOrderedSame){
+            [sharedManager.user setIsMale:YES];
+        }else{
+            [sharedManager.user setIsMale:NO];
+        }
+        
+        //NSString *birthString = [user objectForKey:@"birthday"];
+        //NSLog(@"%@",birthString);
+        //NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        //[format setDateFormat:@"MM/dd/yyyy"];
+        //NSDate *birthDate = [format dateFromString:birthString];
+        
+        //[sharedManager.user setBirthday:birthDate];
+        
+        [self addPersonAsCurrentUser];
+        
+    }
     
-    [super performSegueWithIdentifier:@"btnLogin" sender:self];
 }
 
 @end

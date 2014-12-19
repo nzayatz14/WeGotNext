@@ -7,7 +7,6 @@
 //
 
 #import "Home.h"
-#import "MyManager.h"
 #import "UIViewController+AMSlideMenu.h"
 #import <Parse/Parse.h>
 #define METERS_PER_MILE 1609.344
@@ -50,20 +49,6 @@
     
     [_Map setCenterCoordinate:[[[_Map userLocation] location] coordinate] animated:NO];
     
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *birthString = [format stringFromDate:[sharedManager.user getBirthday]];
-    
-    /*PFObject *userTest = [PFObject objectWithClassName:@"user"];
-    userTest[@"userName"] = [sharedManager.user getUserName];
-    userTest[@"firstName"] = [sharedManager.user getFirstName];
-    userTest[@"password"] = @"nope";
-    userTest[@"isMale"] = @[[NSNumber numberWithBool:[sharedManager.user isMale]]];
-    userTest[@"birthday"] = birthString;
-    userTest[@"upVotes"] = @[[NSNumber numberWithInt:[sharedManager.user getUpVotes]]];
-    userTest[@"totalVotes"] = @[[NSNumber numberWithInt:[sharedManager.user getVotes]]];
-    [userTest saveInBackground];*/
-    
     
     //TESTING: ADDS A PERSON AS A PAIR EACH TIME THE HOME SCREEN IS REACHED
     
@@ -71,18 +56,11 @@
     Person * temp = [[Person alloc] init];
     [temp setFirstName:[[NSString alloc] initWithFormat:@"FirstName%d", [sharedManager.user getNumberOfMatchesFromSport:[sharedManager.user getCurrentSport]]]];
     [temp setUserName:[[NSString alloc] initWithFormat:@"UserName%d", [sharedManager.user getNumberOfMatchesFromSport:[sharedManager.user getCurrentSport]]]];
-    //[temp setIsMale:NO];
+
     [temp addUpVote];
     [temp addVote];
-    //NSLog(@"%@", [temp getFirstName]);
     
-    [sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:temp];
-    
-    //IMPORTANT: WITH EVERY MATCH MADE, AUTOMATTICALLY ADD AN UPVOTE TO PREVENT NEGATIVE MATCHES
-    [sharedManager addUpVotePair:[sharedManager.user getCurrentSport] value:YES];
-    
-    [sharedManager addPersonToDatabase:temp sport:[sharedManager.user getCurrentSport]];
-    //[sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:temp];
+    [self addPair:temp];
 }
 
 //call this method once the map finishes loading so the location can be set to the users current location
@@ -110,4 +88,36 @@
     
     [_Map setRegion:viewRegion animated:NO];
 }
+
+-(void) addPair:(Person *) p{
+    
+    MyManager *sharedManager = [MyManager sharedManager];
+    
+    [sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:p];
+    
+    //IMPORTANT: WITH EVERY MATCH MADE, AUTOMATTICALLY ADD AN UPVOTE TO PREVENT NEGATIVE MATCHES
+    [sharedManager addUpVotePair:[sharedManager.user getCurrentSport] value:YES];
+    
+    NSString *username = [sharedManager.user getUserName];
+    NSString *databaseName = [[NSString alloc] initWithFormat:@"Matches%@", username];
+    
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *birthString = [format stringFromDate:[p getBirthday]];
+    
+    
+    PFObject *userTest = [PFObject objectWithClassName:databaseName];
+    userTest[@"sportNumber"] = @[[NSNumber numberWithInt:[sharedManager.user getCurrentSport]]];
+    userTest[@"userName"] = [p getUserName];
+    userTest[@"firstName"] = [p getFirstName];
+    userTest[@"isMale"] = @[[NSNumber numberWithBool:[p isMale]]];
+    userTest[@"birthday"] = birthString;
+    userTest[@"upVotes"] = @[[NSNumber numberWithInt:[p getUpVotes]]];
+    userTest[@"totalVotes"] = @[[NSNumber numberWithInt:[p getVotes]]];
+    [userTest saveInBackground];
+    
+     [sharedManager addPersonToDatabase:p sport:[sharedManager.user getCurrentSport]];
+}
+
 @end
