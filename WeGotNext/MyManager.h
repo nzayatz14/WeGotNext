@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import <Parse/Parse.h>
 #import "Person.h"
 
 @interface MyManager : NSObject{
@@ -29,5 +30,6 @@
 -(void) addUpVotePair:(int) sport value:(BOOL) up;
 -(void) setUpVotePair:(int) sport matchNumber:(int) match value:(BOOL) up;
 -(BOOL) getUpVotePair:(int) sport matchNumber:(int) match;
+-(void) loadPairsFromOutsideDatabase: (NSString*) username;
 
 @end

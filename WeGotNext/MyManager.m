@@ -59,7 +59,7 @@
 //adds a newly paired player p into the inApp pairs database for the sport sp
 - (void) addPersonToDatabase:(Person *) p sport:(int) sp{
     
-    NSLog(@"Add to person database");
+    NSLog(@"Add to person database %@", [p getUserName]);
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 
@@ -230,6 +230,52 @@
 //creates a new voteable object each time a new pair is made
 -(void) addUpVotePair:(int) sport value:(BOOL) up{
     [upVotePairs[sport] addObject:[NSNumber numberWithBool:up]];
+}
+
+-(void) loadPairsFromOutsideDatabase: (NSString*) username{
+    
+    NSString *matchString = [[NSString alloc] initWithFormat:@"Matches%@", username];
+    PFQuery *pairsQuery = [PFQuery queryWithClassName:matchString];
+    
+    [pairsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(!error){
+            NSLog(@"Loading Data :D");
+            
+            for(PFObject *obj in objects){
+                //NSLog(@"%d",[obj[@"sportNumber"] intValue]);
+                //int sportNumber = [obj[@"sportNumber"] intValue];
+                NSString *userName = obj[@"userName"];
+                NSString *firstName =obj[@"firstName"];
+                //BOOL isMale = [obj[@"isMale"] boolValue];
+                //int totalVotes = [obj[@"totalVotes"] intValue];
+                //int upVotes = [obj[@"upVotes"] intValue];
+                NSString *birthday = obj[@"birthday"];
+                
+                NSDateFormatter *format = [[NSDateFormatter alloc] init];
+                [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                NSDate *birthDate = [format dateFromString:birthday];
+                
+                
+                Person *p = [[Person alloc] initWithUserName:userName FirstName:firstName Password:@"" isMale:YES birthdate:birthDate upVotes:1 votes:1];
+                
+                [user addMatchFromSport:0 match:p];
+                [self addPersonToDatabase:p sport:0];
+            }
+        }else{
+            NSLog(@"Error loading data.");
+        }
+    }];
+    
+    
+    [self loadTeammatesFromOutsideDatabase:username];
+}
+
+-(void) loadTeammatesFromOutsideDatabase: (NSString*) username{
+    [self loadUserExperiencesFromOutsideDatabase:username];
+}
+
+-(void) loadUserExperiencesFromOutsideDatabase: (NSString*) username{
+    
 }
 
 @end

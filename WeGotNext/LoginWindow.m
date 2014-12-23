@@ -273,11 +273,11 @@
     
     //write the users pairs, teammates, and experiences to the inApp database as well from online
     
-    
-    
     sqlite3_close(inAppDatabase);
+    [sharedManager loadPairsFromOutsideDatabase: [sharedManager.user getUserName]];
     [super performSegueWithIdentifier:@"btnLogin" sender:self];
 }
+
 
 //this function is called if there is a current user logged in BUT the users
 //information is not yet loaded into the app
