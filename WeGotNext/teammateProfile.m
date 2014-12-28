@@ -41,9 +41,26 @@
 - (void) removeFromTeam{
     MyManager *sharedManager = [MyManager sharedManager];
     
-    [sharedManager removeTeammateFromDatabase:[sharedManager.user getTeammateFromSport:[sharedManager.user getCurrentSport] teammateNumber:[_matchNumber intValue]] sport:[sharedManager.user getCurrentSport]];
+    Person *p = [sharedManager.user getTeammateFromSport:[sharedManager.user getCurrentSport] teammateNumber:[_matchNumber intValue]];
     
     [sharedManager.user removeTeammateFromSport:[sharedManager.user getCurrentSport] teammateNumber:[_matchNumber intValue]];
+    
+    PFQuery *query = [PFQuery queryWithClassName:[[NSString alloc] initWithFormat:@"Matches%@", [sharedManager.user getUserName]]];
+    
+    [query whereKey:@"userName" equalTo:[p getUserName]];
+    [query whereKey:@"sportNumber" equalTo:@([sharedManager.user getCurrentSport])];
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!object) {
+            NSLog(@"The getFirstObject request failed.");
+        } else {
+            // The find succeeded.
+            object[@"isOnTeam"] = @([sharedManager.user isUserOnTeam:p]);
+            [object saveInBackground];
+        }
+    }];
+    
+    [sharedManager removeTeammateFromDatabase:p sport:[sharedManager.user getCurrentSport]];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

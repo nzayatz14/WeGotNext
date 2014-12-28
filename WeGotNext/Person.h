@@ -81,6 +81,7 @@
 -(void) getMatchesFromSport:(int) sport matches:(NSMutableArray *) array;
 -(void) removeMatchFromSport:(int) sp matchNumber:(int) number;
 -(int) getNumberOfMatchesFromSport:(int) sp;
+-(BOOL) isUserOnTeam:(Person*) p;
 
 -(void) addUpVote;
 -(void) addVote;

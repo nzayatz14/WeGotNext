@@ -59,9 +59,26 @@
 //adds the player currently being viewed to the users team in that sport
 - (void) addToTeam{
     MyManager *sharedManager = [MyManager sharedManager];
-    [sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:[sharedManager.user getMatchFromSport:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue]]];
     
-    [sharedManager addTeammateToDatabase:[sharedManager.user getMatchFromSport:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue]] sport:[sharedManager.user getCurrentSport]];
+    Person *p = [sharedManager.user getMatchFromSport:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue]];
+    
+    [sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:p];
+    [sharedManager addTeammateToDatabase:p sport:[sharedManager.user getCurrentSport]];
+    
+    PFQuery *query = [PFQuery queryWithClassName:[[NSString alloc] initWithFormat:@"Matches%@", [sharedManager.user getUserName]]];
+    
+    [query whereKey:@"userName" equalTo:[p getUserName]];
+    [query whereKey:@"sportNumber" equalTo:@([sharedManager.user getCurrentSport])];
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!object) {
+            NSLog(@"The getFirstObject request failed.");
+        } else {
+            // The find succeeded.
+            object[@"isOnTeam"] = @([sharedManager.user isUserOnTeam:p]);
+            [object saveInBackground];
+        }
+    }];
 }
 
 - (IBAction)btnAddToTeamClicked:(UIButton *)sender {

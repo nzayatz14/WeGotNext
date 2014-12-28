@@ -242,13 +242,14 @@
             NSLog(@"Loading Data :D");
             
             for(PFObject *obj in objects){
-                NSLog(@"%d",[[obj[@"sportNumber"] objectAtIndex:0]intValue]);
-                int sportNumber = [[obj[@"sportNumber"] objectAtIndex:0] intValue];
+                NSLog(@"%d",[obj[@"sportNumber"] intValue]);
+                int sportNumber = [obj[@"sportNumber"]  intValue];
                 NSString *userName = obj[@"userName"];
                 NSString *firstName =obj[@"firstName"];
-                BOOL isMale = [[obj[@"isMale"] objectAtIndex:0] boolValue];
-                int totalVotes = [[obj[@"totalVotes"] objectAtIndex:0]intValue];
-                int upVotes = [[obj[@"upVotes"] objectAtIndex:0]intValue];
+                BOOL isMale = [obj[@"isMale"] boolValue];
+                BOOL isOnTeam = [obj[@"isOnTeam"] boolValue];
+                int totalVotes = [obj[@"totalVotes"] intValue];
+                int upVotes = [obj[@"upVotes"] intValue];
                 NSString *birthday = obj[@"birthday"];
                 
                 NSDateFormatter *format = [[NSDateFormatter alloc] init];
@@ -260,6 +261,11 @@
                 
                 [user addMatchFromSport:sportNumber match:p];
                 [self addPersonToDatabase:p sport:sportNumber];
+                
+                if(isOnTeam == YES){
+                    [user addToTeamFromSport:sportNumber person:p];
+                    [self addTeammateToDatabase:p sport:sportNumber];
+                }
             }
         }else{
             NSLog(@"Error loading data.");

@@ -108,13 +108,14 @@
     
     
     PFObject *userTest = [PFObject objectWithClassName:databaseName];
-    userTest[@"sportNumber"] = @[[NSNumber numberWithInt:[sharedManager.user getCurrentSport]]];
+    userTest[@"sportNumber"] = @([sharedManager.user getCurrentSport]);
     userTest[@"userName"] = [p getUserName];
     userTest[@"firstName"] = [p getFirstName];
-    userTest[@"isMale"] = @[[NSNumber numberWithBool:[p isMale]]];
+    userTest[@"isMale"] = @([p isMale]);
     userTest[@"birthday"] = birthString;
-    userTest[@"upVotes"] = @[[NSNumber numberWithInt:[p getUpVotes]]];
-    userTest[@"totalVotes"] = @[[NSNumber numberWithInt:[p getVotes]]];
+    userTest[@"upVotes"] = @([p getUpVotes]);
+    userTest[@"totalVotes"] = @([p getVotes]);
+    userTest[@"isOnTeam"] = @([sharedManager.user isUserOnTeam:p]);
     [userTest saveInBackground];
     
      [sharedManager addPersonToDatabase:p sport:[sharedManager.user getCurrentSport]];
