@@ -232,15 +232,22 @@
     [upVotePairs[sport] addObject:[NSNumber numberWithBool:up]];
 }
 
+//Pre: Takes in the username of the person whose pairs needs to be loaded in
+//Post:n/a
+//loads in the users pairs and teammates from an outside database into the arrays and inApp database
 -(void) loadPairsFromOutsideDatabase: (NSString*) username{
     
+    //create a query for that persons pairs
     NSString *matchString = [[NSString alloc] initWithFormat:@"Matches%@", username];
     PFQuery *pairsQuery = [PFQuery queryWithClassName:matchString];
     
+    //get all of the objects that are a result of that query
     [pairsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        //if there is no error loading the data, read in each of the pairs data
+        //and store it into a new person object, then add that person object to
+        //the users array depending on which sport they're in
         if(!error){
-            NSLog(@"Loading Data :D");
-            
             for(PFObject *obj in objects){
                 NSLog(@"%d",[obj[@"sportNumber"] intValue]);
                 int sportNumber = [obj[@"sportNumber"]  intValue];
@@ -262,6 +269,7 @@
                 [user addMatchFromSport:sportNumber match:p];
                 [self addPersonToDatabase:p sport:sportNumber];
                 
+                //if the new person is also on the users team for that sport, add them to the team array
                 if(isOnTeam == YES){
                     [user addToTeamFromSport:sportNumber person:p];
                     [self addTeammateToDatabase:p sport:sportNumber];
@@ -273,13 +281,13 @@
     }];
     
     
-    [self loadTeammatesFromOutsideDatabase:username];
-}
-
--(void) loadTeammatesFromOutsideDatabase: (NSString*) username{
     [self loadUserExperiencesFromOutsideDatabase:username];
 }
 
+//THIS FUNCTION IS INCOMPLETE
+//Pre: takes in the username whose experiences need to be loaded
+//Post: n/a
+//loads in the users experiences from an outside database
 -(void) loadUserExperiencesFromOutsideDatabase: (NSString*) username{
     
 }

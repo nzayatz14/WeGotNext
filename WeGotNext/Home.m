@@ -89,15 +89,20 @@
     [_Map setRegion:viewRegion animated:NO];
 }
 
+//Pre: takes in the new pair to be added to the users pair list
+//Post: n/a
+//adds the new pair to the online database, inApp database, and the arrayList
 -(void) addPair:(Person *) p{
     
     MyManager *sharedManager = [MyManager sharedManager];
     
+    //add new person to arrayList
     [sharedManager.user addMatchFromSport:[sharedManager.user getCurrentSport] match:p];
     
     //IMPORTANT: WITH EVERY MATCH MADE, AUTOMATTICALLY ADD AN UPVOTE TO PREVENT NEGATIVE MATCHES
     [sharedManager addUpVotePair:[sharedManager.user getCurrentSport] value:YES];
     
+    //get the online table name of which to add this new pair
     NSString *username = [sharedManager.user getUserName];
     NSString *databaseName = [[NSString alloc] initWithFormat:@"Matches%@", username];
     
@@ -106,7 +111,7 @@
     [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *birthString = [format stringFromDate:[p getBirthday]];
     
-    
+    //create new object to save data of the new person to the table online
     PFObject *userTest = [PFObject objectWithClassName:databaseName];
     userTest[@"sportNumber"] = @([sharedManager.user getCurrentSport]);
     userTest[@"userName"] = [p getUserName];
@@ -118,7 +123,8 @@
     userTest[@"isOnTeam"] = @([sharedManager.user isUserOnTeam:p]);
     [userTest saveInBackground];
     
-     [sharedManager addPersonToDatabase:p sport:[sharedManager.user getCurrentSport]];
+    //save this new person to the inApp database
+    [sharedManager addPersonToDatabase:p sport:[sharedManager.user getCurrentSport]];
 }
 
 @end

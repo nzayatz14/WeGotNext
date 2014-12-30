@@ -45,11 +45,13 @@
     
     [sharedManager.user removeTeammateFromSport:[sharedManager.user getCurrentSport] teammateNumber:[_matchNumber intValue]];
     
+    //create query to update online database entry for this person
     PFQuery *query = [PFQuery queryWithClassName:[[NSString alloc] initWithFormat:@"Matches%@", [sharedManager.user getUserName]]];
     
     [query whereKey:@"userName" equalTo:[p getUserName]];
     [query whereKey:@"sportNumber" equalTo:@([sharedManager.user getCurrentSport])];
     
+    //get the user from the query and set the "isOnTeam" attribute to false
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!object) {
             NSLog(@"The getFirstObject request failed.");
@@ -60,6 +62,7 @@
         }
     }];
     
+    //remove teammate from inApp database then pop the view controller
     [sharedManager removeTeammateFromDatabase:p sport:[sharedManager.user getCurrentSport]];
     
     [self.navigationController popViewControllerAnimated:YES];

@@ -228,6 +228,7 @@
     SecItemDelete((__bridge CFDictionaryRef)searchDictionary);
 }
 
+//create left menu button that says "Home"
 -(void) configureLeftMenuButton:(UIButton *)button{
     CGRect btnFrame = button.frame;
     btnFrame.origin = (CGPoint){0,0};
@@ -239,6 +240,7 @@
     [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
 }
 
+//create right menu button that says "Chat"
 -(void) configureRightMenuButton:(UIButton *)button{
     CGRect btnFrame = button.frame;
     btnFrame.origin = (CGPoint){0,0};

@@ -271,9 +271,9 @@
         NSLog(@"Error 0: %s", sqlite3_errmsg(inAppDatabase));
     }
     
-    //write the users pairs, teammates, and experiences to the inApp database as well from online
-    
     sqlite3_close(inAppDatabase);
+    
+    //write the users pairs, teammates, and experiences to the inApp database as well from online
     [sharedManager loadPairsFromOutsideDatabase: [sharedManager.user getUserName]];
     [super performSegueWithIdentifier:@"btnLogin" sender:self];
 }

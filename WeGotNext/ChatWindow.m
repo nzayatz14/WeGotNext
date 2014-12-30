@@ -18,22 +18,22 @@
     
     [super viewDidLoad];
     
-    MyManager *sharedManager = [MyManager sharedManager];
-    
+    //create chat window to be displayed
     if (!_chatController)
         _chatController = [ChatController new];
     
     _chatController.delegate = self;
     
+    //set chat window to have navigation title header and for there to be no back button
     self.navigationController.navigationBar.translucent = NO;
     _chatController.navigationItem.hidesBackButton = YES;
     
     _chatController.isNavigationControllerVersion = YES;
     
-    NSLog(@"%@", _myTitle);
+    //NSLog(@"%@", _myTitle);
     
+    //set chat controller title
     _chatController.chatTitle = [[NSString alloc] initWithFormat:@"%@",_myTitle];
-    _chatController.opponentImg = [sharedManager.user getProfPicFromSport:[sharedManager.user getCurrentSport] picNumber:0];
     
     [self.navigationController pushViewController:_chatController animated:YES];
 }

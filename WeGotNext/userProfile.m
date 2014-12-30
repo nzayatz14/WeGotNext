@@ -60,16 +60,19 @@
 - (void) addToTeam{
     MyManager *sharedManager = [MyManager sharedManager];
     
+    //create temporary person object to hold this persons information for easy access
     Person *p = [sharedManager.user getMatchFromSport:[sharedManager.user getCurrentSport] matchNumber:[_matchNumber intValue]];
     
     [sharedManager.user addToTeamFromSport:[sharedManager.user getCurrentSport] person:p];
     [sharedManager addTeammateToDatabase:p sport:[sharedManager.user getCurrentSport]];
     
+    //crate query to update onine database to say that the person is on the users team
     PFQuery *query = [PFQuery queryWithClassName:[[NSString alloc] initWithFormat:@"Matches%@", [sharedManager.user getUserName]]];
     
     [query whereKey:@"userName" equalTo:[p getUserName]];
     [query whereKey:@"sportNumber" equalTo:@([sharedManager.user getCurrentSport])];
     
+    //get the ne person entry in the table and update the "isOnTeam" attribute to true
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!object) {
             NSLog(@"The getFirstObject request failed.");

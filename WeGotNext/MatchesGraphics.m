@@ -115,7 +115,7 @@
     }
 }
 
-
+//filters pairs through search bar text
 -(void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope{
     
     NSPredicate *results = [NSPredicate predicateWithFormat:@"%K contains[c] %@", @"firstName", searchText];
@@ -131,11 +131,12 @@
      }]; */
 }
 
-
+//called every time a letter is typed into the search bar
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
     
     //NSLog(@"Display");
     
+    //refilter objects
     [self filterContentForSearchText:searchString scope:[self.searchDisplayController.searchBar.scopeButtonTitles objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     
     return YES;
